@@ -62,7 +62,7 @@ class TextField extends Field
 		$this->addAttrib("tabindex", $this->tabOrder);
 		$this->addEvents();
 		$this->addCustomAttrib();
-		return BaseTags::p(Tags::input($this->attrib), "style='min-height:25px;'");
+		return BaseTags::p(BaseTags::input($this->attrib), "style='min-height:25px;'");
 	}
 	// -------------------------------------------------------------------------
 }
