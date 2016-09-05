@@ -17,6 +17,11 @@ use braga\widgets\jqueryui\CheckBoxField;
  */
 
 // =============================================================================
+function icon($icon = "", $float = "left")
+{
+	return BaseTags::span("", "class='ui-icon " . $icon . "' style='float:" . $float . "'");
+}
+// =============================================================================
 function ListGroupItemExtended($title = "Tytuł", $content = "")
 {
 	$rnd = "LGE" . getRandomStringLetterOnly(8);
