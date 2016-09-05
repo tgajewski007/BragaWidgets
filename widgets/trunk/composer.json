@@ -7,7 +7,7 @@
 			"braga\\widgets\\" : "src"
 		},
 		"files" : [
-			"src/tools/func.php"
+			"src/jqueryui/func.php"
 		]
 	},
 	"name" : "braga/widgets",
