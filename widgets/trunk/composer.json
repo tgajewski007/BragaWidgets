@@ -7,7 +7,7 @@
 			"braga\\widgets\\" : "src"
 		}
 	},
-	"name" : "braga/BragaJQueryWidgets",
+	"name" : "braga/widgets",
 	"type" : "library",
 	"description" : "Widgets server side",
 	"license" : "MIT",
