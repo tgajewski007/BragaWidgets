@@ -40,7 +40,7 @@ class MemoField extends Field
 		$this->addAttrib("cols", "0");
 		$this->addEvents();
 		$this->addCustomAttrib();
-		$tmp = BaseTags::div(Tags::textarea($this->selected, $this->attrib), "style='min-height:85px;'");
+		$tmp = BaseTags::div(BaseTags::textarea($this->selected, $this->attrib), "style='min-height:85px;'");
 
 		return $tmp;
 	}

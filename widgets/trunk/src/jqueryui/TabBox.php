@@ -91,13 +91,13 @@ class TabBox
 	// -------------------------------------------------------------------------
 	private function menuPassive($opis, $href)
 	{
-		$retval = BaseTags::p(Tags::a($opis, $this->ajax . " href='" . $href . "' onmouseout='\$(this).parent().removeClass(\"ui-state-hover\")' onmouseover='\$(this).parent().addClass(\"ui-state-hover\")'"), "class='c ui-widget-content ui-corner-top ui-state-default' style='margin:2px;padding:5px;float:left'");
+		$retval = BaseTags::p(BaseTags::a($opis, $this->ajax . " href='" . $href . "' onmouseout='\$(this).parent().removeClass(\"ui-state-hover\")' onmouseover='\$(this).parent().addClass(\"ui-state-hover\")'"), "class='c ui-widget-content ui-corner-top ui-state-default' style='margin:2px;padding:5px;float:left'");
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
 	private function menuActive($opis, $href)
 	{
-		$retval = BaseTags::p(Tags::a($opis, $this->ajax . " href='" . $href . "'"), "class='c ui-widget-content ui-corner-top ui-state-active' style='margin:2px;padding:5px;float:left'");
+		$retval = BaseTags::p(BaseTags::a($opis, $this->ajax . " href='" . $href . "'"), "class='c ui-widget-content ui-corner-top ui-state-active' style='margin:2px;padding:5px;float:left'");
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
