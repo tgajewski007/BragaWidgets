@@ -1,5 +1,7 @@
 <?php
+
 namespace braga\widgets\jqueryui;
+
 use braga\tools\html\BaseTags;
 
 /**
@@ -35,7 +37,7 @@ class GroupCheckBoxListField extends CheckBoxListField
 				$a->setSelected(isset($this->selected[$value->getVal()]));
 				$a->setValue($value->getVal());
 				$a->setCustomAttrib($groupName . "='1'");
-				$list .= BaseTags::p($a->out() . Tags::label($value->getDesc()));
+				$list .= BaseTags::p($a->out() . BaseTagss::label($value->getDesc()));
 			}
 
 			$multiCheck = BaseTags::input("type='checkbox' class='zLewej' onclick='\$(\"input[" . $groupName . "]\").prop(\"checked\",\$(this).prop(\"checked\"))'");

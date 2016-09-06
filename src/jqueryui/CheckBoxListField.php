@@ -1,5 +1,7 @@
 <?php
+
 namespace braga\widgets\jqueryui;
+
 use braga\tools\html\BaseTags;
 
 /**
@@ -28,7 +30,7 @@ class CheckBoxListField extends Field
 			$a->setId($this->name . "_" . $value->getVal());
 			$a->setSelected(isset($this->selected[$value->getVal()]));
 			$a->setValue($value->getVal());
-			$retval .= BaseTags::p($a->out() . Tags::label($value->getDesc()));
+			$retval .= BaseTags::p($a->out() . BaseTags::label($value->getDesc()));
 		}
 		return BaseTags::div($retval, "class='ui-widget-content ui-corner-all' style='margin:4px;padding:4px'");
 	}
