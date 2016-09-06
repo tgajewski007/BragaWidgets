@@ -167,7 +167,7 @@ class DBGrid
 				{
 					if($this->ajaxEnablad)
 					{
-						$tmp = BaseTags::a($this->db->f($i), "href='" . $this->hrefCell . "' onclick='return ajax.go();'");
+						$tmp = BaseTags::a($this->db->f($i), "href='" . $this->hrefCell . "' onclick='return ajax.go(this);'");
 					}
 					else
 					{
