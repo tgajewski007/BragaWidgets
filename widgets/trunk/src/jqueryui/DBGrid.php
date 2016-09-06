@@ -1,5 +1,7 @@
 <?php
+
 namespace braga\widgets\jqueryui;
+
 use braga\tools\html\BaseTags;
 use braga\db\DataSource;
 
@@ -28,7 +30,8 @@ class DBGrid
 	protected $contentDateCellClass = "c";
 	protected $rowClass = array(
 			"ui-state-default",
-			"ui-state-focus");
+			"ui-state-focus"
+	);
 	// -------------------------------------------------------------------------
 	protected $headerOutput = true;
 	protected $ajaxEnablad = true;
@@ -164,7 +167,7 @@ class DBGrid
 				{
 					if($this->ajaxEnablad)
 					{
-						$tmp = BaseTags::ajaxLink($this->hrefCell, $this->db->f($i));
+						$tmp = BaseTags::a($this->db->f($i), "href='" . $this->hrefCell . "' onclick='return ajax.go();'");
 					}
 					else
 					{
