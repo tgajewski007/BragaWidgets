@@ -1,0 +1,22 @@
+{
+	"keywords" : [
+		"widgets jquery-ui"
+	],
+	"autoload" : {
+		"psr-4" : {
+			"braga\\widgets\\" : "src"
+		},
+		"files" : [
+			"src/jqueryui/func.php"
+		]
+	},
+	"name" : "braga/widgets",
+	"type" : "library",
+	"description" : "Widgets server side",
+	"license" : "MIT",
+	"require" : {
+		"php" : ">=5.4",
+		"braga/db" : "2.0.0"
+	},
+	"minimum-stability" : "stable"
+}
