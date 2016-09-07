@@ -28,9 +28,9 @@ class GroupCheckBoxListField extends CheckBoxListField
 			$groupName = "data-" . getRandomStringLetterOnly(5);
 			$list = "";
 			foreach($grupa as $value)/* @var $value WidgetItem */
-				{
+			{
 				$a = new CheckBoxField();
-				$a->setName($this->name . "[" . $value->getVal() . "]");
+				$a->setName($this->name . "[]");
 				$a->setId($this->name . "_" . $value->getVal());
 				$a->setSelected(isset($this->selected[$value->getVal()]));
 				$a->setValue($value->getVal());
