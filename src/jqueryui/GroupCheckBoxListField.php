@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\jqueryui;
-
 use braga\tools\html\BaseTags;
 
 /**
@@ -32,12 +30,12 @@ class GroupCheckBoxListField extends CheckBoxListField
 			foreach($grupa as $value)/* @var $value WidgetItem */
 				{
 				$a = new CheckBoxField();
-				$a->setName($this->name . "[]");
+				$a->setName($this->name . "[" . $value->getVal() . "]");
 				$a->setId($this->name . "_" . $value->getVal());
 				$a->setSelected(isset($this->selected[$value->getVal()]));
 				$a->setValue($value->getVal());
 				$a->setCustomAttrib($groupName . "='1'");
-				$list .= BaseTags::p($a->out() . BaseTagss::label($value->getDesc()));
+				$list .= BaseTags::p($a->out() . BaseTags::label($value->getDesc()));
 			}
 
 			$multiCheck = BaseTags::input("type='checkbox' class='zLewej' onclick='\$(\"input[" . $groupName . "]\").prop(\"checked\",\$(this).prop(\"checked\"))'");
