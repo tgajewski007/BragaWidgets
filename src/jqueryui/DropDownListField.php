@@ -1,7 +1,6 @@
 <?php
 namespace braga\widgets\jqueryui;
 use braga\tools\html\BaseTags;
-use Braga\WidgetItem;
 
 /**
  * Created on 10-06-2011 10:45:23
