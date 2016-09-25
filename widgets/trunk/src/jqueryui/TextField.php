@@ -1,11 +1,10 @@
 <?php
 namespace braga\widgets\jqueryui;
 use braga\tools\html\BaseTags;
-
 /**
  * Created on 08-04-2011 11:42:29
  * @author Tomasz.Gajewski
- * @package system
+ * @package enmarket
  * error prefix
  */
 class TextField extends Field
@@ -14,15 +13,27 @@ class TextField extends Field
 	protected $maxLength = 255;
 	protected $type = "text";
 	protected $readOnly = false;
+	protected $watermark = "";
+	protected $regExPatern = null;
 	// -------------------------------------------------------------------------
 	public function setMaxLength($maxLength)
 	{
 		$this->maxLength = $maxLength;
 	}
 	// -------------------------------------------------------------------------
+	public function setRegExpPatern($patern)
+	{
+		$this->regExPatern = $patern;
+	}
+	// -------------------------------------------------------------------------
 	public function setType($type)
 	{
 		$this->type = $type;
+	}
+	// -------------------------------------------------------------------------
+	public function setWaterMark($watermark)
+	{
+		$this->watermark = $watermark;
 	}
 	// -------------------------------------------------------------------------
 	public function setReadOnly($readOnly = true)
@@ -34,6 +45,7 @@ class TextField extends Field
 	{
 		$this->onFocus .= "\$(this).select();";
 		$this->attrib = null;
+		$checkScript = "";
 		$this->classString .= " " . Field::CLASS_SIZE_MED;
 		if($this->readOnly)
 		{
@@ -46,23 +58,34 @@ class TextField extends Field
 		}
 		if($this->required)
 		{
-			$this->onKeyUp = "CzyNull(this);" . $this->onKeyUp;
 			if($this->selected == "")
 			{
+				$this->onKeyUp = "CzyNull(this);" . $this->onKeyUp;
 				$this->classString .= " " . Field::CLASS_ERROR;
 			}
+			$checkScript = "if(!checkIsNull(this)){return false};";
+		}
+		if(!is_null($this->regExPatern))
+		{
+			$checkScript .= "if(!checkRegExPatern(this,\"" . $this->regExPatern . "\")){return false};";
 		}
 
+		$this->onChange = $checkScript . $this->onChange;
+		$this->onBlur = $checkScript . $this->onBlur;
+		$this->onKeyUp = $checkScript . $this->onKeyUp;
+
 		$this->addAttrib("type", $this->type);
-		$this->addAttrib("id", $this->id);
+		$this->addAttrib("id", $this->name);
 		$this->addAttrib("name", $this->name);
 		$this->addAttrib("maxlength", $this->maxLength);
 		$this->addAttrib("class", $this->classString);
 		$this->addAttrib("value", $this->selected);
 		$this->addAttrib("tabindex", $this->tabOrder);
+		$this->addAttrib("placeholder", $this->watermark);
 		$this->addEvents();
 		$this->addCustomAttrib();
-		return BaseTags::p(BaseTags::input($this->attrib), "style='min-height:25px;'");
+
+		return BaseTags::input($this->attrib);
 	}
 	// -------------------------------------------------------------------------
 }

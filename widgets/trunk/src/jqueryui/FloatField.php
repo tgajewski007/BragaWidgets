@@ -16,6 +16,7 @@ class FloatField extends Field
 	protected $precision = 2;
 	protected $maxLength = 22;
 	protected $type = "text";
+	protected $watermark = "";
 	// -------------------------------------------------------------------------
 	public function setMaxLength($maxLength)
 	{
@@ -42,6 +43,11 @@ class FloatField extends Field
 		$this->precision = $precision;
 	}
 	// -------------------------------------------------------------------------
+	public function setWaterMark($watermark)
+	{
+		$this->watermark = $watermark;
+	}
+	// -------------------------------------------------------------------------
 	public function out()
 	{
 		$this->onFocus .= "\$(this).select();";
@@ -49,18 +55,21 @@ class FloatField extends Field
 		$this->onBlur .= "\$(this).removeClass(\"ui-state-highlight\");";
 		$this->attrib = null;
 		$this->classString .= " r " . Field::CLASS_SIZE_MED;
+		$checkScript = "";
 		if($this->required)
 		{
-			$this->onChange .= "if(CzyReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ")){CzyNull(this);}";
+			$checkScript = "if(CzyReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ")){checkIsNull(this);}";
 			if("" == $this->selected)
-			{
 				$this->classString .= " " . Field::CLASS_ERROR;
-			}
 		}
 		else
 		{
-			$this->onChange .= "CzyReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ");";
+			$checkScript = "CzyReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ");";
 		}
+
+		$this->onChange = $checkScript . $this->onChange;
+		$this->onBlur = $checkScript . $this->onBlur;
+		$this->onKeyUp = $this->onKeyUp;
 
 		if(null != $this->selected)
 		{
@@ -83,12 +92,13 @@ class FloatField extends Field
 		}
 
 		$this->addAttrib("type", $this->type);
-		$this->addAttrib("id", $this->id);
+		$this->addAttrib("id", $this->name);
 		$this->addAttrib("name", $this->name);
 		$this->addAttrib("class", $this->classString);
 		$this->addAttrib("value", $this->selected);
 		$this->addAttrib("tabindex", $this->tabOrder);
 		$this->addAttrib("maxlength", $this->maxLength);
+		$this->addAttrib("placeholder", $this->watermark);
 		$this->addEvents();
 		$this->addCustomAttrib();
 		return BaseTags::input($this->attrib);

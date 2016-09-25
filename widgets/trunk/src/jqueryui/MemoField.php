@@ -1,7 +1,6 @@
 <?php
 namespace braga\widgets\jqueryui;
 use braga\tools\html\BaseTags;
-
 /**
  * Created on 08-04-2011 11:42:29
  * @author Tomasz.Gajewski
@@ -24,6 +23,7 @@ class MemoField extends Field
 		$this->onFocus .= "\$(this).addClass(\"widgetHighLight a ui-state-highlight\");\$(this).css(\"z-index\",3);";
 		$this->onBlur .= "\$(this).removeClass(\"widgetHighLight a ui-state-highlight\");\$(this).css(\"z-index\",0);";
 		$this->classString .= " " . Field::CLASS_SIZE_MED;
+	
 		if($this->required)
 		{
 			$this->onKeyUp .= "CzyNull(this);";
@@ -40,7 +40,7 @@ class MemoField extends Field
 		$this->addAttrib("cols", "0");
 		$this->addEvents();
 		$this->addCustomAttrib();
-		$tmp = BaseTags::div(BaseTags::textarea($this->selected, $this->attrib), "style='min-height:85px;'");
+		$tmp = BaseTags::textarea($this->selected, $this->attrib);
 
 		return $tmp;
 	}
