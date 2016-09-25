@@ -1,10 +1,9 @@
 <?php
 namespace braga\widgets\jqueryui;
 use braga\tools\html\BaseTags;
-
 /**
  *
- * @package backoffice
+ * @package enmarket
  * @author Tomasz.Gajewski
  * Created on 2008-07-14 12:27:37
  * klasa odpowiedzialna za wygenerowanie formatki wyboru daty
@@ -16,12 +15,6 @@ class DateField extends Field
 	protected $maxValue = null;
 	protected $minValueString = null;
 	protected $maxValueString = null;
-	protected $warn = false;
-	// -------------------------------------------------------------------------
-	public function enableWarn()
-	{
-		$this->warn = true;
-	}
 	// -------------------------------------------------------------------------
 	public function setMinValue($minValue)
 	{
@@ -39,24 +32,14 @@ class DateField extends Field
 	{
 		$this->attrib = null;
 		$this->onBlur .= "CheckDate(this," . var_export($this->required, true) . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\");";
-
 		if($this->required)
 		{
 			if(null == $this->selected)
 			{
-				$this->classString .= " " . Field::CLASS_ERROR;
+				// $this->classString .= " " . Field::CLASS_ERROR;
+				$this->setSelected(date(PHP_DATE_FORMAT));
 			}
 		}
-		if($this->warn)
-		{
-			if(strlen($this->selected) > 0)
-			{
-				$this->addAttrib("style", "color:red");
-			}
-		}
-
-		$this->onFocus .= "\$(this).addClass(\"ui-state-highlight\");";
-		$this->onBlur .= "\$(this).removeClass(\"ui-state-highlight\");";
 		$this->addAttrib("id", $this->id);
 		$this->addAttrib("name", $this->name);
 		$this->addAttrib("maxlength", 10);
@@ -66,16 +49,8 @@ class DateField extends Field
 		$this->addEvents();
 		$this->addCustomAttrib();
 		$retval = BaseTags::input($this->attrib);
-
-		$atrib = "class='hand' onclick='\$(\"#" . $this->id . "\").datepicker(\"show\");' " . ToolTip("Kliknij aby wybrać datę");
-		$retval .= BaseTags::a(Icon("ui-icon-calendar", "right"), $atrib);
-		$script = "\$(\"#" . $this->id . "\").watermark(\"RRRR-MM-DD\");";
-		$script .= "\$(\"#" . $this->id . "\").datepicker(";
-		$script .= "{showWeek: true," . $this->minValueString . $this->maxValueString . " ";
-		$script .= "onClose: function(){CheckDate(\$(this)," . var_export($this->required, true) . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\"," . var_export($this->warn, true) . ")}";
-		$script .= "});";
-		$retval .= BaseTags::script($script);
-		return BaseTags::div($retval, "style='width:222px'");
+		$retval .= BaseTags::script("\$(\"#" . $this->id . "\").watermark(\"RRRR-MM-DD\");\$(\"#" . $this->id . "\").datepicker({" . $this->minValueString . $this->maxValueString . " onClose: function(date, req, minDate, maxDate) {CheckDate(\$(this)," . var_export($this->required, true) . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\")}});");
+		return $retval;
 	}
 	// -------------------------------------------------------------------------
 }

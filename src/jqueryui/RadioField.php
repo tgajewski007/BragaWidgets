@@ -1,17 +1,18 @@
 <?php
 namespace braga\widgets\jqueryui;
 use braga\tools\html\BaseTags;
+
 /**
- * Created on 07-04-2011 17:06:56
- * @author Tomasz.Gajewski
- * @package system
- * error prefix
+ * create 03-06-2012 10:33:21
+ * @author Tomasz Gajewski
+ * @package
+ *
  */
-class CheckBoxField extends Field
+class RadioField extends Field
 {
 	// -------------------------------------------------------------------------
-	protected $type = "checkbox";
-	protected $value = "1";
+	protected $type = "radio";
+	protected $value = null;
 	// -------------------------------------------------------------------------
 	public function setValue($value)
 	{
@@ -20,18 +21,14 @@ class CheckBoxField extends Field
 	// -------------------------------------------------------------------------
 	public function out()
 	{
-		$this->classString = str_replace("form-control ", "", $this->classString);
 		$this->attrib = null;
 		$this->addAttrib("type", $this->type);
-		$this->addAttrib("id", $this->id);
+		$this->addAttrib("id", $this->name . "_" . $this->value);
 		$this->addAttrib("name", $this->name);
-		$this->addAttrib("class", $this->classString);
 		$this->addAttrib("value", $this->value);
 		$this->addAttrib("tabindex", $this->tabOrder);
 		if($this->selected)
-		{
 			$this->addAttrib("checked", "checked");
-		}
 		$this->addEvents();
 		$this->addCustomAttrib();
 		return BaseTags::input($this->attrib);
