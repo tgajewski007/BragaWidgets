@@ -272,12 +272,9 @@ function enableTinyMCE()
 	return BaseTags::script("initTinyMCE();");
 }
 // =============================================================================
-function ToolTip($komunikat)
+function getToolTip($text)
 {
-	$komunikat = str_replace("\n", BaseTags::br(), $komunikat);
-	$komunikat = str_replace("\r", "", $komunikat);
-	$komunikat = str_replace("\"", "", $komunikat);
-	$komunikat = str_replace("'", "", $komunikat);
-	return "onmouseover='ToolTip(\"" . $komunikat . "\",event,this)'";
+	return "onmouseover='\$(this).tooltip(\"show\");' title='" . $text . "' data-toggle='tooltip' data-placement='top'";
 }
+// =============================================================================
 ?>
