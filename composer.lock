@@ -4,19 +4,19 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "198fccb5974396db56ea8f8fc323ba20",
-    "content-hash": "dcea5fdc4957e7f26a2714fafad520f3",
+    "hash": "6be55b99f0d68e309bad6e3215128de7",
+    "content-hash": "30e8876ab4fb47594945bd807966088e",
     "packages": [
         {
             "name": "braga/db",
-            "version": "dev-trunk",
+            "version": "2.0.2",
             "source": {
                 "type": "svn",
                 "url": "https://svn.code.sf.net/p/braga/code/db",
-                "reference": "/trunk/@40"
+                "reference": "/tags/2.0.2/@82"
             },
             "require": {
-                "braga/tools": "dev-trunk",
+                "braga/tools": "~2",
                 "php": ">=5.4.0"
             },
             "type": "library",
@@ -44,15 +44,15 @@
                 "oracle",
                 "pdo"
             ],
-            "time": "2016-09-05 15:34:44"
+            "time": "2016-09-25 18:46:16"
         },
         {
             "name": "braga/tools",
-            "version": "dev-trunk",
+            "version": "2.0.0",
             "source": {
                 "type": "svn",
                 "url": "https://svn.code.sf.net/p/braga/code/tools",
-                "reference": "/trunk/@53"
+                "reference": "/tags/2.0.0/@75"
             },
             "require": {
                 "php": ">=5.4"
@@ -75,15 +75,13 @@
                 "libs",
                 "tools"
             ],
-            "time": "2016-09-05 20:04:04"
+            "time": "2016-09-07 19:18:02"
         }
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "dev",
-    "stability-flags": {
-        "braga/db": 20
-    },
+    "minimum-stability": "stable",
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
