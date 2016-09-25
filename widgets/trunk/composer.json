@@ -18,5 +18,5 @@
 		"php" : ">=5.4",
 		"braga/db" : "dev-trunk"
 	},
-	"minimum-stability" : "dev"
+	"minimum-stability" : "stable"
 }
