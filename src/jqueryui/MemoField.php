@@ -20,10 +20,8 @@ class MemoField extends Field
 	public function out()
 	{
 		$this->attrib = null;
-		$this->onFocus .= "\$(this).addClass(\"widgetHighLight a ui-state-highlight\");\$(this).css(\"z-index\",3);";
-		$this->onBlur .= "\$(this).removeClass(\"widgetHighLight a ui-state-highlight\");\$(this).css(\"z-index\",0);";
 		$this->classString .= " " . Field::CLASS_SIZE_MED;
-	
+
 		if($this->required)
 		{
 			$this->onKeyUp .= "CzyNull(this);";
