@@ -70,9 +70,9 @@ class TextField extends Field
 			$checkScript .= "if(!checkRegExPatern(this,\"" . $this->regExPatern . "\")){return false};";
 		}
 
-		$this->onChange = $checkScript . $this->onChange;
-		$this->onBlur = $checkScript . $this->onBlur;
-		$this->onKeyUp = $checkScript . $this->onKeyUp;
+		$this->onChange = $this->onChange . $checkScript;
+		$this->onBlur = $this->onBlur . $checkScript;
+		$this->onKeyUp = $this->onKeyUp . $checkScript;
 
 		$this->addAttrib("type", $this->type);
 		$this->addAttrib("id", $this->name);
