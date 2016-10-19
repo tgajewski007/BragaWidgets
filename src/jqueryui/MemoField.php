@@ -24,7 +24,7 @@ class MemoField extends Field
 
 		if($this->required)
 		{
-			$this->onKeyUp .= "CzyNull(this);";
+			$this->onKeyUp .= "checkIsNull(this);";
 			if($this->selected == "")
 			{
 				$this->classString .= " " . Field::CLASS_ERROR;
