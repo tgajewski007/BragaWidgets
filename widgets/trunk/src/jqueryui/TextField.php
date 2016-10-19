@@ -60,7 +60,7 @@ class TextField extends Field
 		{
 			if($this->selected == "")
 			{
-				$this->onKeyUp = "CzyNull(this);" . $this->onKeyUp;
+				$this->onKeyUp = "checkIsNull(this);" . $this->onKeyUp;
 				$this->classString .= " " . Field::CLASS_ERROR;
 			}
 			$checkScript = "if(!checkIsNull(this)){return false};";
