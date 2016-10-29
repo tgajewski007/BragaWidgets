@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6be55b99f0d68e309bad6e3215128de7",
-    "content-hash": "30e8876ab4fb47594945bd807966088e",
+    "hash": "f8c679b3544ff23c9a8aa41ee51f8e7a",
+    "content-hash": "af58b2f2fc7696ffea8cee057ac70f4c",
     "packages": [
         {
             "name": "braga/db",
@@ -48,14 +48,17 @@
         },
         {
             "name": "braga/tools",
-            "version": "2.0.2",
+            "version": "2.0.3",
             "source": {
                 "type": "svn",
                 "url": "https://svn.code.sf.net/p/braga/code/tools",
-                "reference": "/tags/2.0.2/@85"
+                "reference": "/tags/2.0.3/@104"
             },
             "require": {
                 "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.38"
             },
             "type": "library",
             "autoload": {
@@ -75,7 +78,7 @@
                 "libs",
                 "tools"
             ],
-            "time": "2016-09-25 19:00:27"
+            "time": "2016-10-24 20:46:35"
         }
     ],
     "packages-dev": [],
