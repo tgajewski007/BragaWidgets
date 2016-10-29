@@ -37,7 +37,7 @@ class MessageView extends HtmlComponent
 			SessManager::kill(SessManager::MESSAGE_ALERT);
 			$title = icon("ui-icon-alert");
 			$title .= "Alert";
-			$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove(); HideToolTip(); return false;' " . ToolTip("Zamknij"));
+			$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove(); return false;' " . getToolTip("Zamknij"));
 			$title = BaseTags::div($title, "class='ui-widget-header ui-corner-all ui-helper-clearfix ui-state-highlight' style='padding:2px'");
 			$content = BaseTags::div($wiadomosci, "class='ui-corner-bottom ui-priority-primary clear' style='padding:8px'");
 			$tmp = $title . $content;
@@ -61,7 +61,7 @@ class MessageView extends HtmlComponent
 			SessManager::kill(SessManager::MESSAGE_WARNING);
 			$title = icon("ui-icon-info");
 			$title .= "Ostrzeżenie";
-			$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove(); HideToolTip(); return false;' " . ToolTip("Zamknij"));
+			$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove();  return false;' " . getToolTip("Zamknij"));
 			$title = BaseTags::div($title, "class='ui-widget-header ui-corner-all ui-helper-clearfix ui-state-error' style='padding:2px'");
 			$content = BaseTags::div($wiadomosci, "class='ui-corner-bottom ui-priority-primary clear' style='padding:8px'");
 			$tmp = $title . $content;
@@ -85,7 +85,7 @@ class MessageView extends HtmlComponent
 			SessManager::kill(SessManager::MESSAGE_INFO);
 			$title = icon("ui-icon-notice");
 			$title .= "Info";
-			$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove(); HideToolTip(); return false;' " . ToolTip("Zamknij"));
+			$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove(); return false;' " . getToolTip("Zamknij"));
 			$title = BaseTags::div($title, "class='ui-widget-header ui-corner-all ui-helper-clearfix' style='padding:2px'");
 			$content = BaseTags::div($wiadomosci, "class='ui-corner-bottom ui-priority-primary clear' style='padding:8px'");
 			$tmp = $title . $content;
@@ -108,7 +108,7 @@ class MessageView extends HtmlComponent
 			SessManager::kill(SessManager::MESSAGE_SQL);
 			$title = icon("ui-icon-alert");
 			$title .= "Info";
-			$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove(); HideToolTip(); return false;' " . ToolTip("Zamknij"));
+			$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove(); return false;' " . getToolTip("Zamknij"));
 			$title = BaseTags::div($title, "class='ui-widget-header ui-corner-all ui-helper-clearfix' style='padding:2px'");
 			$content = BaseTags::div($wiadomosci, "class='ui-corner-bottom ui-priority-primary clear' style='padding:8px'");
 			$tmp = $title . $content;
