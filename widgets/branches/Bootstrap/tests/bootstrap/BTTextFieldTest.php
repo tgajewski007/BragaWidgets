@@ -57,5 +57,39 @@ class BTTextFieldTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($oczekiwane, $retval);
 	}
 	// -------------------------------------------------------------------------
+	function testSelected()
+	{
+		$f = new TextField();
+		$f->setSelected("StrangeValue");
+		$retval = $f->out();
+		$oczekiwane = BaseTags::input("type='text' class='form-control' value='StrangeValue'");
+		$oczekiwane = BaseTags::div($oczekiwane, "class='form-group'");
+
+		$this->assertEquals($oczekiwane, $retval);
+	}
+	// -------------------------------------------------------------------------
+	function testRequired()
+	{
+		$f = new TextField();
+		$f->setRequired();
+		$retval = $f->out();
+		$oczekiwane = BaseTags::input("type='text' class='form-control'");
+		$oczekiwane = BaseTags::div($oczekiwane, "class='form-group has-error'");
+
+		$this->assertEquals($oczekiwane, $retval);
+	}
+	// -------------------------------------------------------------------------
+	function testRequiredWithValue()
+	{
+		$f = new TextField();
+		$f->setRequired();
+		$f->setSelected("StrangeValue");
+		$retval = $f->out();
+		$oczekiwane = BaseTags::input("type='text' class='form-control' value='StrangeValue'");
+		$oczekiwane = BaseTags::div($oczekiwane, "class='form-group'");
+
+		$this->assertEquals($oczekiwane, $retval);
+	}
+	// -------------------------------------------------------------------------
 }
 ?>

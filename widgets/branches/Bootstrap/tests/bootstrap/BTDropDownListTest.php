@@ -10,7 +10,7 @@ use braga\tools\html\BaseTags;
  * @package
  *
  */
-class BTBragaDropDownListTest extends PHPUnit_Framework_TestCase
+class BTDropDownListTest extends PHPUnit_Framework_TestCase
 {
 	// -------------------------------------------------------------------------
 	function testSimple()
