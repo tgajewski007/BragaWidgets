@@ -1,6 +1,9 @@
 <?php
+
 namespace braga\widgets\jqueryui;
+
 use braga\tools\html\BaseTags;
+use braga\widgets\base\Field;
 
 /**
  *
@@ -11,6 +14,7 @@ use braga\tools\html\BaseTags;
  */
 class DateField extends Field
 {
+	use ClassFactory;
 	// -------------------------------------------------------------------------
 	protected $minValue = null;
 	protected $maxValue = null;
@@ -44,7 +48,7 @@ class DateField extends Field
 		{
 			if(null == $this->selected)
 			{
-				$this->classString .= " " . Field::CLASS_ERROR;
+				$this->classString .= " " . $this->getErrorClass();
 			}
 		}
 		if($this->warn)
