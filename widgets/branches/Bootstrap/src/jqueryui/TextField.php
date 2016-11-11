@@ -1,5 +1,7 @@
 <?php
+
 namespace braga\widgets\jqueryui;
+
 use braga\tools\html\BaseTags;
 
 /**
@@ -8,38 +10,28 @@ use braga\tools\html\BaseTags;
  * @package system
  * error prefix
  */
-class TextField extends Field
+class TextField extends \braga\widgets\base\TextField
 {
+	use ClassFactory;
 	// -------------------------------------------------------------------------
-	protected $maxLength = 255;
-	protected $type = "text";
-	protected $readOnly = false;
+	protected $class = null;
 	// -------------------------------------------------------------------------
-	public function setMaxLength($maxLength)
+	protected function setDefaults()
 	{
-		$this->maxLength = $maxLength;
-	}
-	// -------------------------------------------------------------------------
-	public function setType($type)
-	{
-		$this->type = $type;
-	}
-	// -------------------------------------------------------------------------
-	public function setReadOnly($readOnly = true)
-	{
-		$this->readOnly = $readOnly;
+		$this->class .= $this->getBaseClass();
+		$this->class .= " " . $this->getMediumSizeClass();
+		$this->onFocus .= "\$(this).select();";
+		if(empty($this->maxLength))
+		{
+			$this->setMaxLength(255);
+		}
 	}
 	// -------------------------------------------------------------------------
 	public function out()
 	{
-		$this->onFocus .= "\$(this).select();";
-		$this->attrib = null;
-		$this->classString .= " " . Field::CLASS_SIZE_MED;
-		if($this->readOnly)
-		{
-			$this->addAttrib("readonly", "readonly");
-		}
-		else
+		$this->setDefaults();
+
+		if(!$this->readOnly)
 		{
 			$this->onFocus .= "\$(this).addClass(\"widgetHighLight a ui-state-highlight\");";
 			$this->onBlur .= "\$(this).removeClass(\"widgetHighLight a ui-state-highlight\");";
@@ -49,20 +41,11 @@ class TextField extends Field
 			$this->onKeyUp = "CzyNull(this);" . $this->onKeyUp;
 			if($this->selected == "")
 			{
-				$this->classString .= " " . Field::CLASS_ERROR;
+				$this->classString .= " " . $this->getErrorClass();
 			}
 		}
-
-		$this->addAttrib("type", $this->type);
-		$this->addAttrib("id", $this->id);
-		$this->addAttrib("name", $this->name);
-		$this->addAttrib("maxlength", $this->maxLength);
-		$this->addAttrib("class", $this->classString);
-		$this->addAttrib("value", $this->selected);
-		$this->addAttrib("tabindex", $this->tabOrder);
-		$this->addEvents();
-		$this->addCustomAttrib();
-		return BaseTags::p(BaseTags::input($this->attrib), "style='min-height:25px;'");
+		$this->setClassString($this->class);
+		return BaseTags::p(parent::out(), "style='min-height:25px;'");
 	}
 	// -------------------------------------------------------------------------
 }

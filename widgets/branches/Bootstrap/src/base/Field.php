@@ -77,7 +77,7 @@ abstract class Field
 	// -------------------------------------------------------------------------
 	public function setClassString($classString)
 	{
-		$this->classString = self::CLASS_BASE . " " . $classString;
+		$this->classString = $classString;
 	}
 	// -------------------------------------------------------------------------
 	public function setRequired($required = true)
