@@ -15,6 +15,12 @@ class TextField extends \braga\widgets\base\TextField
 	use ClassFactory;
 	// -------------------------------------------------------------------------
 	protected $class = null;
+	protected $regExPatern = null;
+	// -------------------------------------------------------------------------
+	public function setRegExpPatern($patern)
+	{
+		$this->regExPatern = $patern;
+	}
 	// -------------------------------------------------------------------------
 	protected function setDefaults()
 	{
