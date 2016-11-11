@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+phpunit_config_file=
+preload_script=/BragaWidgets/vendor/autoload.php
+test_file_pattern=
+test_folders=/BragaWidgets/tests
+testing_framework=PHPUnit

@@ -2,17 +2,30 @@
 <buildpath>
 	<buildpathentry kind="src" path="src/jqueryui"/>
 	<buildpathentry kind="src" path="vendor/symfony/yaml"/>
-	<buildpathentry excluding="jqueryui/" kind="src" path="src"/>
-	<buildpathentry kind="src" path="vendor/phpunit/php-code-coverage/PHP"/>
+	<buildpathentry kind="src" path="vendor/sebastian/exporter/src"/>
 	<buildpathentry kind="src" path="vendor/phpunit/php-text-template/src"/>
-	<buildpathentry kind="src" path="vendor/phpunit/php-token-stream/PHP"/>
-	<buildpathentry kind="src" path="vendor/phpunit/phpunit/PHPUnit"/>
-	<buildpathentry kind="src" path="vendor/phpunit/php-timer/src"/>
+	<buildpathentry kind="src" path="vendor/sebastian/version/src"/>
 	<buildpathentry kind="src" path="vendor/braga/db/src"/>
-	<buildpathentry kind="src" path="vendor/composer"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-code-coverage/src"/>
+	<buildpathentry kind="src" path="vendor/phpunit/phpunit/src"/>
+	<buildpathentry kind="src" path="vendor/doctrine/instantiator/src/Doctrine/Instantiator"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
 	<buildpathentry kind="src" path="vendor/phpunit/php-file-iterator/src"/>
-	<buildpathentry excluding="tools/" kind="src" path="vendor/braga/tools/src"/>
-	<buildpathentry kind="src" path="vendor/phpunit/phpunit-mock-objects/PHPUnit"/>
 	<buildpathentry kind="src" path="vendor/braga/tools/src/tools"/>
+	<buildpathentry kind="src" path="vendor/sebastian/diff/src"/>
+	<buildpathentry kind="src" path="vendor/phpspec/prophecy/src"/>
+	<buildpathentry kind="src" path="vendor/phpdocumentor/type-resolver/src"/>
+	<buildpathentry kind="src" path="vendor/sebastian/comparator/src"/>
+	<buildpathentry kind="src" path="vendor/phpdocumentor/reflection-docblock/src"/>
+	<buildpathentry kind="src" path="vendor/phpunit/phpunit-mock-objects/src"/>
+	<buildpathentry kind="src" path="vendor/sebastian/global-state/src"/>
+	<buildpathentry excluding="jqueryui/" kind="src" path="src"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-timer/src"/>
+	<buildpathentry kind="src" path="vendor/webmozart/assert/src"/>
+	<buildpathentry kind="src" path="vendor/sebastian/recursion-context/src"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-token-stream/src"/>
+	<buildpathentry kind="src" path="vendor/sebastian/environment/src"/>
+	<buildpathentry kind="src" path="vendor/composer"/>
+	<buildpathentry kind="src" path="vendor/phpdocumentor/reflection-common/src"/>
+	<buildpathentry excluding="tools/" kind="src" path="vendor/braga/tools/src"/>
 </buildpath>
