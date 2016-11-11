@@ -1,5 +1,5 @@
 <?php
-use braga\widgets\base\WidgetItem;
+use braga\widgets\jqueryui\WidgetItem;
 use braga\widgets\jqueryui\DropDownListField;
 use braga\tools\html\BaseTags;
 
@@ -50,6 +50,21 @@ class JQDropDownListTest extends PHPUnit_Framework_TestCase
 		$expected = BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
 		$expected .= BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
 		$expected .= BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
+		$expected = BaseTags::select($expected, "id='StrangeName' name='StrangeName' class='combo' onchange='SprawdzCombo(this);'");
+
+		$this->assertEquals($expected, $actual);
+	}
+	// -------------------------------------------------------------------------
+	function testGroup()
+	{
+		$f = new DropDownListField();
+		$f->setName("StrangeName");
+		$f->enableGrouping();
+		$f->addItem(new WidgetItem("StrageName", "StrangeValue", "StrageGroup"));
+		$actual = $f->out();
+
+		$expected = BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
+		$expected = BaseTags::optgroup($expected, "label='StrageGroup' class='ui-priority-primary widget ui-widget-content ui-corner-all'");
 		$expected = BaseTags::select($expected, "id='StrangeName' name='StrangeName' class='combo' onchange='SprawdzCombo(this);'");
 
 		$this->assertEquals($expected, $actual);

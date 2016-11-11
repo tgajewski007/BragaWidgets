@@ -17,7 +17,7 @@ class DropDownListField extends \braga\widgets\base\DropDownListField
 	protected function setDefault()
 	{
 		$this->addOptionAtrib("class='ui-state-default'");
-		$this->addOptionGroupAtrib("class='ui-priority-primary'");
+		$this->addOptionGroupAtrib("class='ui-priority-primary widget ui-widget-content ui-corner-all'");
 		$this->setClassString("combo");
 		$this->setOnChange("SprawdzCombo(this);");
 	}
