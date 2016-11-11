@@ -1,6 +1,9 @@
 <?php
+
 namespace braga\widgets\jqueryui;
+
 use braga\tools\html\BaseTags;
+use braga\widgets\base\Field;
 
 /**
  * Created on 17-05-2011 07:55:40
@@ -10,6 +13,7 @@ use braga\tools\html\BaseTags;
  */
 class FloatField extends Field
 {
+	use ClassFactory;
 	// -------------------------------------------------------------------------
 	protected $minValue = "null";
 	protected $maxValue = "null";
@@ -48,13 +52,13 @@ class FloatField extends Field
 		$this->onFocus .= "\$(this).addClass(\"ui-state-highlight\");";
 		$this->onBlur .= "\$(this).removeClass(\"ui-state-highlight\");";
 		$this->attrib = null;
-		$this->classString .= " r " . Field::CLASS_SIZE_MED;
+		$this->classString .= " r " . $this->getMediumSizeClass();
 		if($this->required)
 		{
 			$this->onChange .= "if(CzyReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ")){CzyNull(this);}";
 			if("" == $this->selected)
 			{
-				$this->classString .= " " . Field::CLASS_ERROR;
+				$this->classString .= " " . $this->getErrorClass();
 			}
 		}
 		else
@@ -69,14 +73,14 @@ class FloatField extends Field
 			{
 				if($this->selected > $this->maxValue)
 				{
-					$this->classString .= " " . Field::CLASS_ERROR;
+					$this->classString .= " " . $this->getErrorClass();
 				}
 			}
 			elseif($this->minValue != "null")
 			{
 				if($this->selected < $this->minValue)
 				{
-					$this->classString .= " " . Field::CLASS_ERROR;
+					$this->classString .= " " . $this->getErrorClass();
 				}
 			}
 			$this->selected = number_format($this->selected, $this->precision, ".", "");
