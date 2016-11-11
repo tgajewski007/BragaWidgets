@@ -62,28 +62,41 @@ class DropDownListField extends Field
 		return $tmp;
 	}
 	// -------------------------------------------------------------------------
-	public function out()
+	protected function getGroupOptions()
 	{
 		$options = "";
+		$tmp = $this->prepareGroup();
+		foreach($tmp as $key => $value)
+		{
+			$opt = "";
+			foreach($value as $d)/* @var $d WidgetItem */
+			{
+				$opt .= $this->getOption($d->getDesc(), $d->getVal());
+			}
+			$options .= $this->getOptionGroup($key, $opt);
+		}
+		return $options; // kasia kocha tomka :))
+	}
+	// -------------------------------------------------------------------------
+	protected function getSimpleOptions()
+	{
+		$options = "";
+		foreach($this->dane as $d ) /* @var $d WidgetItem */
+		{
+			$options .= $this->getOption($d->getDesc(), $d->getVal());
+		}
+		return $options;
+	}
+	// -------------------------------------------------------------------------
+	public function out()
+	{
 		if($this->group)
 		{
-			$tmp = $this->prepareGroup();
-			foreach($tmp as $key => $value)
-			{
-				$opt = "";
-				foreach($value as $d)/* @var $d WidgetItem */
-				{
-					$opt .= $this->getOption($d->getDesc(), $d->getVal());
-				}
-				$options .= $this->getOptionGroup($key, $opt);
-			}
+			$options = $this->getGroupOptions();
 		}
 		else
 		{
-			foreach($this->dane as $d ) /* @var $d WidgetItem */
-			{
-				$options .= $this->getOption($d->getDesc(), $d->getVal());
-			}
+			$options = $this->getSimpleOptions();
 		}
 
 		$this->addAttrib("id", $this->id);
