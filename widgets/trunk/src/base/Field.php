@@ -1,6 +1,6 @@
 <?php
-namespace braga\widgets\jqueryui;
-use braga\tools\html\HtmlComponent;
+
+namespace braga\widgets\base;
 
 /**
  * Created on 07-04-2011 17:07:15
@@ -8,7 +8,7 @@ use braga\tools\html\HtmlComponent;
  * @package system
  * error prefix
  */
-abstract class Field extends HtmlComponent
+abstract class Field
 {
 	// -------------------------------------------------------------------------
 	protected $attrib = null;
@@ -19,7 +19,7 @@ abstract class Field extends HtmlComponent
 	protected $id = null;
 	protected $customAttrib = null;
 	protected $tabOrder = null;
-	protected $classString = self::CLASS_BASE;
+	protected $classString = null;
 	protected $onChange = null;
 	protected $onClick = null;
 	protected $onBlur = null;
@@ -29,14 +29,6 @@ abstract class Field extends HtmlComponent
 	protected $onMouseUp = null;
 	protected $onKeyUp = null;
 	protected $onKeyDown = null;
-	// -------------------------------------------------------------------------
-	const CLASS_BASE = "form-control ui-widget ui-widget-content ui-corner-all widget";
-	const CLASS_SIZE_TINY = "widgetSizeTiny";
-	const CLASS_SIZE_SMALL = "widgetSizeSmall";
-	const CLASS_SIZE_MED = "widgetSizeMedium";
-	const CLASS_SIZE_FULL = "widgetSizeFull";
-	const CLASS_SIZE_ICONFULL = "widgetSizeiconFull";
-	const CLASS_ERROR = "ui-state-error has-error";
 	// -------------------------------------------------------------------------
 	public function setOnKeyUp($onKeyUp)
 	{
@@ -85,7 +77,7 @@ abstract class Field extends HtmlComponent
 	// -------------------------------------------------------------------------
 	public function setClassString($classString)
 	{
-		$this->classString = self::CLASS_BASE . " " . $classString;
+		$this->classString = $classString;
 	}
 	// -------------------------------------------------------------------------
 	public function setRequired($required = true)
@@ -124,6 +116,8 @@ abstract class Field extends HtmlComponent
 		return $this->selected;
 	}
 	// -------------------------------------------------------------------------
+	abstract function out();
+	// -------------------------------------------------------------------------
 	protected function addEvents()
 	{
 		$this->addAttrib("onchange", $this->onChange);
@@ -147,7 +141,7 @@ abstract class Field extends HtmlComponent
 	// -------------------------------------------------------------------------
 	protected function addAttrib($name, $value)
 	{
-		if(!is_null($value))
+		if($value != null)
 		{
 			$this->attrib .= $name .= "='" . $value . "' ";
 		}

@@ -1,19 +1,19 @@
 <?php
 
-namespace braga\widgets\jqueryui;
+namespace braga\widgets\bootstrap;
 
 use braga\tools\html\BaseTags;
 use braga\widgets\base\Field;
 
 /**
  *
- * @package enmarket
  * @author Tomasz.Gajewski
- * Created on 2008-07-14 12:27:37
+ * Created on 2016-07-14 12:27:37
  * klasa odpowiedzialna za wygenerowanie formatki wyboru daty
  */
 class DateField extends Field
 {
+	use AddLabels;
 	// -------------------------------------------------------------------------
 	protected $minValue = null;
 	protected $maxValue = null;
@@ -35,7 +35,6 @@ class DateField extends Field
 	public function out()
 	{
 		$this->attrib = null;
-		$this->onBlur .= "CheckDate(this," . var_export($this->required, true) . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\");";
 		if($this->required)
 		{
 			if(null == $this->selected)
@@ -49,11 +48,23 @@ class DateField extends Field
 		$this->addAttrib("class", $this->classString);
 		$this->addAttrib("value", $this->selected);
 		$this->addAttrib("tabindex", $this->tabOrder);
+		$this->addAttrib("placeholder", "RRRR-MM-DD");
 		$this->addEvents();
 		$this->addCustomAttrib();
 		$retval = BaseTags::input($this->attrib);
-		$retval .= BaseTags::script("\$(\"#" . $this->id . "\").watermark(\"RRRR-MM-DD\");\$(\"#" . $this->id . "\").datepicker({" . $this->minValueString . $this->maxValueString . " onClose: function(date, req, minDate, maxDate) {CheckDate(\$(this)," . var_export($this->required, true) . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\")}});");
-		return $retval;
+		$retval .= BaseTags::span(BaseTags::button(BootstrapTags::icon("glyphicon-calendar"), "class='btn btn-default' type='button' onclick='\$(\"#" . $this->id . "\").datepicker(\"show\")'"), "class='input-group-btn'");
+		$retval = BaseTags::div($retval, "class='input-group'");
+		$retval .= BaseTags::script("\$(\"#" . $this->id . "\").datepicker({format:\"yyyy-mm-dd\"});");
+
+		$label = $this->getLabel();
+		if($this->required && empty($this->selected))
+		{
+			return BaseTags::div($label . $retval, "class='form-group has-error'");
+		}
+		else
+		{
+			return BaseTags::div($label . $retval, "class='form-group'");
+		}
 	}
 	// -------------------------------------------------------------------------
 }

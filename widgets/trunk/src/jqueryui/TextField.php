@@ -1,70 +1,56 @@
 <?php
+
 namespace braga\widgets\jqueryui;
+
 use braga\tools\html\BaseTags;
+
 /**
  * Created on 08-04-2011 11:42:29
  * @author Tomasz.Gajewski
- * @package enmarket
+ * @package system
  * error prefix
  */
-class TextField extends Field
+class TextField extends \braga\widgets\base\TextField
 {
+	use ClassFactory;
 	// -------------------------------------------------------------------------
-	protected $maxLength = 255;
-	protected $type = "text";
-	protected $readOnly = false;
-	protected $watermark = "";
+	protected $class = null;
 	protected $regExPatern = null;
-	// -------------------------------------------------------------------------
-	public function setMaxLength($maxLength)
-	{
-		$this->maxLength = $maxLength;
-	}
 	// -------------------------------------------------------------------------
 	public function setRegExpPatern($patern)
 	{
 		$this->regExPatern = $patern;
 	}
 	// -------------------------------------------------------------------------
-	public function setType($type)
+	protected function setDefaults()
 	{
-		$this->type = $type;
-	}
-	// -------------------------------------------------------------------------
-	public function setWaterMark($watermark)
-	{
-		$this->watermark = $watermark;
-	}
-	// -------------------------------------------------------------------------
-	public function setReadOnly($readOnly = true)
-	{
-		$this->readOnly = $readOnly;
+		$this->class .= $this->getBaseClass();
+		$this->class .= " " . $this->getMediumSizeClass();
+		$this->onFocus .= "\$(this).select();";
+		if(empty($this->maxLength))
+		{
+			$this->setMaxLength(255);
+		}
 	}
 	// -------------------------------------------------------------------------
 	public function out()
 	{
-		$this->onFocus .= "\$(this).select();";
-		$this->attrib = null;
-		$checkScript = "";
-		$this->classString .= " " . Field::CLASS_SIZE_MED;
-		if($this->readOnly)
+		$this->setDefaults();
+
+		if(!$this->readOnly)
 		{
-			$this->addAttrib("readonly", "readonly");
-		}
-		else
-		{
-			$this->onFocus .= "\$(this).addClass(\"widgetHighLight ui-state-highlight\");";
-			$this->onBlur .= "\$(this).removeClass(\"widgetHighLight ui-state-highlight\");";
+			$this->onFocus .= "\$(this).addClass(\"widgetHighLight a ui-state-highlight\");";
+			$this->onBlur .= "\$(this).removeClass(\"widgetHighLight a ui-state-highlight\");";
 		}
 		if($this->required)
 		{
+			$this->onKeyUp = "CzyNull(this);" . $this->onKeyUp;
 			if($this->selected == "")
 			{
-				$this->onKeyUp = "checkIsNull(this);" . $this->onKeyUp;
-				$this->classString .= " " . Field::CLASS_ERROR;
+				$this->classString .= " " . $this->getErrorClass();
 			}
-			$checkScript = "if(!checkIsNull(this)){return false};";
 		}
+		$checkScript = "";
 		if(!is_null($this->regExPatern))
 		{
 			$checkScript .= "if(!checkRegExPatern(this,\"" . $this->regExPatern . "\")){return false};";
@@ -73,19 +59,8 @@ class TextField extends Field
 		$this->onChange = $this->onChange . $checkScript;
 		$this->onBlur = $this->onBlur . $checkScript;
 		$this->onKeyUp = $this->onKeyUp . $checkScript;
-
-		$this->addAttrib("type", $this->type);
-		$this->addAttrib("id", $this->name);
-		$this->addAttrib("name", $this->name);
-		$this->addAttrib("maxlength", $this->maxLength);
-		$this->addAttrib("class", $this->classString);
-		$this->addAttrib("value", $this->selected);
-		$this->addAttrib("tabindex", $this->tabOrder);
-		$this->addAttrib("placeholder", $this->watermark);
-		$this->addEvents();
-		$this->addCustomAttrib();
-
-		return BaseTags::input($this->attrib);
+		$this->setClassString($this->class);
+		return BaseTags::p(parent::out(), "style='min-height:25px;'");
 	}
 	// -------------------------------------------------------------------------
 }
