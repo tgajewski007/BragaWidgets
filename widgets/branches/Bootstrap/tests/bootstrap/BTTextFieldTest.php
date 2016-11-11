@@ -26,12 +26,12 @@ class BTTextFieldTest extends PHPUnit_Framework_TestCase
 	{
 		$f = new TextField();
 		$f->setName("StrageName");
-		$retval = $f->out();
+		$actual = $f->out();
 
-		$oczekiwane = BaseTags::input("type='text' id='StrageName' name='StrageName' class='form-control'");
-		$oczekiwane = BaseTags::div($oczekiwane, "class='form-group'");
+		$expected = BaseTags::input("type='text' id='StrageName' name='StrageName' class='form-control'");
+		$expected = BaseTags::div($expected, "class='form-group'");
 
-		$this->assertEquals($oczekiwane, $retval);
+		$this->assertEquals($expected, $actual);
 	}
 	// -------------------------------------------------------------------------
 	function testWartemark()
