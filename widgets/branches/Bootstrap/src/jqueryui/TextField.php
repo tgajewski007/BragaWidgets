@@ -44,6 +44,14 @@ class TextField extends \braga\widgets\base\TextField
 				$this->classString .= " " . $this->getErrorClass();
 			}
 		}
+		if(!is_null($this->regExPatern))
+		{
+			$checkScript .= "if(!checkRegExPatern(this,\"" . $this->regExPatern . "\")){return false};";
+		}
+
+		$this->onChange = $this->onChange . $checkScript;
+		$this->onBlur = $this->onBlur . $checkScript;
+		$this->onKeyUp = $this->onKeyUp . $checkScript;
 		$this->setClassString($this->class);
 		return BaseTags::p(parent::out(), "style='min-height:25px;'");
 	}
