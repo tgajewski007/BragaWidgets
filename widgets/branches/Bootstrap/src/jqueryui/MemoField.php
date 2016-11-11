@@ -1,6 +1,9 @@
 <?php
+
 namespace braga\widgets\jqueryui;
+
 use braga\tools\html\BaseTags;
+use braga\widgets\base\Field;
 
 /**
  * Created on 08-04-2011 11:42:29
@@ -10,6 +13,7 @@ use braga\tools\html\BaseTags;
  */
 class MemoField extends Field
 {
+	use ClassFactory;
 	// -------------------------------------------------------------------------
 	protected $maxLength = 65535;
 	// -------------------------------------------------------------------------
@@ -23,13 +27,13 @@ class MemoField extends Field
 		$this->attrib = null;
 		$this->onFocus .= "\$(this).addClass(\"widgetHighLight a ui-state-highlight\");\$(this).css(\"z-index\",3);";
 		$this->onBlur .= "\$(this).removeClass(\"widgetHighLight a ui-state-highlight\");\$(this).css(\"z-index\",0);";
-		$this->classString .= " " . Field::CLASS_SIZE_MED;
+		$this->classString .= " " . $this->getBaseClass();
 		if($this->required)
 		{
 			$this->onKeyUp .= "CzyNull(this);";
 			if($this->selected == "")
 			{
-				$this->classString .= " " . Field::CLASS_ERROR;
+				$this->classString .= " " . $this->getErrorClass();
 			}
 		}
 		$this->addAttrib("id", $this->id);
