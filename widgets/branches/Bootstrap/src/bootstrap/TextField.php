@@ -15,14 +15,9 @@ class TextField extends \braga\widgets\base\TextField
 {
 
 	use ClassFactory;
+	use AddLabels;
 	// -------------------------------------------------------------------------
-	protected $label;
 	protected $waterMark;
-	// -------------------------------------------------------------------------
-	public function setLabel($label)
-	{
-		$this->label = $label;
-	}
 	// -------------------------------------------------------------------------
 	public function setWatermark($w)
 	{
@@ -39,12 +34,7 @@ class TextField extends \braga\widgets\base\TextField
 		$this->setDefault();
 		$this->addAttrib("placeholder", $this->waterMark);
 		$input = parent::out();
-		$label = "";
-		if(!empty($this->label))
-		{
-			$label = BaseTags::label($this->label, "for='" . $this->name . "'");
-
-		}
+		$label = $this->getLabel();
 		return BaseTags::div($label . $input, "class='form-group'");
 		// -------------------------------------------------------------------------
 	}

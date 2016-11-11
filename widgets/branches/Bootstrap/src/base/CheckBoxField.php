@@ -3,7 +3,6 @@
 namespace braga\widgets\base;
 
 use braga\tools\html\BaseTags;
-use braga\widgets\jqueryui\Field;
 
 /**
  * Created on 07-04-2011 17:06:56

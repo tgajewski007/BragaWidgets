@@ -45,5 +45,17 @@ class BTTextFieldTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($oczekiwane, $retval);
 	}
 	// -------------------------------------------------------------------------
+	function testLabel()
+	{
+		$f = new TextField();
+		$f->setLabel("StrangeLabel");
+		$retval = $f->out();
+		$oczekiwane = BaseTags::label("StrangeLabel", "for=''");
+		$oczekiwane .= BaseTags::input("type='text' class='form-control'");
+		$oczekiwane = BaseTags::div($oczekiwane, "class='form-group'");
+
+		$this->assertEquals($oczekiwane, $retval);
+	}
+	// -------------------------------------------------------------------------
 }
 ?>
