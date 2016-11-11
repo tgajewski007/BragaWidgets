@@ -1,5 +1,7 @@
 <?php
+
 namespace braga\widgets\jqueryui;
+
 use braga\tools\html\BaseTags;
 
 /**
@@ -8,104 +10,59 @@ use braga\tools\html\BaseTags;
  * @package system
  * error prefix
  */
-class DropDownListField extends Field
+class DropDownListField extends \braga\widgets\base\DropDownListField
 {
+	use ClassFactory;
 	// -------------------------------------------------------------------------
-	const CLASS_OPTION = "ui-state-default";
-	const CLASS_OPTIONGROUP = "ui-priority-primary";
-	// -------------------------------------------------------------------------
-	protected $dane = array();
-	protected $group = false;
 	protected $requiredText = "-=Wybierz=-";
 	// -------------------------------------------------------------------------
-	public function addItem(WidgetItem $item)
+	protected function setDefault()
 	{
-		$this->dane[] = $item;
+		$this->addOptionAtrib("class='ui-state-default'");
+		$this->addOptionGroupAtrib("class='ui-priority-primary widget ui-widget-content'");
+		$this->setClassString($this->getBaseClass() . " combo");
+		$this->setOnChange("SprawdzCombo(this);");
 	}
 	// -------------------------------------------------------------------------
-	public function enableGrouping()
+	protected function getGroupOptions()
 	{
-		$this->group = true;
+		$options = "";
+		if($this->required)
+		{
+			$this->setClassString($this->getBaseClass() . " combo ui-state-error");
+			$tmp = BaseTags::option($this->requiredText, "value='' class='ui-state-default ui-state-error' selected='selected'");
+			$options .= BaseTags::optgroup($tmp, "label='" . $this->requiredText . "' class='ui-priority-primary widget ui-widget-content ui-state-error'");
+		}
+		$tmp = $this->prepareGroup();
+		foreach($tmp as $key => $value)
+		{
+			$opt = "";
+			foreach($value as $d)/* @var $d WidgetItem */
+			{
+				$opt .= $this->getOption($d->getDesc(), $d->getVal());
+			}
+			$options .= $this->getOptionGroup($key, $opt);
+		}
+		return $options; // kasia kocha tomka :))
+	}
+	// -------------------------------------------------------------------------
+	protected function getSimpleOptions()
+	{
+		$options = "";
+		if($this->required)
+		{
+			$this->setClassString($this->getBaseClass() . " combo ui-state-error");
+			$options .= BaseTags::option($this->requiredText, "value='' class='ui-state-default ui-state-error' selected='selected'");
+		}
+		$options .= parent::getSimpleOptions();
+		return $options;
 	}
 	// -------------------------------------------------------------------------
 	public function out()
 	{
-		$this->attrib = null;
-		$retval = "";
-		if($this->group)
-		{
-			if($this->required)
-			{
-				if(null === $this->selected)
-				{
-					$attrib = "class='" . self::CLASS_OPTION . " " . Field::CLASS_BASE . " " . Field::CLASS_ERROR . "' value='' ";
-					$optGroup = BaseTags::option($this->requiredText, $attrib);
-					$retval .= BaseTags::optgroup($optGroup, "class='" . self::CLASS_OPTIONGROUP . " " . Field::CLASS_BASE . "' label='" . $this->requiredText . "'");
-					$this->classString .= " " . Field::CLASS_ERROR;
-				}
-			}
-			$marker = null;
-			$optGroup = null;
-			foreach($this->dane as $value) /*  @var $value WidgetItem */
-			{
-				if(null === $marker)
-				{
-					$marker = $value->getGroupDesc();
-				}
-				else
-				{
-					if($marker != $value->getGroupDesc())
-					{
-						$retval .= BaseTags::optgroup($optGroup, "class='" . self::CLASS_OPTIONGROUP . " " . Field::CLASS_BASE . "' label='" . $marker . "'");
-						$marker = $value->getGroupDesc();
-						$optGroup = null;
-					}
-				}
+		$this->setDefault();
 
-				$innerHtml = $value->getDesc();
-				$attrib = "class='" . self::CLASS_OPTION . "' value='" . $value->getVal() . "' " . $value->getCustomAttrib();
-				if($this->selected == $value->getVal())
-				{
-					$attrib .= " selected='selected'";
-				}
-				$optGroup .= BaseTags::option($innerHtml, $attrib);
-			}
-			if(null !== $optGroup)
-			{
-				$retval .= BaseTags::optgroup($optGroup, "class='" . self::CLASS_OPTIONGROUP . " " . Field::CLASS_BASE . "' label='" . $marker . "'");
-			}
-		}
-		else
-		{
-			if($this->required)
-			{
-				if(null === $this->selected)
-				{
-					$attrib = "class='" . self::CLASS_OPTION . " " . Field::CLASS_ERROR . "' value='' ";
-					$retval .= BaseTags::option($this->requiredText, $attrib);
-					$this->classString .= " " . Field::CLASS_ERROR;
-				}
-			}
-			foreach($this->dane as $value)
-			{
-				$innerHtml = $value->getDesc();
-				$attrib = "class='" . self::CLASS_OPTION . "' value='" . $value->getVal() . "' " . $value->getCustomAttrib();
-				if($this->selected == $value->getVal())
-				{
-					$attrib .= " selected='selected'";
-				}
-				$retval .= BaseTags::option($innerHtml, $attrib);
-			}
-		}
-
-		$this->onChange .= "SprawdzCombo(this);";
-		$this->addAttrib("id", $this->id);
-		$this->addAttrib("name", $this->name);
-		$this->addAttrib("class", $this->classString . " combo");
-		$this->addAttrib("tabindex", $this->tabOrder);
-		$this->addEvents();
-		$this->addCustomAttrib();
-		return BaseTags::select($retval, $this->attrib);
+		return parent::out();
 	}
 	// -------------------------------------------------------------------------
 }
