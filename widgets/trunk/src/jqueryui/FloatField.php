@@ -1,9 +1,7 @@
 <?php
-
 namespace braga\widgets\jqueryui;
-
 use braga\tools\html\BaseTags;
-use braga\widgets\base\Field;
+use braga\widgets\base\FloatField;
 
 /**
  * Created on 17-05-2011 07:55:40
@@ -11,57 +9,38 @@ use braga\widgets\base\Field;
  * @package system
  * error prefix
  */
-class FloatField extends Field
+class FloatField extends FloatField
 {
 	use ClassFactory;
 	// -------------------------------------------------------------------------
-	protected $minValue = "null";
-	protected $maxValue = "null";
-	protected $precision = 2;
-	protected $maxLength = 22;
-	protected $type = "text";
+	protected $class = null;
 	// -------------------------------------------------------------------------
-	public function setMaxLength($maxLength)
+	protected function setDefaults()
 	{
-		$this->maxLength = $maxLength;
-	}
-	// -------------------------------------------------------------------------
-	public function setType($type)
-	{
-		$this->type = $type;
-	}
-	// -------------------------------------------------------------------------
-	public function setMinValue($minValue)
-	{
-		$this->minValue = $minValue;
-	}
-	// -------------------------------------------------------------------------
-	public function setMaxValue($maxValue)
-	{
-		$this->maxValue = $maxValue;
-	}
-	// -------------------------------------------------------------------------
-	public function setPrecision($precision)
-	{
-		$this->precision = $precision;
+		$this->class .= $this->getBaseClass();
+		$this->class .= " r " . $this->getMediumSizeClass();
+		$this->onFocus .= "\$(this).select();";
+		if(empty($this->maxLength))
+		{
+			$this->setMaxLength(255);
+		}
 	}
 	// -------------------------------------------------------------------------
 	public function out()
 	{
-		$this->onFocus .= "\$(this).select();";
-		$this->attrib = null;
-		$this->classString .= " r " . $this->getMediumSizeClass();
+		$this->setDefaults();
+		$checkScript = "";
 		if($this->required)
 		{
-			$this->onChange .= "if(CzyReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ")){CzyNull(this);}";
+			$checkScript .= "if(CzyReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ")){CzyNull(this);}";
 			if("" == $this->selected)
 			{
-				$this->classString .= " " . $this->getErrorClass();
+				$this->class .= " " . $this->getErrorClass();
 			}
 		}
 		else
 		{
-			$this->onChange .= "CzyReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ");";
+			$checkScript .= "CzyReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ");";
 		}
 
 		if(null != $this->selected)
@@ -71,29 +50,24 @@ class FloatField extends Field
 			{
 				if($this->selected > $this->maxValue)
 				{
-					$this->classString .= " " . $this->getErrorClass();
+					$this->class .= " " . $this->getErrorClass();
 				}
 			}
 			elseif($this->minValue != "null")
 			{
 				if($this->selected < $this->minValue)
 				{
-					$this->classString .= " " . $this->getErrorClass();
+					$this->class .= " " . $this->getErrorClass();
 				}
 			}
 			$this->selected = number_format($this->selected, $this->precision, ".", "");
 		}
 
-		$this->addAttrib("type", $this->type);
-		$this->addAttrib("id", $this->id);
-		$this->addAttrib("name", $this->name);
-		$this->addAttrib("class", $this->classString);
-		$this->addAttrib("value", $this->selected);
-		$this->addAttrib("tabindex", $this->tabOrder);
-		$this->addAttrib("maxlength", $this->maxLength);
-		$this->addEvents();
-		$this->addCustomAttrib();
-		return BaseTags::input($this->attrib);
+		$this->onChange = $this->onChange . $checkScript;
+		$this->onBlur = $this->onBlur . $checkScript;
+		$this->onKeyUp = $this->onKeyUp . $checkScript;
+		$this->setClassString($this->class);
+		return BaseTags::p(parent::out(), "style='min-height:25px;'");
 	}
 	// -------------------------------------------------------------------------
 }
