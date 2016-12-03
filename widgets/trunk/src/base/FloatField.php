@@ -17,6 +17,12 @@ class FloatField extends Field
 	protected $precision = 2;
 	protected $maxLength = 22;
 	protected $type = "text";
+	protected $readOnly = false;
+	// -------------------------------------------------------------------------
+	public function setReadOnly($readOnly = true)
+	{
+		$this->readOnly = $readOnly;
+	}
 	// -------------------------------------------------------------------------
 	public function setMaxLength($maxLength)
 	{
