@@ -1,5 +1,4 @@
 <?php
-
 namespace braga\widgets\jqueryui;
 
 /**
@@ -14,7 +13,7 @@ trait ClassFactory
 	// -------------------------------------------------------------------------
 	public function getBaseClass()
 	{
-		return "widget ui-widget-content ui-corner-all";
+		return "widget ui-widget ui-widget-content ui-corner-all";
 	}
 	// -------------------------------------------------------------------------
 	public function getSmallSizeClass()
