@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\base;
-
 use braga\tools\html\BaseTags;
 use braga\widgets\base\Field;
 
@@ -44,7 +42,14 @@ class DropDownListField extends Field
 	// -------------------------------------------------------------------------
 	protected function getOption($label, $value)
 	{
-		return BaseTags::option($label, "value='" . $value . "' " . $this->optionAtrib);
+		if($this->selected == $value)
+		{
+			return BaseTags::option($label, "value='" . $value . "' " . $this->optionAtrib . " selected='selected'");
+		}
+		else
+		{
+			return BaseTags::option($label, "value='" . $value . "' " . $this->optionAtrib);
+		}
 	}
 	// -------------------------------------------------------------------------
 	protected function getOptionGroup($label, $options)
