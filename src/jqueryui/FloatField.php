@@ -1,7 +1,6 @@
 <?php
 namespace braga\widgets\jqueryui;
 use braga\tools\html\BaseTags;
-use braga\widgets\base\FloatField;
 
 /**
  * Created on 17-05-2011 07:55:40
@@ -9,7 +8,7 @@ use braga\widgets\base\FloatField;
  * @package system
  * error prefix
  */
-class FloatField extends FloatField
+class FloatField extends \braga\widgets\base\FloatField
 {
 	use ClassFactory;
 	// -------------------------------------------------------------------------
