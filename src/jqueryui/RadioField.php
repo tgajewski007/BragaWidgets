@@ -1,7 +1,6 @@
 <?php
 namespace braga\widgets\jqueryui;
 use braga\tools\html\BaseTags;
-use braga\widgets\base\Field;
 
 /**
  * create 03-06-2012 10:33:21

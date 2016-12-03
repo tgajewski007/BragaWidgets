@@ -1,9 +1,6 @@
 <?php
-
 namespace braga\widgets\jqueryui;
-
 use braga\tools\html\BaseTags;
-use braga\widgets\base\Field;
 /**
  * Created on 08-04-2011 11:42:29
  * @author Tomasz.Gajewski
@@ -12,7 +9,6 @@ use braga\widgets\base\Field;
  */
 class MemoField extends Field
 {
-	use ClassFactory;
 	// -------------------------------------------------------------------------
 	protected $maxLength = 65535;
 	// -------------------------------------------------------------------------
@@ -24,14 +20,14 @@ class MemoField extends Field
 	public function out()
 	{
 		$this->attrib = null;
-		$this->classString .= " " . $this->getBaseClass();
+		$this->classString .= " " . Field::CLASS_SIZE_MED;
 
 		if($this->required)
 		{
 			$this->onKeyUp .= "checkIsNull(this);";
 			if($this->selected == "")
 			{
-				$this->classString .= " " . $this->getErrorClass();
+				$this->classString .= " " . Field::CLASS_ERROR;
 			}
 		}
 		$this->addAttrib("id", $this->id);

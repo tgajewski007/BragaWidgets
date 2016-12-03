@@ -1,56 +1,70 @@
 <?php
-
 namespace braga\widgets\jqueryui;
-
 use braga\tools\html\BaseTags;
-
 /**
  * Created on 08-04-2011 11:42:29
  * @author Tomasz.Gajewski
- * @package system
+ * @package enmarket
  * error prefix
  */
-class TextField extends \braga\widgets\base\TextField
+class TextField extends Field
 {
-	use ClassFactory;
 	// -------------------------------------------------------------------------
-	protected $class = null;
+	protected $maxLength = 255;
+	protected $type = "text";
+	protected $readOnly = false;
+	protected $watermark = "";
 	protected $regExPatern = null;
+	// -------------------------------------------------------------------------
+	public function setMaxLength($maxLength)
+	{
+		$this->maxLength = $maxLength;
+	}
 	// -------------------------------------------------------------------------
 	public function setRegExpPatern($patern)
 	{
 		$this->regExPatern = $patern;
 	}
 	// -------------------------------------------------------------------------
-	protected function setDefaults()
+	public function setType($type)
 	{
-		$this->class .= $this->getBaseClass();
-		$this->class .= " " . $this->getMediumSizeClass();
-		$this->onFocus .= "\$(this).select();";
-		if(empty($this->maxLength))
-		{
-			$this->setMaxLength(255);
-		}
+		$this->type = $type;
+	}
+	// -------------------------------------------------------------------------
+	public function setWaterMark($watermark)
+	{
+		$this->watermark = $watermark;
+	}
+	// -------------------------------------------------------------------------
+	public function setReadOnly($readOnly = true)
+	{
+		$this->readOnly = $readOnly;
 	}
 	// -------------------------------------------------------------------------
 	public function out()
 	{
-		$this->setDefaults();
-
-		if(!$this->readOnly)
+		$this->onFocus .= "\$(this).select();";
+		$this->attrib = null;
+		$checkScript = "";
+		$this->classString .= " " . Field::CLASS_SIZE_MED;
+		if($this->readOnly)
 		{
-			$this->onFocus .= "\$(this).addClass(\"widgetHighLight a ui-state-highlight\");";
-			$this->onBlur .= "\$(this).removeClass(\"widgetHighLight a ui-state-highlight\");";
+			$this->addAttrib("readonly", "readonly");
+		}
+		else
+		{
+			$this->onFocus .= "\$(this).addClass(\"widgetHighLight ui-state-highlight\");";
+			$this->onBlur .= "\$(this).removeClass(\"widgetHighLight ui-state-highlight\");";
 		}
 		if($this->required)
 		{
-			$this->onKeyUp = "CzyNull(this);" . $this->onKeyUp;
 			if($this->selected == "")
 			{
-				$this->classString .= " " . $this->getErrorClass();
+				$this->onKeyUp = "checkIsNull(this);" . $this->onKeyUp;
+				$this->classString .= " " . Field::CLASS_ERROR;
 			}
+			$checkScript = "if(!checkIsNull(this)){return false};";
 		}
-		$checkScript = "";
 		if(!is_null($this->regExPatern))
 		{
 			$checkScript .= "if(!checkRegExPatern(this,\"" . $this->regExPatern . "\")){return false};";
@@ -59,8 +73,19 @@ class TextField extends \braga\widgets\base\TextField
 		$this->onChange = $this->onChange . $checkScript;
 		$this->onBlur = $this->onBlur . $checkScript;
 		$this->onKeyUp = $this->onKeyUp . $checkScript;
-		$this->setClassString($this->class);
-		return BaseTags::p(parent::out(), "style='min-height:25px;'");
+
+		$this->addAttrib("type", $this->type);
+		$this->addAttrib("id", $this->name);
+		$this->addAttrib("name", $this->name);
+		$this->addAttrib("maxlength", $this->maxLength);
+		$this->addAttrib("class", $this->classString);
+		$this->addAttrib("value", $this->selected);
+		$this->addAttrib("tabindex", $this->tabOrder);
+		$this->addAttrib("placeholder", $this->watermark);
+		$this->addEvents();
+		$this->addCustomAttrib();
+
+		return BaseTags::input($this->attrib);
 	}
 	// -------------------------------------------------------------------------
 }

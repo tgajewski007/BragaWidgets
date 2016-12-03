@@ -1,10 +1,6 @@
 <?php
-
 namespace braga\widgets\jqueryui;
-
 use braga\tools\html\BaseTags;
-use braga\widgets\base\Field;
-
 /**
  *
  * @package enmarket
@@ -40,6 +36,7 @@ class DateField extends Field
 		{
 			if(null == $this->selected)
 			{
+				// $this->classString .= " " . Field::CLASS_ERROR;
 				$this->setSelected(date(PHP_DATE_FORMAT));
 			}
 		}

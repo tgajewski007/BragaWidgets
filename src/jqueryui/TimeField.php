@@ -1,9 +1,6 @@
 <?php
-
 namespace braga\widgets\jqueryui;
-
 use braga\tools\html\BaseTags;
-use braga\widgets\base\Field;
 
 /**
  * Created on 15 sie 2013 14:53:51
@@ -13,7 +10,6 @@ use braga\widgets\base\Field;
  */
 class TimeField extends Field
 {
-	use ClassFactory;
 	// -------------------------------------------------------------------------
 	public function out()
 	{
@@ -23,7 +19,7 @@ class TimeField extends Field
 		{
 			if(null == $this->selected)
 			{
-				$this->classString .= " " . $this->getErrorClass();
+				$this->classString .= " " . Field::CLASS_ERROR;
 			}
 		}
 		$this->onFocus .= "\$(this).addClass(\"ui-state-highlight\");";

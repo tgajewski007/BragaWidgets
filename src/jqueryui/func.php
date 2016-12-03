@@ -274,7 +274,7 @@ function enableTinyMCE()
 // =============================================================================
 function getToolTip($text)
 {
-	return "title='" . $text . "' data-toggle='tooltip' data-placement='top'";
+	return "onmouseover='\$(this).tooltip(\"show\");' title='" . $text . "' data-toggle='tooltip' data-placement='top'";
 }
 // =============================================================================
 ?>
