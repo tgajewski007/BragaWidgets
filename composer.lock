@@ -52,7 +52,7 @@
             "source": {
                 "type": "svn",
                 "url": "https://svn.code.sf.net/p/braga/code/tools",
-                "reference": "/trunk/@103"
+                "reference": "/trunk/@147"
             },
             "require": {
                 "php": ">=5.4"
@@ -78,7 +78,7 @@
                 "libs",
                 "tools"
             ],
-            "time": "2016-10-24 20:45:40"
+            "time": "2016-11-19 20:53:02"
         }
     ],
     "packages-dev": [
@@ -461,12 +461,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "58666e4ac3a2d378798f020308b35a75ffbeaafb"
+                "reference": "befb26a3713c97af90d25dd12e75621ef14d91ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/58666e4ac3a2d378798f020308b35a75ffbeaafb",
-                "reference": "58666e4ac3a2d378798f020308b35a75ffbeaafb",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/befb26a3713c97af90d25dd12e75621ef14d91ff",
+                "reference": "befb26a3713c97af90d25dd12e75621ef14d91ff",
                 "shasum": ""
             },
             "require": {
@@ -502,7 +502,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-03 07:52:58"
+            "time": "2016-11-14 16:15:57"
         }
     ],
     "aliases": [],
