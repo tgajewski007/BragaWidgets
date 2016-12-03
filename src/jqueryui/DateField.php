@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\jqueryui;
-
 use braga\tools\html\BaseTags;
 use braga\widgets\base\Field;
 
@@ -14,6 +12,7 @@ use braga\widgets\base\Field;
  */
 class DateField extends Field
 {
+	use ClassFactory;
 	// -------------------------------------------------------------------------
 	protected $minValue = null;
 	protected $maxValue = null;
@@ -34,6 +33,8 @@ class DateField extends Field
 	// -------------------------------------------------------------------------
 	public function out()
 	{
+		$this->classString = $this->getBaseClass();
+		$this->classString .= " " . $this->getMediumSizeClass();
 		$this->attrib = null;
 		$this->onBlur .= "CheckDate(this," . var_export($this->required, true) . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\");";
 		if($this->required)
