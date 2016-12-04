@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\jqueryui;
-
 use braga\tools\html\BaseTags;
 
 /**
@@ -49,7 +47,7 @@ class DropDownListField extends \braga\widgets\base\DropDownListField
 	protected function getSimpleOptions()
 	{
 		$options = "";
-		if($this->required)
+		if($this->required && empty($this->selected))
 		{
 			$this->setClassString($this->getBaseClass() . " combo ui-state-error");
 			$options .= BaseTags::option($this->requiredText, "value='' class='ui-state-default ui-state-error' selected='selected'");
