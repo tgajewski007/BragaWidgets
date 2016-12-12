@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\jqueryui;
-
 use braga\tools\html\BaseTags;
 use braga\widgets\base\Field;
 
@@ -15,8 +13,16 @@ class TimeField extends Field
 {
 	use ClassFactory;
 	// -------------------------------------------------------------------------
+	protected function setDefaults()
+	{
+		$this->class .= $this->getBaseClass();
+		$this->class .= " " . $this->getMediumSizeClass();
+		$this->onFocus .= "\$(this).select();";
+	}
+	// -------------------------------------------------------------------------
 	public function out()
 	{
+		$this->setDefaults();
 		$this->attrib = null;
 		$this->onBlur .= "CheckTime(this," . var_export($this->required, true) . ");";
 		if($this->required)
@@ -36,9 +42,8 @@ class TimeField extends Field
 		$this->addAttrib("tabindex", $this->tabOrder);
 		$this->addEvents();
 		$this->addCustomAttrib();
-		$retval = BaseTags::input($this->attrib);
-		$retval .= BaseTags::script("\$(\"#" . $this->id . "\").watermark(\"GG:MM\");");
-		return BaseTags::div($retval, "style='width:222px'");
+		$retval = BaseTags::script("\$(\"#" . $this->id . "\").watermark(\"GG:MM\");");
+		return BaseTags::p(parent::out() . $retval, "style='min-height:25px;'");
 	}
 	// -------------------------------------------------------------------------
 }
