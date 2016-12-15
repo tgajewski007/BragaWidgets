@@ -19,7 +19,7 @@
 		"braga/db" : "~2",
 		"braga/tools" : "~2"
 	},
-	"minimum-stability" : "dev",
+	"minimum-stability" : "stable",
 	"require-dev" : {
 		"phpunit/phpunit" : "3.7.38"
 	},
