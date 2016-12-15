@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\jqueryui;
-
 use braga\tools\html\BaseTags;
 
 /**
@@ -44,7 +42,7 @@ class TextField extends \braga\widgets\base\TextField
 		}
 		if($this->required)
 		{
-			$this->onKeyUp = "CzyNull(this);" . $this->onKeyUp;
+			$this->onKeyUp = "checkIsNull(this);" . $this->onKeyUp;
 			if($this->selected == "")
 			{
 				$this->classString .= " " . $this->getErrorClass();
