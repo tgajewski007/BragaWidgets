@@ -45,7 +45,7 @@ class TextField extends \braga\widgets\base\TextField
 			$this->onKeyUp = "checkIsNull(this);" . $this->onKeyUp;
 			if($this->selected == "")
 			{
-				$this->classString .= " " . $this->getErrorClass();
+				$this->class .= " " . $this->getErrorClass();
 			}
 		}
 		$checkScript = "";
