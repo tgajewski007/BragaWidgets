@@ -31,7 +31,7 @@ class FloatField extends \braga\widgets\base\FloatField
 		$checkScript = "";
 		if($this->required)
 		{
-			$checkScript .= "if(CzyReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ")){CzyNull(this);}";
+			$checkScript .= "if(CzyReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ")){checkIsNull(this);}";
 			if("" == $this->selected)
 			{
 				$this->class .= " " . $this->getErrorClass();
