@@ -1,5 +1,7 @@
 <?php
+
 namespace braga\widgets\base;
+
 use braga\tools\html\BaseTags;
 use braga\widgets\base\Field;
 
@@ -54,7 +56,7 @@ class FloatField extends Field
 		$this->addAttrib("type", $this->type);
 		$this->addAttrib("id", $this->id);
 		$this->addAttrib("name", $this->name);
-		$this->addAttrib("class", $this->class);
+		$this->addAttrib("class", $this->classString);
 		$this->addAttrib("value", $this->selected);
 		$this->addAttrib("tabindex", $this->tabOrder);
 		$this->addAttrib("maxlength", $this->maxLength);
