@@ -42,21 +42,21 @@ class TextField extends \braga\widgets\base\TextField
 		}
 		if($this->required)
 		{
-			$this->onKeyUp = "checkIsNull(this);" . $this->onKeyUp;
+			$this->onKeyUp .= "checkIsNull(this);";
+			$this->onBlur .= "checkIsNull(this);";
 			if($this->selected == "")
 			{
 				$this->class .= " " . $this->getErrorClass();
 			}
 		}
-		$checkScript = "";
 		if(!is_null($this->regExPatern))
 		{
-			$checkScript .= "if(!checkRegExPatern(this,\"" . $this->regExPatern . "\")){return false};";
+			$checkScript = "if(!checkRegExPatern(this,\"" . $this->regExPatern . "\")){return false};";
+			$this->onChange .= $checkScript;
+			$this->onBlur .= $checkScript;
+			$this->onKeyUp .= $checkScript;
 		}
 
-		$this->onChange = $this->onChange . $checkScript;
-		$this->onBlur = $this->onBlur . $checkScript;
-		$this->onKeyUp = $this->onKeyUp . $checkScript;
 		$this->setClassString($this->class);
 		return BaseTags::p(parent::out(), "style='min-height:25px;'");
 	}

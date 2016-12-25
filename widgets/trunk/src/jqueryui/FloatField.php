@@ -62,9 +62,7 @@ class FloatField extends \braga\widgets\base\FloatField
 			$this->selected = number_format($this->selected, $this->precision, ".", "");
 		}
 
-		// $this->onChange = $this->onChange . $checkScript;
 		$this->onBlur = $this->onBlur . $checkScript;
-		// $this->onKeyUp = $this->onKeyUp . $checkScript;
 		$this->setClassString($this->class);
 		return BaseTags::p(parent::out(), "style='min-height:25px;'");
 	}
