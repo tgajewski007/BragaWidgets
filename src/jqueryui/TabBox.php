@@ -75,7 +75,7 @@ class TabBox
 				}
 			}
 			$retval = BaseTags::ul($retval, "class='ui-tabs-nav ui-corner-top ui-helper-reset ui-helper-clearfix ui-widget-header' style='height:28px;'");
-			$retval .= BaseTags::div($content, "class='ui-corner-bottom ui-widget-content' style='padding:4px;' " . $this->boxId . " ");
+			$retval .= BaseTags::div($content, "class='ui-corner-bottom ui-widget-content' style='padding:4px;min-height:300px' " . $this->boxId . " ");
 			$retval = BaseTags::div($retval, "class='ui-tabs ui-corner-all'");
 		}
 		return $retval;
