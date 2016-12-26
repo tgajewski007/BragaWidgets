@@ -46,7 +46,7 @@ class TabBox
 		$this->boxId = "id='" . $id . "'";
 	}
 	// -------------------------------------------------------------------------
-	public function out($activeId = "1", $text = "")
+	public function out($activeId = 1, $content = "")
 	{
 		$tabOk = false;
 		foreach($this->tabs as $value)
@@ -63,7 +63,6 @@ class TabBox
 		$retval = "";
 		if($this->item > 0)
 		{
-			// rozpoczynający pusty tab
 			for($i = 0; $i < $this->item; $i++)
 			{
 				if($activeId == $this->tabs[$i]["id"])
@@ -75,8 +74,8 @@ class TabBox
 					$retval .= $this->menuPassive($this->tabs[$i]["desc"], $this->tabs[$i]["href"]);
 				}
 			}
-			$retval = BaseTags::ul($retval, "class='ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header'");
-			$retval .= BaseTags::div($text, "class='ui-tabs-panel ui-corner-bottom ui-widget-content' " . $this->boxId . " ");
+			$retval = BaseTags::ul($retval, "class='ui-tabs-nav ui-corner-top ui-helper-reset ui-helper-clearfix ui-widget-header' style='height:32px;'");
+			$retval .= BaseTags::div($content, "class='ui-tabs-panel ui-corner-bottom ui-widget-content' " . $this->boxId . " ");
 			$retval = BaseTags::div($retval, "class='ui-tabs ui-corner-all ui-widget ui-widget-content'");
 		}
 		return $retval;
