@@ -74,9 +74,9 @@ class TabBox
 					$retval .= $this->menuPassive($this->tabs[$i]["desc"], $this->tabs[$i]["href"]);
 				}
 			}
-			$retval = BaseTags::ul($retval, "class='ui-tabs-nav ui-corner-top ui-helper-reset ui-helper-clearfix ui-widget-header' style='height:32px;'");
+			$retval = BaseTags::ul($retval, "class='ui-tabs-nav ui-corner-top ui-helper-reset ui-helper-clearfix ui-widget-header' style='height:28px;'");
 			$retval .= BaseTags::div($content, "class='ui-corner-bottom' style='padding:4px;' " . $this->boxId . " ");
-			$retval = BaseTags::div($retval, "class='ui-tabs ui-corner-all ui-widget ui-widget-content'");
+			$retval = BaseTags::div($retval, "class='ui-tabs ui-corner-all ui-widget-content'");
 		}
 		return $retval;
 	}
