@@ -51,7 +51,7 @@ class TabBox
 		$tabOk = false;
 		foreach($this->tabs as $value)
 		{
-			if($value["ID"] == $activeId)
+			if($value["id"] == $activeId)
 			{
 				$tabOk = true;
 			}
@@ -66,38 +66,39 @@ class TabBox
 			// rozpoczynający pusty tab
 			for($i = 0; $i < $this->item; $i++)
 			{
-				if($activeId == $this->tabs[$i]["ID"])
+				if($activeId == $this->tabs[$i]["id"])
 				{
-					$retval .= $this->menuActive($this->tabs[$i]["Desc"], $this->tabs[$i]["HRef"]);
+					$retval .= $this->menuActive($this->tabs[$i]["desc"], $this->tabs[$i]["href"]);
 				}
 				else
 				{
-					$retval .= $this->menuPassive($this->tabs[$i]["Desc"], $this->tabs[$i]["HRef"]);
+					$retval .= $this->menuPassive($this->tabs[$i]["desc"], $this->tabs[$i]["href"]);
 				}
 			}
-			$retval .= BaseTags::div($text, "class='' " . $this->boxId . " style='margin-top:32px;padding:0px 4px;min-height:" . strval($this->minHeight) . "px;'");
-			$retval = BaseTags::div($retval, "class='ui-widget-content ui-corner-all' style='padding-top:4px'");
+			$retval = BaseTags::ul($retval, "class='ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header'");
+			$retval .= BaseTags::div($text, "class='ui-tabs-panel ui-corner-bottom ui-widget-content' " . $this->boxId . " ");
+			$retval = BaseTags::div($retval, "class='ui-tabs ui-corner-all ui-widget ui-widget-content'");
 		}
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
 	public function addTab($id, $opis, $href)
 	{
-		$this->tabs[$this->item]["ID"] = $id;
-		$this->tabs[$this->item]["Desc"] = $opis;
-		$this->tabs[$this->item]["HRef"] = $href;
+		$this->tabs[$this->item]["id"] = $id;
+		$this->tabs[$this->item]["desc"] = $opis;
+		$this->tabs[$this->item]["href"] = $href;
 		$this->item++;
 	}
 	// -------------------------------------------------------------------------
 	private function menuPassive($opis, $href)
 	{
-		$retval = BaseTags::p(BaseTags::a($opis, $this->ajax . " href='" . $href . "' onmouseout='\$(this).parent().removeClass(\"ui-state-hover\")' onmouseover='\$(this).parent().addClass(\"ui-state-hover\")'"), "class='c ui-widget-content ui-corner-top ui-state-default' style='margin:2px;padding:5px;float:left'");
+		$retval = BaseTags::li(BaseTags::a($opis, $this->ajax . " href='" . $href . "'"), "class='ui-tabs-tab ui-corner-top ui-state-default ui-tab'");
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
 	private function menuActive($opis, $href)
 	{
-		$retval = BaseTags::p(BaseTags::a($opis, $this->ajax . " href='" . $href . "'"), "class='c ui-widget-content ui-corner-top ui-state-active' style='margin:2px;padding:5px;float:left'");
+		$retval = BaseTags::li(BaseTags::a($opis, $this->ajax . " href='" . $href . "'"), "class='ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active'");
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
