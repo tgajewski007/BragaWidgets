@@ -42,6 +42,7 @@ class TextField extends Field
 		$this->addAttrib("class", $this->classString);
 		$this->addAttrib("value", $this->selected);
 		$this->addAttrib("tabindex", $this->tabOrder);
+		$this->addAttrib("required", $this->required);
 		if($this->readOnly)
 		{
 			$this->addAttrib("readonly", "readonly");
