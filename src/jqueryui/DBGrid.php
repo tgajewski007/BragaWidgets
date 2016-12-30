@@ -21,6 +21,7 @@ class DBGrid extends \braga\widgets\base\DBGrid
 			"ui-state-focus");
 	// -------------------------------------------------------------------------
 	private $rowAction;
+	private $linkAction;
 	// -------------------------------------------------------------------------
 	protected function getRowAction()
 	{
@@ -28,9 +29,16 @@ class DBGrid extends \braga\widgets\base\DBGrid
 		{
 			$this->rowAction = "onmouseover='$(this).addClass(\"ui-state-hover\");' ";
 			$this->rowAction .= "onmouseout='$(this).removeClass(\"ui-state-hover\");' ";
-			$this->rowAction .= "onclick='$(this).closest().removeClass(\"ui-state-active\");$(this).addClass(\"ui-state-active\");'";
 		}
 		return $this->rowAction;
+	}
+	// -------------------------------------------------------------------------
+	protected function getLinkAction()
+	{
+		if($this->ajaxEnablad)
+		{
+			return "onclick='$(this).closest(\"tr\").removeClass(\"ui-state-active\");$(this).parents(\"tr\").addClass(\"ui-state-active\"); return ajax.go(this);'";
+		}
 	}
 	// -------------------------------------------------------------------------
 }

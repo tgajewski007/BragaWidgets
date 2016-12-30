@@ -143,14 +143,7 @@ class DBGrid
 				}
 				else
 				{
-					if($this->ajaxEnablad)
-					{
-						$tmp = BaseTags::a($this->db->f($i), "href='" . $this->hrefCell . "' onclick='return ajax.go(this);'");
-					}
-					else
-					{
-						$tmp = BaseTags::a($this->db->f($i), "href='" . $this->hrefCell . "'");
-					}
+					$tmp = BaseTags::a($this->db->f($i), "href='" . $this->hrefCell . "' " . $this->getLinkAction());
 					$tmp = $this->repleceStringByField($tmp);
 					switch($this->db->getMetaData()->get($i)->getType())
 					{
@@ -177,6 +170,10 @@ class DBGrid
 			$a++;
 		}
 		$this->content .= BaseTags::tbody($retval);
+	}
+	// -------------------------------------------------------------------------
+	protected function getLinkAction()
+	{
 	}
 	// -------------------------------------------------------------------------
 	protected function getRowAction()
