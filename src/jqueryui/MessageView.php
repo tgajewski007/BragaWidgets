@@ -31,7 +31,7 @@ class MessageView extends HtmlComponent
 			foreach(SessManager::get(SessManager::MESSAGE_ALERT) as $m)/* @var $m \Braga\Message */
 			{
 				$id = "MSG" . getRandomString(5);
-				$wiadomosci .= BaseTags::p(BaseTags::span(BaseTags::i($m->getNumer()), "style='float:right;font-size:75%;'") . $m->getOpis(), "class='clear' id='" . $id . "'");
+				$wiadomosci .= BaseTags::p(BaseTags::span(BaseTags::i($m->getNumer()), "style='padding-left:8px;float:right;font-size:75%;'") . $m->getOpis(), "class='clear' id='" . $id . "'");
 				$wiadomosci .= BaseTags::script("$(\"#" . $id . "\").parent().parent().delay(10000).hide(\"slide\",{direction: \"up\"})");
 			}
 			SessManager::kill(SessManager::MESSAGE_ALERT);
@@ -55,7 +55,7 @@ class MessageView extends HtmlComponent
 			foreach(SessManager::get(SessManager::MESSAGE_WARNING) as $m)/* @var $m \Braga\Message */
 			{
 				$id = "MSG" . getRandomString(5);
-				$wiadomosci .= BaseTags::p(BaseTags::span(BaseTags::i($m->getNumer()), "style='float:right;font-size:75%;'") . $m->getOpis(), "class='clear' id='" . $id . "'");
+				$wiadomosci .= BaseTags::p(BaseTags::span(BaseTags::i($m->getNumer()), "style='padding-left:8px;float:right;font-size:75%;'") . $m->getOpis(), "class='clear' id='" . $id . "'");
 				$wiadomosci .= BaseTags::script("$(\"#" . $id . "\").parent().parent().delay(5000).hide(\"slide\",{direction: \"up\"})");
 			}
 			SessManager::kill(SessManager::MESSAGE_WARNING);
