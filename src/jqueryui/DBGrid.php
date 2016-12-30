@@ -37,7 +37,7 @@ class DBGrid extends \braga\widgets\base\DBGrid
 	{
 		if($this->ajaxEnablad)
 		{
-			return "onclick='$(this).closest(\"tr\").removeClass(\"ui-state-active\");$(this).parents(\"tr\").addClass(\"ui-state-active\"); return ajax.go(this);'";
+			return "onclick='$(this).closest(\"table\").find(\"tr\").removeClass(\"ui-state-active\");$(this).closest(\"tr\").addClass(\"ui-state-active\"); return ajax.go(this);'";
 		}
 	}
 	// -------------------------------------------------------------------------
