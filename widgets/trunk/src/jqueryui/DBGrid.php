@@ -20,26 +20,17 @@ class DBGrid extends \braga\widgets\base\DBGrid
 			"ui-state-default",
 			"ui-state-focus");
 	// -------------------------------------------------------------------------
-	private $hoverAction;
-	private $clickAction;
+	private $rowAction;
 	// -------------------------------------------------------------------------
-	protected function getHoverAction()
+	protected function getRowAction()
 	{
-		if(empty($this->hoverAction))
+		if(empty($this->rowAction))
 		{
-			$this->hoverAction = "onmouseover='$(this).addClass(\"ui-state-hover\");' ";
-			$this->hoverAction .= "onmouseout='$(this).removeClass(\"ui-state-hover\");' ";
+			$this->rowAction = "onmouseover='$(this).addClass(\"ui-state-hover\");' ";
+			$this->rowAction .= "onmouseout='$(this).removeClass(\"ui-state-hover\");' ";
+			$this->rowAction .= "onclick='$(\"tr\").removeClass(\"ui-state-active\");$(this).addClass(\"ui-state-active\");'";
 		}
-		return $this->hoverAction;
-	}
-	// -------------------------------------------------------------------------
-	protected function getClickAction()
-	{
-		if(empty($this->clickAction))
-		{
-			$this->clickAction = "onclick='$(\"tr\").removeClass(\"ui-state-active\");$(this).addClass(\"ui-state-active\");'";
-		}
-		return $this->clickAction;
+		return $this->rowAction;
 	}
 	// -------------------------------------------------------------------------
 }
