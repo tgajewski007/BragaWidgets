@@ -173,17 +173,13 @@ class DBGrid
 			}
 			$trRow = $this->rowClass[$a % count($this->rowClass)];
 
-			$retval .= BaseTags::tr($content, "class='" . $this->contentRowClass . " " . $trRow . "' " . trim($this->getHoverAction() . " " . $this->getClickAction()));
+			$retval .= BaseTags::tr($content, "class='" . $this->contentRowClass . " " . $trRow . "' " . $this->getRowAction());
 			$a++;
 		}
 		$this->content .= BaseTags::tbody($retval);
 	}
 	// -------------------------------------------------------------------------
-	protected function getClickAction()
-	{
-	}
-	// -------------------------------------------------------------------------
-	protected function getHoverAction()
+	protected function getRowAction()
 	{
 	}
 	// -------------------------------------------------------------------------
