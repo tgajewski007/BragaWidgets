@@ -148,7 +148,7 @@ function CommandButton($caption = "NoTitle", $onClick = "")
 // =============================================================================
 function SubmitButton($label = "Wyślij")
 {
-	return BaseTags::input("type='submit' style='margin:4px;padding:2px' onmouseover='\$(this).addClass(\"ui-state-hover\")' onmouseout='\$(this).removeClass(\"ui-state-hover\")' class='ui-button ui-state-default ui-corner-all hand' value='" . $label . "'");
+	return BaseTags::input("type='submit' onmouseover='\$(this).addClass(\"ui-state-hover\")' onmouseout='\$(this).removeClass(\"ui-state-hover\")' class='ui-widget ui-button ui-state-default ui-corner-all hand' value='" . $label . "'");
 }
 // =============================================================================
 function PasswordField($name = "no_name", $value = "", $required = false)
