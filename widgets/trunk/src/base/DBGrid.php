@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\base;
-
 use braga\tools\html\BaseTags;
 use braga\db\DataSource;
 
@@ -174,10 +172,19 @@ class DBGrid
 				$content .= BaseTags::td($this->getCustomColumn($columna->columnContent), "class='" . $this->contentStringCellClass . "'");
 			}
 			$trRow = $this->rowClass[$a % count($this->rowClass)];
-			$retval .= BaseTags::tr($content, "class='" . $this->contentRowClass . " " . $trRow . "'");
+
+			$retval .= BaseTags::tr($content, "class='" . $this->contentRowClass . " " . $trRow . "' " . trim($this->getHoverAction() . " " . $this->getClickAction()));
 			$a++;
 		}
 		$this->content .= BaseTags::tbody($retval);
+	}
+	// -------------------------------------------------------------------------
+	protected function getClickAction()
+	{
+	}
+	// -------------------------------------------------------------------------
+	protected function getHoverAction()
+	{
 	}
 	// -------------------------------------------------------------------------
 	protected function getCustomColumn($columnContent)
