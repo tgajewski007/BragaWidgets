@@ -1,5 +1,4 @@
 <?php
-
 namespace braga\widgets\jqueryui;
 
 /**
@@ -19,8 +18,29 @@ class DBGrid extends \braga\widgets\base\DBGrid
 	protected $contentDateCellClass = "c";
 	protected $rowClass = array(
 			"ui-state-default",
-			"ui-state-focus"
-	);
+			"ui-state-focus");
+	// -------------------------------------------------------------------------
+	private $hoverAction;
+	private $clickAction;
+	// -------------------------------------------------------------------------
+	protected function getHoverAction()
+	{
+		if(empty($this->hoverAction))
+		{
+			$this->hoverAction = "onmouseover='$(this).addClass(\"ui-state-hover\");' ";
+			$this->hoverAction .= "onmouseout='$(this).removeClass(\"ui-state-hover\");' ";
+		}
+		return $this->hoverAction;
+	}
+	// -------------------------------------------------------------------------
+	protected function getClickAction()
+	{
+		if(empty($this->clickAction))
+		{
+			$this->clickAction = "onclick='$(\"tr\").removeClass(\"ui-state-active\");$(this).addClass(\"ui-state-active\");' ";
+		}
+		return $this->clickAction;
+	}
 	// -------------------------------------------------------------------------
 }
 ?>
