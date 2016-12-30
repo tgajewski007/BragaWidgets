@@ -37,7 +37,7 @@ class DBGrid extends \braga\widgets\base\DBGrid
 	{
 		if(empty($this->clickAction))
 		{
-			$this->clickAction = "onclick='$(\"tr\").removeClass(\"ui-state-active\");$(this).addClass(\"ui-state-active\");' ";
+			$this->clickAction = "onclick='$(\"tr\").removeClass(\"ui-state-active\");$(this).addClass(\"ui-state-active\");'";
 		}
 		return $this->clickAction;
 	}
