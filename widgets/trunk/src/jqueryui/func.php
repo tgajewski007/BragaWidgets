@@ -172,7 +172,7 @@ function FormRow($desc = "", $real = "")
 // =============================================================================
 function FormSubmitRow($real = "")
 {
-	return BaseTags::p($real, "class='FormCellReal c '");
+	return BaseTags::p($real, "class='FormCellReal c' style='padding:4px;'");
 }
 // =============================================================================
 function FileField($name = "no_name")
