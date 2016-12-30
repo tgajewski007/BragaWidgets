@@ -1,5 +1,4 @@
 <?php
-
 namespace braga\widgets\bootstrap;
 
 /**
@@ -21,8 +20,15 @@ class DBGrid
 	protected $contentDateCellClass = "";
 	protected $rowClass = array(
 			"alert alert-warning",
-			""
-	);
+			"");
+	// -------------------------------------------------------------------------
+	protected function getLinkAction()
+	{
+		if($this->ajaxEnablad)
+		{
+			return "onclick='return ajax.go(this);'";
+		}
+	}
 	// -------------------------------------------------------------------------
 }
 ?>
