@@ -28,7 +28,7 @@ class DBGrid extends \braga\widgets\base\DBGrid
 		{
 			$this->rowAction = "onmouseover='$(this).addClass(\"ui-state-hover\");' ";
 			$this->rowAction .= "onmouseout='$(this).removeClass(\"ui-state-hover\");' ";
-			$this->rowAction .= "onclick='$(\"tr\").removeClass(\"ui-state-active\");$(this).addClass(\"ui-state-active\");'";
+			$this->rowAction .= "onclick='$(this).closest().removeClass(\"ui-state-active\");$(this).addClass(\"ui-state-active\");'";
 		}
 		return $this->rowAction;
 	}
