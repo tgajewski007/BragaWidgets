@@ -49,7 +49,7 @@ class DropDownListField extends \braga\widgets\base\DropDownListField
 		$options = "";
 		if(empty($this->selected))
 		{
-			$options .= BaseTags::option($this->requiredText, "value='' class='ui-state-default ui-state-error' selected='selected'");
+			$options .= BaseTags::option($this->requiredText, "value='' class='ui-state-default " . ($this->required ? "ui-state-error" : "") . "' selected='selected'");
 			if($this->required)
 			{
 				$this->setClassString($this->getBaseClass() . " combo ui-state-error");
