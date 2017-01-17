@@ -143,7 +143,7 @@ function LongDescError($text = "")
 // =============================================================================
 function CommandButton($caption = "NoTitle", $onClick = "")
 {
-	return BaseTags::button($caption, "onclick='" . $onClick . "' style='margin:4px;padding:2px' onmouseover='\$(this).addClass(\"ui-state-hover\")' onmouseout='\$(this).removeClass(\"ui-state-hover\")' class='hand ui-button ui-state-default ui-corner-all'");
+	return BaseTags::button($caption, "onclick='" . $onClick . "' onmouseover='\$(this).addClass(\"ui-state-hover\")' onmouseout='\$(this).removeClass(\"ui-state-hover\")' class='ui-widget ui-button ui-state-default ui-corner-all hand'");
 }
 // =============================================================================
 function SubmitButton($label = "Wyślij")
