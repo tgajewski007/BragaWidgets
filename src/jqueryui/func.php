@@ -143,12 +143,12 @@ function LongDescError($text = "")
 // =============================================================================
 function CommandButton($caption = "NoTitle", $onClick = "")
 {
-	return BaseTags::button($caption, "onclick='" . $onClick . "' onmouseover='\$(this).addClass(\"ui-state-hover\")' onmouseout='\$(this).removeClass(\"ui-state-hover\")' class='ui-widget ui-button ui-state-default ui-corner-all hand'");
+	return BaseTags::button($caption, "onclick='" . $onClick . "' onmouseover='\$(this).addClass(\"ui-state-hover\")' onmouseout='\$(this).removeClass(\"ui-state-hover\")' style='padding:5px 12px;margin:4px;' class='ui-widget ui-button ui-state-default ui-corner-all hand'");
 }
 // =============================================================================
 function SubmitButton($label = "Wyślij")
 {
-	return BaseTags::input("type='submit' onmouseover='\$(this).addClass(\"ui-state-hover\")' onmouseout='\$(this).removeClass(\"ui-state-hover\")' class='ui-widget ui-button ui-state-default ui-corner-all hand' value='" . $label . "'");
+	return BaseTags::input("type='submit' onmouseover='\$(this).addClass(\"ui-state-hover\")' onmouseout='\$(this).removeClass(\"ui-state-hover\")' style='padding:5px 12px;margin:4px;' class='ui-widget ui-button ui-state-default ui-corner-all hand' value='" . $label . "'");
 }
 // =============================================================================
 function PasswordField($name = "no_name", $value = "", $required = false)
