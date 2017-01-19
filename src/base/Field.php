@@ -1,5 +1,4 @@
 <?php
-
 namespace braga\widgets\base;
 
 /**
@@ -141,7 +140,7 @@ abstract class Field
 	// -------------------------------------------------------------------------
 	protected function addAttrib($name, $value)
 	{
-		if($value != null)
+		if(!is_null($value))
 		{
 			$this->attrib .= $name .= "='" . $value . "' ";
 		}
