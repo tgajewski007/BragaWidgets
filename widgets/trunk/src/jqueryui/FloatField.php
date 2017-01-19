@@ -42,7 +42,7 @@ class FloatField extends \braga\widgets\base\FloatField
 			$checkScript .= "CzyReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ");";
 		}
 
-		if(null != $this->selected)
+		if(!is_null($this->selected))
 		{
 			// sprawdzenie czy poza max / min
 			if($this->maxValue != "null")
