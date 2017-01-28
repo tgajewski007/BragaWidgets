@@ -1,14 +1,13 @@
 <?php
 namespace braga\widgets\jqueryui;
 use braga\tools\html\BaseTags;
-use braga\widgets\base\TextField;
 /**
  * Created on 08-04-2011 11:42:29
  * @author Tomasz.Gajewski
  * @package system
  * error prefix
  */
-class MemoField extends TextField
+class MemoField extends \braga\widgets\base\MemoField
 {
 	use ClassFactory;
 	// -------------------------------------------------------------------------
