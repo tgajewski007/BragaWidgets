@@ -1,50 +1,51 @@
 <?php
-
 namespace braga\widgets\jqueryui;
-
 use braga\tools\html\BaseTags;
-use braga\widgets\base\Field;
+use braga\widgets\base\TextField;
 /**
  * Created on 08-04-2011 11:42:29
  * @author Tomasz.Gajewski
  * @package system
  * error prefix
  */
-class MemoField extends Field
+class MemoField extends TextField
 {
 	use ClassFactory;
 	// -------------------------------------------------------------------------
-	protected $maxLength = 65535;
+	protected $class = null;
 	// -------------------------------------------------------------------------
-	public function setMaxLength($maxLength)
+	protected function setDefaults()
 	{
-		$this->maxLength = $maxLength;
+		$this->class .= $this->getBaseClass();
+		$this->class .= " " . $this->getMediumSizeClass();
+		$this->onFocus .= "\$(this).select();";
+		if(empty($this->maxLength))
+		{
+			$this->setMaxLength(65535);
+		}
 	}
 	// -------------------------------------------------------------------------
 	public function out()
 	{
-		$this->attrib = null;
-		$this->classString .= " " . $this->getBaseClass();
+		$this->setDefaults();
 
+		if(!$this->readOnly)
+		{
+			$this->onFocus .= "\$(this).addClass(\"widgetHighLight a ui-state-highlight\");";
+			$this->onBlur .= "\$(this).removeClass(\"widgetHighLight a ui-state-highlight\");";
+		}
 		if($this->required)
 		{
 			$this->onKeyUp .= "checkIsNull(this);";
+			$this->onBlur .= "checkIsNull(this);";
 			if($this->selected == "")
 			{
-				$this->classString .= " " . $this->getErrorClass();
+				$this->class .= " " . $this->getErrorClass();
 			}
 		}
-		$this->addAttrib("id", $this->id);
-		$this->addAttrib("name", $this->name);
-		$this->addAttrib("class", $this->classString);
-		$this->addAttrib("tabindex", $this->tabOrder);
-		$this->addAttrib("rows", "0");
-		$this->addAttrib("cols", "0");
-		$this->addEvents();
-		$this->addCustomAttrib();
-		$tmp = BaseTags::textarea($this->selected, $this->attrib);
 
-		return $tmp;
+		$this->setClassString($this->class);
+		return BaseTags::p(parent::out(), "style='min-height:25px;'");
 	}
 	// -------------------------------------------------------------------------
 }
