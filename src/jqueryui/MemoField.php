@@ -44,7 +44,7 @@ class MemoField extends \braga\widgets\base\MemoField
 		}
 
 		$this->setClassString($this->class);
-		return BaseTags::p(parent::out(), "style='min-height:25px;'");
+		return BaseTags::p(parent::out(), "style='min-height:85px;'");
 	}
 	// -------------------------------------------------------------------------
 }
