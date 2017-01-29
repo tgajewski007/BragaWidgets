@@ -4,12 +4,13 @@ use braga\tools\html\BaseTags;
 use braga\widgets\base\Field;
 
 /**
- * Created on 28 sie 2013 20:50:10
- * @author Tomasz Gajewski
- * @package system
+ * Created on 29.01.2017 17:30:31
  * error prefix
+ * @author Tomasz Gajewski
+ * @package
+ *
  */
-class CheckBoxListField extends Field
+class RadioListField extends Field
 {
 	// -------------------------------------------------------------------------
 	protected $dane = array();
@@ -24,9 +25,8 @@ class CheckBoxListField extends Field
 		$retval = "";
 		foreach($this->dane as $value)/* @var $value WidgetItem */
 		{
-			$a = new CheckBoxField();
-			$a->setName($this->name . "[" . $value->getVal() . "]");
-			$a->setId($this->name . "_" . $value->getVal());
+			$a = new RadioField();
+			$a->setName($this->name);
 			$a->setSelected(isset($this->selected[$value->getVal()]));
 			$a->setValue($value->getVal());
 			$retval .= BaseTags::p($a->out() . BaseTags::label($value->getDesc()));
