@@ -27,7 +27,7 @@ class RadioListField extends Field
 		{
 			$a = new RadioField();
 			$a->setName($this->name);
-			$a->setSelected(isset($this->selected[$value->getVal()]));
+			$a->setSelected($this->selected == $value->getVal());
 			$a->setValue($value->getVal());
 			$retval .= BaseTags::p($a->out() . BaseTags::label($value->getDesc()));
 		}
