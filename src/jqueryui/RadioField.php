@@ -29,7 +29,9 @@ class RadioField extends Field
 		$this->addAttrib("value", $this->value);
 		$this->addAttrib("tabindex", $this->tabOrder);
 		if($this->selected)
+		{
 			$this->addAttrib("checked", "checked");
+		}
 		$this->addEvents();
 		$this->addCustomAttrib();
 		return BaseTags::input($this->attrib);
