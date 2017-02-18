@@ -52,7 +52,7 @@ class FloatField extends \braga\widgets\base\FloatField
 					$this->class .= " " . $this->getErrorClass();
 				}
 			}
-			elseif($this->minValue != "null")
+			if($this->minValue != "null")
 			{
 				if($this->selected < $this->minValue)
 				{
