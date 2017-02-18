@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\base;
-
 use braga\tools\html\BaseTags;
 use braga\widgets\base\Field;
 
@@ -60,6 +58,10 @@ class FloatField extends Field
 		$this->addAttrib("value", $this->selected);
 		$this->addAttrib("tabindex", $this->tabOrder);
 		$this->addAttrib("maxlength", $this->maxLength);
+		if($this->required)
+		{
+			$this->addAttrib("required", "true");
+		}
 		if($this->readOnly)
 		{
 			$this->addAttrib("readonly", "readonly");
