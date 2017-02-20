@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\base;
-
 use braga\tools\html\BaseTags;
 
 /**
@@ -30,6 +28,10 @@ class CheckBoxField extends Field
 		$this->addAttrib("class", $this->classString);
 		$this->addAttrib("value", $this->value);
 		$this->addAttrib("tabindex", $this->tabOrder);
+		if($this->required)
+		{
+			$this->addAttrib("required", "true");
+		}
 		if($this->selected)
 		{
 			$this->addAttrib("checked", "checked");
