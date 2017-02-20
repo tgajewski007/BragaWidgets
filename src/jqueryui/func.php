@@ -185,11 +185,12 @@ function HiddenField($name = "no_name", $value = "")
 	return BaseTags::input("type='hidden' id='" . $name . "' name='" . $name . "' value='" . $value . "'");
 }
 // =============================================================================
-function CheckBoxField($name = "no_name", $checked = false)
+function CheckBoxField($name = "no_name", $checked = false, $required = false)
 {
 	$f = new CheckBoxField();
 	$f->setName($name);
 	$f->setSelected($checked);
+	$f->setRequired($required);
 	return $f->out();
 }
 // =============================================================================
