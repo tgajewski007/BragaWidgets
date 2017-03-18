@@ -17,6 +17,11 @@ use braga\widgets\jqueryui\CheckBoxField;
  */
 
 // =============================================================================
+function faIcon($icon = "", $float = null)
+{
+	return BaseTags::i("", "class='fa " . $icon . "' style='" . is_null($float) ? "" : "float:" . $float . "'");
+}
+// =============================================================================
 function icon($icon = "", $float = "left")
 {
 	return BaseTags::span("", "class='ui-icon " . $icon . "' style='float:" . $float . "'");
