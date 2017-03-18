@@ -11,7 +11,7 @@ class funcTest extends PHPUnit_Framework_TestCase
 	function testIcon()
 	{
 		$retval = faIcon("fa-bath");
-		$this->assertEquals("<i class='fa fa-bath' style=''></i>");
+		$this->assertEquals("<i class='fa fa-bath' style='padding:2px;'></i>");
 	}
 	// -------------------------------------------------------------------------
 }
