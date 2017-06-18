@@ -21,4 +21,9 @@ class BS
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
+	public static function formRow($widget)
+	{
+		return BaseTags::div($widget, "class='form-group'");
+	}
+	// -------------------------------------------------------------------------
 }
