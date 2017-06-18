@@ -28,7 +28,7 @@ class BS
 	// -------------------------------------------------------------------------
 	public static function submit($label)
 	{
-		return BaseTags::input("type='submit' value='" . $label . "' class='btn btn-primary btn-lg'");
+		return BaseTags::input("type='submit' value='" . $label . "' class='btn btn-primary'");
 	}
 	// -------------------------------------------------------------------------
 }
