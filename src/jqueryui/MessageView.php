@@ -28,7 +28,7 @@ class MessageView extends HtmlComponent
 		if(SessManager::isExist(SessManager::MESSAGE_ALERT))
 		{
 			$wiadomosci = "";
-			foreach(SessManager::get(SessManager::MESSAGE_ALERT) as $m)/* @var $m \Braga\Message */
+			foreach(SessManager::get(SessManager::MESSAGE_ALERT) as $m)/* @var $m \braga\tools\tools\Message */
 			{
 				$id = "MSG" . getRandomString(5);
 				$wiadomosci .= BaseTags::p(BaseTags::span(BaseTags::i($m->getNumer()), "style='padding-left:8px;float:right;font-size:75%;'") . $m->getOpis(), "class='clear' id='" . $id . "'");
@@ -52,7 +52,7 @@ class MessageView extends HtmlComponent
 		if(SessManager::isExist(SessManager::MESSAGE_WARNING))
 		{
 			$wiadomosci = "";
-			foreach(SessManager::get(SessManager::MESSAGE_WARNING) as $m)/* @var $m \Braga\Message */
+			foreach(SessManager::get(SessManager::MESSAGE_WARNING) as $m)/* @var $m \braga\tools\tools\Message */
 			{
 				$id = "MSG" . getRandomString(5);
 				$wiadomosci .= BaseTags::p(BaseTags::span(BaseTags::i($m->getNumer()), "style='padding-left:8px;float:right;font-size:75%;'") . $m->getOpis(), "class='clear' id='" . $id . "'");
@@ -76,7 +76,7 @@ class MessageView extends HtmlComponent
 		if(SessManager::isExist(SessManager::MESSAGE_INFO))
 		{
 			$wiadomosci = "";
-			foreach(SessManager::get(SessManager::MESSAGE_INFO) as $m)/* @var $m \Braga\Message */
+			foreach(SessManager::get(SessManager::MESSAGE_INFO) as $m)/* @var $m \braga\tools\tools\Messagee */
 			{
 				$id = "MSG" . getRandomString(5);
 				$wiadomosci .= BaseTags::p($m->getOpis(), "class='clear' id='" . $id . "'");
@@ -100,7 +100,7 @@ class MessageView extends HtmlComponent
 		if(SessManager::isExist(SessManager::MESSAGE_SQL))
 		{
 			$wiadomosci = "";
-			foreach(SessManager::get(SessManager::MESSAGE_SQL) as $m)/* @var $m \Braga\Message */
+			foreach(SessManager::get(SessManager::MESSAGE_SQL) as $m)/* @var $m \braga\tools\tools\Message */
 			{
 				$id = "MSG" . getRandomString(5);
 				$wiadomosci .= BaseTags::p($m->getOpis(), "class='clear' id='" . $id . "'");

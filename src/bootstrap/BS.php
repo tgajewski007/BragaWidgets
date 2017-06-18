@@ -17,7 +17,7 @@ class BS
 		$head = BaseTags::h3($title, "class='panel-title'");
 		$retval = BaseTags::div($head, "class='panel-heading'");
 		$retval .= BaseTags::div($content, "class='panel-body'");
-		$retval = BaseTags::div($retval, "class='panel panel-default'");
+		$retval = BaseTags::div($retval, "class='panel panel-primary'");
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
@@ -29,6 +29,31 @@ class BS
 	public static function submit($label)
 	{
 		return BaseTags::input("type='submit' value='" . $label . "' class='btn btn-primary'");
+	}
+	// -------------------------------------------------------------------------
+	/**
+	 *
+	 * @param string $name
+	 * @param string $value
+	 * @param string $required
+	 * @param string $multiline
+	 * @param number $maxLength
+	 * @return string
+	 */
+	public static function textField($name, $value = null, $required = false, $multiline = false, $maxLength = 255)
+	{
+		if($multiline)
+		{
+			$field = new MemoField();
+		}
+		else
+		{
+			$field = new TextField();
+		}
+		$field->setRequired($required);
+		$field->setName($name);
+		$field->setSelected($value);
+		return $field->out();
 	}
 	// -------------------------------------------------------------------------
 }
