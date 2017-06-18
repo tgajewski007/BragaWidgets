@@ -26,4 +26,9 @@ class BS
 		return BaseTags::div($widget, "class='form-group'");
 	}
 	// -------------------------------------------------------------------------
+	public static function submit($label)
+	{
+		return BaseTags::input("type='submit' value='" . $label . "' class='btn btn-primary btn-lg'");
+	}
+	// -------------------------------------------------------------------------
 }
