@@ -1,5 +1,5 @@
 <?php
-namespace braga\boomerang\base;
+namespace braga\widgets\bootstrap;
 use braga\tools\html\HtmlComponent;
 use braga\tools\tools\SessManager;
 use braga\tools\html\BaseTags;
