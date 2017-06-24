@@ -31,6 +31,15 @@ class BS
 		return BaseTags::input("type='submit' value='" . $label . "' class='btn btn-primary'");
 	}
 	// -------------------------------------------------------------------------
+	function listItem($content = "", $defaultClass = "label-default")
+	{
+		$class = "class='label ' ";
+		$onClick = "onclick='\$(\"p.label \").removeClass(\"label-primary " . $defaultClass . "\") ;\$(this).addClass(\"label-primary\");' ";
+		$onMouseOver = "onmouseover='\$(this).addClass(\"" . $defaultClass . "\")' ";
+		$onMouseOut = "onmouseout='\$(this).removeClass(\"" . $defaultClass . "\")' ";
+		return BaseTags::p($content, $class . $onClick . $onMouseOver . $onMouseOut);
+	}
+	// -------------------------------------------------------------------------
 	/**
 	 *
 	 * @param string $name
