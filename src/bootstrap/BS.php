@@ -38,7 +38,7 @@ class BS
 	// -------------------------------------------------------------------------
 	public static function listItemAjaxLink($href, $label, $defaultClass = "")
 	{
-		$onClick = "onclick='$(\"a.list-group-item\").removeClass(\"list-group-item-success\");$(this).addClass(\"list-group-item-success\");' ";
+		$onClick = "onclick='$(\"a.list-group-item\").removeClass(\"list-group-item-success\");$(this).addClass(\"list-group-item-success\"); return ajax.go(this);' ";
 		$class = "class='" . $defaultClass . " list-group-item list-group-item-action' ";
 		$href = "href='" . $href . "' ";
 		return BaseTags::a($label, $href, $class, $onClick);
