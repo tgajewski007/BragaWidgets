@@ -31,7 +31,7 @@ class BS
 		return BaseTags::input("type='submit' value='" . $label . "' class='btn btn-primary'");
 	}
 	// -------------------------------------------------------------------------
-	function listItem($content = "", $defaultClass = "label-default")
+	public static function listItem($content = "", $defaultClass = "label-default")
 	{
 		$class = "class='label ' ";
 		$onClick = "onclick='\$(\"p.label \").removeClass(\"label-primary " . $defaultClass . "\") ;\$(this).addClass(\"label-primary\");' ";
