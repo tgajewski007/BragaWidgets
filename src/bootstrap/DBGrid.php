@@ -8,7 +8,7 @@ namespace braga\widgets\bootstrap;
  * @package
  *
  */
-class DBGrid
+class DBGrid extends \braga\widgets\base\DBGrid
 {
 	// -------------------------------------------------------------------------
 	protected $tableClass = "table";
