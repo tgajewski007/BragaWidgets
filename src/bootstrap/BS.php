@@ -34,10 +34,10 @@ class BS
 	public static function listItem($content = "", $defaultClass = "label-default")
 	{
 		$class = "class='label ' ";
-		$onClick = "onclick='\$(\"p.label \").removeClass(\"label-primary " . $defaultClass . "\") ;\$(this).addClass(\"label-primary\");' ";
+		$onClick = "onclick='\$(\"h3.label \").removeClass(\"label-primary " . $defaultClass . "\") ;\$(this).addClass(\"label-primary\");' ";
 		$onMouseOver = "onmouseover='\$(this).addClass(\"" . $defaultClass . "\")' ";
 		$onMouseOut = "onmouseout='\$(this).removeClass(\"" . $defaultClass . "\")' ";
-		return BaseTags::p($content, $class . $onClick . $onMouseOver . $onMouseOut);
+		return BaseTags::h3(BaseTags::span($content, $class . $onClick . $onMouseOver . $onMouseOut));
 	}
 	// -------------------------------------------------------------------------
 	/**
