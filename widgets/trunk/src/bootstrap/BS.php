@@ -31,13 +31,11 @@ class BS
 		return BaseTags::input("type='submit' value='" . $label . "' class='btn btn-primary'");
 	}
 	// -------------------------------------------------------------------------
-	public static function listItem($content = "", $defaultClass = "label-default")
+	public static function listItem($content = "")
 	{
 		$class = "class='label ' ";
-		$onClick = "onclick='\$(\"h3.label \").removeClass(\"label-primary " . $defaultClass . "\") ;\$(this).addClass(\"label-primary\");' ";
-		$onMouseOver = "onmouseover='\$(this).addClass(\"" . $defaultClass . "\")' ";
-		$onMouseOut = "onmouseout='\$(this).removeClass(\"" . $defaultClass . "\")' ";
-		return BaseTags::h6(BaseTags::span($content, $class . $onClick . $onMouseOver . $onMouseOut));
+		$onClick = "onclick='\$(\"h3.label \").removeClass(\"label-primary\") ;\$(this).addClass(\"label-primary\");' ";
+		return BaseTags::h6(BaseTags::span($content, $class . $onClick));
 	}
 	// -------------------------------------------------------------------------
 	/**
