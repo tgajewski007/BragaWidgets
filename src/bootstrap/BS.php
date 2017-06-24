@@ -31,11 +31,17 @@ class BS
 		return BaseTags::input("type='submit' value='" . $label . "' class='btn btn-primary'");
 	}
 	// -------------------------------------------------------------------------
-	public static function listItem($content = "")
+	public static function listGroup($content)
 	{
-		$class = "class='label ' ";
-		$onClick = "onclick='\$(\"h3.label \").removeClass(\"label-primary\") ;\$(this).addClass(\"label-primary\");' ";
-		return BaseTags::h4(BaseTags::span($content, $class . $onClick));
+		return BaseTags::div($content, "class='list-group'");
+	}
+	// -------------------------------------------------------------------------
+	public static function listItemAjaxLink($href, $label, $defaultClass = "")
+	{
+		$onClick = "onclick='$(\"a.list-group-item\").removeClass(\"list-group-item-success\");$(this).addClass(\"list-group-item-success\");' ";
+		$class = "class='" . $defaultClass . " list-group-item list-group-item-action' ";
+		$href = "href='" . $href . "' ";
+		return BaseTags::a($label, $href, $class, $onClick);
 	}
 	// -------------------------------------------------------------------------
 	/**
