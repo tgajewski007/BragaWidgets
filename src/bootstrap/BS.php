@@ -35,7 +35,7 @@ class BS
 	{
 		$class = "class='label ' ";
 		$onClick = "onclick='\$(\"h3.label \").removeClass(\"label-primary\") ;\$(this).addClass(\"label-primary\");' ";
-		return BaseTags::h6(BaseTags::span($content, $class . $onClick));
+		return BaseTags::h4(BaseTags::span($content, $class . $onClick));
 	}
 	// -------------------------------------------------------------------------
 	/**
