@@ -32,8 +32,6 @@ class TextField extends \braga\widgets\base\TextField
 		$class = "form-group";
 		$this->setDefault();
 		$this->addAttrib("placeholder", $this->waterMark);
-		$input = parent::out();
-		$label = $this->getLabel();
 
 		if($this->required)
 		{
@@ -44,6 +42,8 @@ class TextField extends \braga\widgets\base\TextField
 				$class .= " has-error";
 			}
 		}
+		$input = parent::out();
+		$label = $this->getLabel();
 		return BaseTags::div($label . $input, "class='" . $class . "'");
 
 		// -------------------------------------------------------------------------
