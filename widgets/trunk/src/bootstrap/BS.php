@@ -46,14 +46,15 @@ class BS
 	// -------------------------------------------------------------------------
 	/**
 	 *
+	 * @param string $label
 	 * @param string $name
 	 * @param string $value
 	 * @param string $required
 	 * @param string $multiline
 	 * @param number $maxLength
-	 * @return string
+	 * @return unknown|string
 	 */
-	public static function textField($name, $value = null, $required = false, $multiline = false, $maxLength = 255)
+	public static function textField($label, $name, $value = null, $required = false, $multiline = false, $maxLength = 255)
 	{
 		if($multiline)
 		{
@@ -66,29 +67,14 @@ class BS
 		$field->setRequired($required);
 		$field->setName($name);
 		$field->setSelected($value);
+		$field->setLabel($label);
 		return $field->out();
 	}
 	// -------------------------------------------------------------------------
-	/**
-	 *
-	 * @param string $label
-	 * @param string $name
-	 * @param string $value
-	 * @param string $required
-	 * @param string $multiline
-	 * @param number $maxLength
-	 * @return unknown|string
-	 */
-	public static function textLabelField($label, $name, $value = null, $required = false, $multiline = false, $maxLength = 255)
+	public static function passwordField($label, $name, $value = null, $required = false)
 	{
-		if($multiline)
-		{
-			$field = new MemoField();
-		}
-		else
-		{
-			$field = new TextField();
-		}
+		$field = new TextField();
+		$field->setType("password");
 		$field->setRequired($required);
 		$field->setName($name);
 		$field->setSelected($value);
