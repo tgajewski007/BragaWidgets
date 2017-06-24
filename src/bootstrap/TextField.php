@@ -29,18 +29,23 @@ class TextField extends \braga\widgets\base\TextField
 	// -------------------------------------------------------------------------
 	public function out()
 	{
+		$class = "form-group";
 		$this->setDefault();
 		$this->addAttrib("placeholder", $this->waterMark);
 		$input = parent::out();
 		$label = $this->getLabel();
-		if($this->required && empty($this->selected))
+
+		if($this->required)
 		{
-			return BaseTags::div($label . $input, "class='form-group has-error'");
+			$this->onKeyUp .= "checkIsNull(this);";
+			$this->onBlur .= "checkIsNull(this);";
+			if($this->selected == "")
+			{
+				$class .= " has-error";
+			}
 		}
-		else
-		{
-			return BaseTags::div($label . $input, "class='form-group'");
-		}
+		return BaseTags::div($label . $input, "class='" . $class . "'");
+
 		// -------------------------------------------------------------------------
 	}
 }
