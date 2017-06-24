@@ -37,7 +37,7 @@ class BS
 		$onClick = "onclick='\$(\"h3.label \").removeClass(\"label-primary " . $defaultClass . "\") ;\$(this).addClass(\"label-primary\");' ";
 		$onMouseOver = "onmouseover='\$(this).addClass(\"" . $defaultClass . "\")' ";
 		$onMouseOut = "onmouseout='\$(this).removeClass(\"" . $defaultClass . "\")' ";
-		return BaseTags::h3(BaseTags::span($content, $class . $onClick . $onMouseOver . $onMouseOut));
+		return BaseTags::h6(BaseTags::span($content, $class . $onClick . $onMouseOver . $onMouseOut));
 	}
 	// -------------------------------------------------------------------------
 	/**
