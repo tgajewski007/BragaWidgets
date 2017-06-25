@@ -95,7 +95,6 @@ class BS
 	{
 		$i = BaseTags::input("type='file' id='" . $name . "' name='" . $name . "'");
 		$l = BaseTags::label($label, "for='" . $name . "'");
-
 		return self::formRow($l . $i);
 	}
 	// -------------------------------------------------------------------------
