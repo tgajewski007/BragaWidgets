@@ -21,9 +21,9 @@ class BS
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
-	public static function formRow($widget)
+	public static function formRow($widget, $addHasError = false)
 	{
-		return BaseTags::div($widget, "class='form-group'");
+		return BaseTags::div($widget, "class='form-group" . ($addHasError ? " hasError" : "") . "'");
 	}
 	// -------------------------------------------------------------------------
 	public static function submit($label)
@@ -89,6 +89,14 @@ class BS
 		$field->setSelected($checked);
 		$field->setLabel($label);
 		return $field->out();
+	}
+	// -------------------------------------------------------------------------
+	public static function fileField($label, $name)
+	{
+		$i = BaseTags::input("type='file' id='" . $name . "' name='" . $name . "'");
+		$l = BaseTags::label($label, "for='" . $name . "'");
+
+		return self::formRow($l . $i);
 	}
 	// -------------------------------------------------------------------------
 }
