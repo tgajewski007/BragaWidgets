@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\bootstrap;
-
 use braga\tools\html\BaseTags;
 
 /**
@@ -14,12 +12,18 @@ use braga\tools\html\BaseTags;
 class CheckBoxField extends \braga\widgets\base\CheckBoxField
 {
 	// -------------------------------------------------------------------------
-	use AddLabels;
+	protected $label = null;
+	// -------------------------------------------------------------------------
+	public function setLabel($label)
+	{
+		$this->label = $label;
+	}
+	// -------------------------------------------------------------------------
 	public function out()
 	{
 		$input = parent::out();
-		$label = $this->getLabel();
-		return BaseTags::div($label . $input, "class='form-group'");
+		$retval = BaseTags::label($input . $this->label);
+		return BaseTags::div($retval, "class='checkbox'");
 	}
 	// -------------------------------------------------------------------------
 }
