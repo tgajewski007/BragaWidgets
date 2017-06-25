@@ -17,9 +17,9 @@ use braga\widgets\jqueryui\CheckBoxField;
  */
 
 // =============================================================================
-function faIcon($icon = "", $float = null)
+function faIcon($class, $attrib = null)
 {
-	return BaseTags::i("", "class='fa " . $icon . "' style='padding:2px;" . (is_null($float) ? "" : ("float:" . $float)) . "'");
+	return BaseTags::i("", "class='fa " . $class . "' " . $attrib);
 }
 // =============================================================================
 function icon($icon = "", $float = "left")

@@ -82,4 +82,13 @@ class BS
 		return $field->out();
 	}
 	// -------------------------------------------------------------------------
+	public static function checkbox($label, $name, $checked = false)
+	{
+		$field = new CheckBoxField();
+		$field->setName($name);
+		$field->setSelected($checked);
+		$field->setLabel($label);
+		return $field->out();
+	}
+	// -------------------------------------------------------------------------
 }
