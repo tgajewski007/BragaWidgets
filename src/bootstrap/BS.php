@@ -52,7 +52,7 @@ class BS
 		$labelHref = "href='" . $labelHref . "' ";
 		$iconHref = faIcon("fa-caret-right fa-lg fa-fw", "onclick='listGroupItemAjax(event, this,\"" . $idContener . "\",\"" . $iconHref . "\");return false;'");
 
-		return BaseTags::a($iconHref . $label, $labelHref . $class . $onClick) . BaseTags::div("", "id='" . $idContener . "' class='hidden' style='padding-left:8xp;'");
+		return BaseTags::a($iconHref . $label, $labelHref . $class . $onClick) . BaseTags::div("", "id='" . $idContener . "' class='hidden' style='padding-left:8px;'");
 	}
 	// -------------------------------------------------------------------------
 	/**
