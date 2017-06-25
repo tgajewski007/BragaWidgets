@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\bootstrap;
-
 use braga\tools\html\BaseTags;
 use braga\widgets\base\Field;
 
@@ -14,6 +12,7 @@ use braga\widgets\base\Field;
 class MemoField extends Field
 {
 	use ClassFactory;
+	use AddLabels;
 	// -------------------------------------------------------------------------
 	protected $maxLength = 65535;
 	// -------------------------------------------------------------------------
