@@ -93,7 +93,7 @@ class BS
 	// -------------------------------------------------------------------------
 	public static function fileField($label, $name)
 	{
-		$i = BaseTags::input("type='file' id='" . $name . "' name='" . $name . "' class='h'");
+		$i = BaseTags::input("type='file' id='" . $name . "' name='" . $name . "' hidden class='h'");
 		$i = BaseTags::label("Wybierz plik " . $i, "class='btn btn-default'");
 		$l = BaseTags::label($label, "for='" . $name . "'");
 		return self::formRow($l . $i);
