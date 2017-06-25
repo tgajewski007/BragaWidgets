@@ -96,7 +96,7 @@ class BS
 		$i = BaseTags::input("type='file' id='" . $name . "' name='" . $name . "' class='h'");
 		$i = BaseTags::label("Przeglądaj " . $i, "class='btn btn-default block'");
 		$l = BaseTags::label($label, "for='" . $name . "'");
-		return self::formRow($l . $i) . BaseTags::script("\$(document).ready( function() {\$('#" . $name . "').on('fileselect', function(event, numFiles, label) {\$('#" . $name . "').next().html('Wybrano: '+label)});});");
+		return self::formRow($l . $i) . BaseTags::script("\$(document).ready( function() {\$(':file').on('fileselect', function(event, numFiles, label) {alert(1);\$('#" . $name . "').next().html('Wybrano: '+label)});});");
 	}
 	// -------------------------------------------------------------------------
 }
