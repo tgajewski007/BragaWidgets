@@ -93,10 +93,10 @@ class BS
 	// -------------------------------------------------------------------------
 	public static function fileField($label, $name)
 	{
-		$i = BaseTags::input("type='file' id='" . $name . "' name='" . $name . "' hidden class='h'");
-		$i = BaseTags::label("Wybierz plik " . $i, "class='btn btn-default'");
+		$i = BaseTags::input("type='file' id='" . $name . "' name='" . $name . "' class='h'");
+		$i = BaseTags::label("Przeglądaj " . $i, "class='btn btn-default block'");
 		$l = BaseTags::label($label, "for='" . $name . "'");
-		return self::formRow($l . $i);
+		return self::formRow($l . $i) . BaseTags::script("\$(document).ready( function() {\$('#" . $name . "').on('fileselect', function(event, numFiles, label) {\$('#" . $name . "').next().html('Wybrano: '+label)});});");
 	}
 	// -------------------------------------------------------------------------
 }
