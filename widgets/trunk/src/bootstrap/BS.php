@@ -44,6 +44,17 @@ class BS
 		return BaseTags::a($label, $href . $class . $onClick);
 	}
 	// -------------------------------------------------------------------------
+	public static function listGroupItemAjax($label, $labelHref, $iconHref, $idContener)
+	{
+		$defaultClass = "";
+		$onClick = "onclick='$(\"a.list-group-item\").removeClass(\"active\");$(this).addClass(\"active\"); return ajax.go(this);' ";
+		$class = "class='" . $defaultClass . " list-group-item list-group-item-action' ";
+		$labelHref = "href='" . $labelHref . "' ";
+		$iconHref = faIcon("fa-caret-right fa-lg fa-fw", "onclick='listGroupItemAjax(event, this,\"" . $idContener . "\",\"" . $iconHref . "\");return false;'");
+
+		return BaseTags::a($iconHref . $label, $labelHref . $class . $onClick) . BaseTags::div("", "id='" . $idContener . "' class='hidden'");
+	}
+	// -------------------------------------------------------------------------
 	/**
 	 *
 	 * @param string $label
