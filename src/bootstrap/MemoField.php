@@ -29,7 +29,6 @@ class MemoField extends \braga\widgets\base\MemoField
 	{
 		$class = "form-group";
 		$this->setDefault();
-		$this->addAttrib("placeholder", $this->waterMark);
 
 		if($this->required)
 		{
