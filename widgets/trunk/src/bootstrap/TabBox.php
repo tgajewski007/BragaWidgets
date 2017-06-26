@@ -46,7 +46,7 @@ class TabBox extends HtmlComponent
 	// -------------------------------------------------------------------------
 	public function setBoxId($id)
 	{
-		$this->boxId = "id='" . $id . "'";
+		$this->boxId = $id;
 	}
 	// -------------------------------------------------------------------------
 	public function getIdActiveTab()
@@ -83,8 +83,8 @@ class TabBox extends HtmlComponent
 				}
 			}
 			$retval = BaseTags::ul($retval, "class='nav nav-tabs'");
-			$retval .= BaseTags::div($this->content, "class='ui-corner-bottom ui-widget-content' style='padding:4px;min-height:300px' " . $this->boxId . " ");
-			$retval = BaseTags::div($retval, "class='ui-tabs ui-corner-all'");
+			$content = BaseTags::div($this->content, "class='tab-pane active' id='" . $this->boxId . "'");
+			$retval .= BaseTags::div($content, "class='tab-content'");
 		}
 		return $retval;
 	}
@@ -99,7 +99,7 @@ class TabBox extends HtmlComponent
 	// -------------------------------------------------------------------------
 	private function menuPassive($opis, $href)
 	{
-		$retval = BaseTags::li(BaseTags::a($opis, $this->ajax . " href='" . $href . "'"));
+		$retval = BaseTags::li(BaseTags::a($opis, $this->ajax . " href='" . $href . "'"), "role='presentation'");
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
