@@ -14,6 +14,7 @@ class DateField extends Field
 {
 	use ClassFactory;
 	// -------------------------------------------------------------------------
+	protected $class = null;
 	protected $minValue = null;
 	protected $maxValue = null;
 	protected $minValueString = null;
@@ -31,14 +32,22 @@ class DateField extends Field
 		$this->maxValueString = "maxDate: new Date(" . substr($maxValue, 0, 4) . ", " . (intval(substr($maxValue, 5, 2)) - 1) . "," . substr($maxValue, 8, 2) . "), ";
 	}
 	// -------------------------------------------------------------------------
-	public function out()
+	protected function setDefaults()
 	{
-		$this->classString = $this->getBaseClass();
-		$this->classString .= " " . $this->getMediumSizeClass();
-		$this->attrib = null;
+		$this->class .= $this->getBaseClass();
+		$this->class .= " " . $this->getMediumSizeClass();
+		$this->onFocus .= "\$(this).select();";
+		if(empty($this->maxLength))
+		{
+			$this->setMaxLength(10);
+		}
 		$this->onBlur .= "CheckDate(this," . ($this->required ? "true" : "false") . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\");";
 		$this->onKeyUp .= "CheckDate(this," . ($this->required ? "true" : "false") . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\");";
-
+	}
+	// -------------------------------------------------------------------------
+	public function out()
+	{
+		$this->setDefaults();
 		if($this->required)
 		{
 			if($this->selected == "")
@@ -46,16 +55,8 @@ class DateField extends Field
 				$this->class .= " " . $this->getErrorClass();
 			}
 		}
-		$this->addAttrib("id", $this->id);
-		$this->addAttrib("name", $this->name);
-		$this->addAttrib("maxlength", 10);
-		$this->addAttrib("class", $this->classString);
-		$this->addAttrib("value", $this->selected);
-		$this->addAttrib("tabindex", $this->tabOrder);
-		$this->addEvents();
-		$this->addCustomAttrib();
-		$retval = BaseTags::input($this->attrib);
-		$retval .= BaseTags::script("\$(\"#" . $this->id . "\").watermark(\"RRRR-MM-DD\");\$(\"#" . $this->id . "\").datepicker({" . $this->minValueString . $this->maxValueString . " onClose: function(date, req, minDate, maxDate) {CheckDate(\$(this)," . var_export($this->required, true) . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\")}});");
+		$retval = BaseTags::p(parent::out(), "style='min-height:25px;'");
+		$retval .= BaseTags::script("\$(\"#" . $this->id . "\").watermark(\"RRRR-MM-DD\");\$(\"#" . $this->id . "\").datepicker({" . $this->minValueString . $this->maxValueString . " onClose: function(date, req, minDate, maxDate) {CheckDate(\$(this)," . ($this->required ? "true" : "false") . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\")}});");
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
