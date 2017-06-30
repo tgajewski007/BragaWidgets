@@ -54,6 +54,7 @@ class DateField extends \braga\widgets\base\TextField
 				$this->class .= " " . $this->getErrorClass();
 			}
 		}
+		$this->setClassString($this->class);
 		$retval = BaseTags::p(parent::out(), "style='min-height:25px;'");
 		$retval .= BaseTags::script("\$(\"#" . $this->id . "\").watermark(\"RRRR-MM-DD\");\$(\"#" . $this->id . "\").datepicker({" . $this->minValueString . $this->maxValueString . " onClose: function(date, req, minDate, maxDate) {CheckDate(\$(this)," . ($this->required ? "true" : "false") . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\")}});");
 		return $retval;
