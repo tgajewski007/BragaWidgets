@@ -37,13 +37,6 @@ class DateField extends Field
 		$this->classString .= " " . $this->getMediumSizeClass();
 		$this->attrib = null;
 		$this->onBlur .= "CheckDate(this," . var_export($this->required, true) . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\");";
-		if($this->required)
-		{
-			if(null == $this->selected)
-			{
-				$this->setSelected(date(PHP_DATE_FORMAT));
-			}
-		}
 		$this->addAttrib("id", $this->id);
 		$this->addAttrib("name", $this->name);
 		$this->addAttrib("maxlength", 10);
