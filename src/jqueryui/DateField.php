@@ -1,7 +1,6 @@
 <?php
 namespace braga\widgets\jqueryui;
 use braga\tools\html\BaseTags;
-use braga\widgets\base\Field;
 
 /**
  *
@@ -10,7 +9,7 @@ use braga\widgets\base\Field;
  * Created on 2008-07-14 12:27:37
  * klasa odpowiedzialna za wygenerowanie formatki wyboru daty
  */
-class DateField extends Field
+class DateField extends \braga\widgets\base\TextField
 {
 	use ClassFactory;
 	// -------------------------------------------------------------------------
