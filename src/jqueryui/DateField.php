@@ -41,7 +41,6 @@ class DateField extends \braga\widgets\base\TextField
 			$this->setMaxLength(10);
 		}
 		$this->onBlur .= "CheckDate(this," . ($this->required ? "true" : "false") . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\");";
-		$this->onKeyUp .= "CheckDate(this," . ($this->required ? "true" : "false") . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\");";
 	}
 	// -------------------------------------------------------------------------
 	public function out()
