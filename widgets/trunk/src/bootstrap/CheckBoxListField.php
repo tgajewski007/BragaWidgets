@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\bootstrap;
-
 use braga\widgets\base\Field;
 use braga\tools\html\BaseTags;
 use braga\widgets\base\WidgetItem;
@@ -35,7 +33,7 @@ class CheckBoxListField extends Field
 			$a->setId($this->name . "_" . $value->getVal());
 			$a->setSelected(isset($this->selected[$value->getVal()]));
 			$a->setValue($value->getVal());
-			$retval .= BaseTags::label($a->out() . $value->getDesc(), "class='checkbox-block'");
+			$retval .= BaseTags::div(BaseTags::label($a->out() . $value->getDesc(), "class='checkbox-block'"), "class='checkbox'");
 		}
 		$label = $this->getLabel();
 		return BaseTags::div($label . $retval, "class='form-group'");
