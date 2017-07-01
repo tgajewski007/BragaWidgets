@@ -21,8 +21,9 @@ class BTDropDownListTest extends PHPUnit_Framework_TestCase
 		$actual = $f->out();
 
 		$expected = BaseTags::option("StrangeName", "value='StrangeValue'");
-		$expected = BaseTags::select($expected, "class='form-control' onchange='checkDropDownList(this);'");
+		$expected = BaseTags::select($expected, "class='form-control dropup show-tick'");
 		$expected = BaseTags::div($expected, "class='form-group'");
+		$expected .= BaseTags::script("initDropDownList($(\"#\"));");
 
 		$this->assertEquals($expected, $actual);
 	}
@@ -36,8 +37,9 @@ class BTDropDownListTest extends PHPUnit_Framework_TestCase
 
 		$expected = BaseTags::option("StrageName", "value='StrangeValue'");
 		$expected = BaseTags::optgroup($expected, "label='StrageGroup'");
-		$expected = BaseTags::select($expected, "class='form-control' onchange='checkDropDownList(this);'");
+		$expected = BaseTags::select($expected, "class='form-control dropup show-tick'");
 		$expected = BaseTags::div($expected, "class='form-group'");
+		$expected .= BaseTags::script("initDropDownList($(\"#\"));");
 
 		$this->assertEquals($expected, $actual);
 	}
@@ -52,8 +54,9 @@ class BTDropDownListTest extends PHPUnit_Framework_TestCase
 
 		$expected = BaseTags::option("StrageName", "value='StrangeValue'");
 		$expected = BaseTags::optgroup($expected, "label='StrageGroup'");
-		$expected = BaseTags::select($expected, "class='form-control' onchange='checkDropDownList(this);'");
+		$expected = BaseTags::select($expected, "title='-=Wybierz=-' required='true' class='form-control dropup show-tick'");
 		$expected = BaseTags::div($expected, "class='form-group has-error'");
+		$expected .= BaseTags::script("initDropDownList($(\"#\"));");
 
 		$this->assertEquals($expected, $actual);
 	}
@@ -69,8 +72,9 @@ class BTDropDownListTest extends PHPUnit_Framework_TestCase
 
 		$expected = BaseTags::option("StrageName", "value='StrangeValue' selected='selected'");
 		$expected = BaseTags::optgroup($expected, "label='StrageGroup'");
-		$expected = BaseTags::select($expected, "class='form-control' onchange='checkDropDownList(this);'");
+		$expected = BaseTags::select($expected, "class='form-control dropup show-tick'");
 		$expected = BaseTags::div($expected, "class='form-group'");
+		$expected .= BaseTags::script("initDropDownList($(\"#\"));");
 
 		$this->assertEquals($expected, $actual);
 	}
