@@ -10,7 +10,6 @@ use braga\tools\html\BaseTags;
  */
 class DateField extends TextField
 {
-	use AddLabels;
 	// -------------------------------------------------------------------------
 	protected $minValue = null;
 	protected $maxValue = null;
