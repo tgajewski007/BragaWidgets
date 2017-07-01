@@ -86,7 +86,7 @@ class TabBox extends HtmlComponent
 			$content = BaseTags::div($this->content, "class='tab-pane active' id='" . $this->boxId . "'");
 			$retval .= BaseTags::div($content, "class='tab-content'");
 		}
-		return $retval;
+		return BS::panel($retval);
 	}
 	// -------------------------------------------------------------------------
 	public function addTab($id, $opis, $href)
