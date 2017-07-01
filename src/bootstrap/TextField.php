@@ -50,7 +50,7 @@ class TextField extends \braga\widgets\base\TextField
 		}
 		if(!is_null($this->regExPatern))
 		{
-			$checkScript = "if(!checkRegExPatern(this,\"" . $this->regExPatern . "\")){return false};";
+			$checkScript = "if(!checkRegExPatern(this," . $this->regExPatern . ")){return false};";
 			$this->onChange .= $checkScript;
 			$this->onBlur .= $checkScript;
 			$this->onKeyUp .= $checkScript;
