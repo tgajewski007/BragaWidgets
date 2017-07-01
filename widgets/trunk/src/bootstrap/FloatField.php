@@ -29,18 +29,22 @@ class FloatField extends \braga\widgets\base\FloatField
 	// -------------------------------------------------------------------------
 	public function out()
 	{
+		$class = "form-group";
 		$this->setDefault();
 		$this->addAttrib("placeholder", $this->waterMark);
+
+		if($this->required)
+		{
+			$this->onKeyUp .= "checkIsNull(this);";
+			$this->onBlur .= "checkIsNull(this);";
+			if($this->selected == "")
+			{
+				$class .= " has-error";
+			}
+		}
 		$input = parent::out();
 		$label = $this->getLabel();
-		if($this->required && empty($this->selected))
-		{
-			return BaseTags::div($label . $input, "class='form-group has-error'");
-		}
-		else
-		{
-			return BaseTags::div($label . $input, "class='form-group'");
-		}
-		// -------------------------------------------------------------------------
+		return BaseTags::div($label . $input, "class='" . $class . "'");
 	}
+	// -------------------------------------------------------------------------
 }

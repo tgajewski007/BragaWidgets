@@ -153,4 +153,15 @@ class BS
 		return self::formRow($l . $i) . BaseTags::script("initBSFileField('" . $name . "')");
 	}
 	// -------------------------------------------------------------------------
+	public static function numericField($label, $name, $value, $required = false, $precision = 0)
+	{
+		$field = new FloatField();
+		$field->setLabel($label);
+		$field->setName($name);
+		$field->setSelected($value);
+		$field->setRequired($required);
+		$field->setPrecision($precision);
+		return $field->out();
+	}
+	// -------------------------------------------------------------------------
 }
