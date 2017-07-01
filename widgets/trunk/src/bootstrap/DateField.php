@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\bootstrap;
-
 use braga\tools\html\BaseTags;
 use braga\widgets\base\Field;
 
@@ -52,7 +50,7 @@ class DateField extends Field
 		$this->addEvents();
 		$this->addCustomAttrib();
 		$retval = BaseTags::input($this->attrib);
-		$retval .= BaseTags::span(BaseTags::button(BootstrapTags::icon("glyphicon-calendar"), "class='btn btn-default' type='button' onclick='\$(\"#" . $this->id . "\").datepicker(\"show\")'"), "class='input-group-btn'");
+		$retval .= BaseTags::span(BaseTags::button(faicon("fa-calendar"), "class='btn btn-default' type='button' onclick='\$(\"#" . $this->id . "\").datepicker(\"show\")'"), "class='input-group-btn'");
 		$retval = BaseTags::div($retval, "class='input-group'");
 		$retval .= BaseTags::script("\$(\"#" . $this->id . "\").datepicker({format:\"yyyy-mm-dd\"});");
 
