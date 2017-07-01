@@ -91,7 +91,7 @@ class BS
 	 * @param number $maxLength
 	 * @return unknown|string
 	 */
-	public static function textField($label, $name, $value = null, $required = false, $maxLength = 255)
+	public static function memoField($label, $name, $value = null, $required = false, $maxLength = 255)
 	{
 		$field = new MemoField();
 		$field->setRequired($required);
