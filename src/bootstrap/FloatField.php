@@ -35,13 +35,19 @@ class FloatField extends \braga\widgets\base\FloatField
 
 		if($this->required)
 		{
-			$this->onKeyUp .= "checkIsNull(this);";
-			$this->onBlur .= "checkIsNull(this);";
+			$this->onKeyUp .= "if(checkReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ")){checkIsNull(this);}";
+			$this->onBlur .= "if(checkReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ")){checkIsNull(this);}";
 			if($this->selected == "")
 			{
 				$class .= " has-error";
 			}
 		}
+		else
+		{
+			$this->onKeyUp .= "checkReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ");";
+			$this->onBlur .= "checkReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ");";
+		}
+
 		$input = parent::out();
 		$label = $this->getLabel();
 		return BaseTags::div($label . $input, "class='" . $class . "'");
