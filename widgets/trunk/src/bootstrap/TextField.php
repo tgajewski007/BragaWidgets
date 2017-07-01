@@ -16,6 +16,12 @@ class TextField extends \braga\widgets\base\TextField
 	use AddLabels;
 	// -------------------------------------------------------------------------
 	protected $waterMark;
+	protected $regExPatern = null;
+	// -------------------------------------------------------------------------
+	public function setRegExpPatern($patern)
+	{
+		$this->regExPatern = $patern;
+	}
 	// -------------------------------------------------------------------------
 	public function setWatermark($w)
 	{
@@ -41,6 +47,13 @@ class TextField extends \braga\widgets\base\TextField
 			{
 				$class .= " has-error";
 			}
+		}
+		if(!is_null($this->regExPatern))
+		{
+			$checkScript = "if(!checkRegExPatern(this,\"" . $this->regExPatern . "\")){return false};";
+			$this->onChange .= $checkScript;
+			$this->onBlur .= $checkScript;
+			$this->onKeyUp .= $checkScript;
 		}
 		$input = parent::out();
 		$label = $this->getLabel();
