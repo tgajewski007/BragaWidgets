@@ -35,7 +35,6 @@ class FloatField extends \braga\widgets\base\FloatField
 
 		if($this->required)
 		{
-			$this->onKeyUp .= "if(checkReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ")){checkIsNull(this);}";
 			$this->onBlur .= "if(checkReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ")){checkIsNull(this);}";
 			if($this->selected == "")
 			{
@@ -44,7 +43,6 @@ class FloatField extends \braga\widgets\base\FloatField
 		}
 		else
 		{
-			$this->onKeyUp .= "checkReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ");";
 			$this->onBlur .= "checkReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ");";
 		}
 
