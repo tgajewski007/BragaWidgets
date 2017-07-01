@@ -27,7 +27,7 @@ class BTCheckBoxFieldListTest extends PHPUnit_Framework_TestCase
 		$checkBox->setId("StrangeName_StrangeValue");
 		$checkBox->setValue("StrangeValue");
 
-		$expected = BaseTags::label($checkBox->out() . "StrangeName", "class='checkbox-block'");
+		$expected = BaseTags::div(BaseTags::label($checkBox->out() . "StrangeName", "class='checkbox-block'"), "class='checkbox'");
 		$expected = BaseTags::div($expected, "class='form-group'");
 
 		$this->assertEquals($expected, $actual);
@@ -40,8 +40,7 @@ class BTCheckBoxFieldListTest extends PHPUnit_Framework_TestCase
 		$f->addItem(new WidgetItem("StrangeName2", "StrangeValue2"));
 		$f->setName("StrangeName");
 		$f->setSelected(array(
-				"StrangeValue1" => "StrangeValue1"
-		));
+				"StrangeValue1" => "StrangeValue1"));
 
 		$actual = $f->out();
 
@@ -56,8 +55,8 @@ class BTCheckBoxFieldListTest extends PHPUnit_Framework_TestCase
 		$checkBox2->setId("StrangeName_StrangeValue2");
 		$checkBox2->setValue("StrangeValue2");
 
-		$expected = BaseTags::label($checkBox1->out() . "StrangeName1", "class='checkbox-block'");
-		$expected .= BaseTags::label($checkBox2->out() . "StrangeName2", "class='checkbox-block'");
+		$expected = BaseTags::div(BaseTags::label($checkBox1->out() . "StrangeName1", "class='checkbox-block'"), "class='checkbox'");
+		$expected .= BaseTags::div(BaseTags::label($checkBox2->out() . "StrangeName2", "class='checkbox-block'"), "class='checkbox'");
 		$expected = BaseTags::div($expected, "class='form-group'");
 
 		$this->assertEquals($expected, $actual);
