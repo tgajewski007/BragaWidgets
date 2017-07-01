@@ -67,7 +67,7 @@ class BTDropDownListTest extends PHPUnit_Framework_TestCase
 		$f->enableGrouping();
 		$actual = $f->out();
 
-		$expected = BaseTags::option("StrageName", "value='StrangeValue'");
+		$expected = BaseTags::option("StrageName", "value='StrangeValue' selected='selected'");
 		$expected = BaseTags::optgroup($expected, "label='StrageGroup'");
 		$expected = BaseTags::select($expected, "class='form-control' onchange='checkDropDownList(this);'");
 		$expected = BaseTags::div($expected, "class='form-group'");

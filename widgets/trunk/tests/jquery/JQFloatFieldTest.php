@@ -17,7 +17,7 @@ class JQFloatFieldTest extends PHPUnit_Framework_TestCase
 		$f = new FloatField();
 
 		$retval = $f->out();
-		$oczekiwane = BaseTags::input("type='text' class=' r widgetSizeMedium' maxlength='22' onchange='CzyReal(this,null,null,2);' onfocus='$(this).select();'");
+		$oczekiwane = BaseTags::p(BaseTags::input("type='text' class='widget ui-widget ui-widget-content ui-corner-all r widgetSizeMedium' maxlength='22' onblur='CzyReal(this,null,null,2);' onfocus='$(this).select();'"), "style='min-height:25px;'");
 
 		$this->assertEquals($oczekiwane, $retval);
 	}
@@ -27,7 +27,7 @@ class JQFloatFieldTest extends PHPUnit_Framework_TestCase
 		$f = new FloatField();
 		$f->setName("StrageName");
 		$retval = $f->out();
-		$oczekiwane = BaseTags::input("type='text' id='StrageName' name='StrageName' class=' r widgetSizeMedium' maxlength='22' onchange='CzyReal(this,null,null,2);' onfocus='$(this).select();'");
+		$oczekiwane = BaseTags::p(BaseTags::input("type='text' id='StrageName' name='StrageName' class='widget ui-widget ui-widget-content ui-corner-all r widgetSizeMedium' maxlength='22' onblur='CzyReal(this,null,null,2);' onfocus='$(this).select();'"), "style='min-height:25px;'");
 
 		$this->assertEquals($oczekiwane, $retval);
 	}
@@ -37,7 +37,7 @@ class JQFloatFieldTest extends PHPUnit_Framework_TestCase
 		$f = new FloatField();
 		$f->setSelected("1234.45");
 		$retval = $f->out();
-		$oczekiwane = BaseTags::input("type='text' class=' r widgetSizeMedium' value='1234.45' maxlength='22' onchange='CzyReal(this,null,null,2);' onfocus='$(this).select();'");
+		$oczekiwane = BaseTags::p(BaseTags::input("type='text' class='widget ui-widget ui-widget-content ui-corner-all r widgetSizeMedium' value='1234.45' maxlength='22' onblur='CzyReal(this,null,null,2);' onfocus='$(this).select();'"), "style='min-height:25px;'");
 
 		$this->assertEquals($oczekiwane, $retval);
 	}

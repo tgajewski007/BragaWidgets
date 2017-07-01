@@ -38,7 +38,6 @@ class JQDBGridTest extends PHPUnit_Framework_TestCase
 		$db->addTranslate("getName", 1, "Name");
 		$db->addTranslate("getDesc", 2, "Desc");
 		return $db;
-
 	}
 	// -------------------------------------------------------------------------
 	function getData1()
@@ -53,7 +52,6 @@ class JQDBGridTest extends PHPUnit_Framework_TestCase
 		$db = new ArrayToDBBridge($array);
 		$db->addTranslate("getId", 0, "Id", "int");
 		return $db;
-
 	}
 	// -------------------------------------------------------------------------
 	function testTreeOnTree()
@@ -63,22 +61,9 @@ class JQDBGridTest extends PHPUnit_Framework_TestCase
 
 		$actual = $g->out(true);
 
-		$th = "<th class='' style='width:10px;'>L.p.</th>";
-		$th .= "<th class=''>Id</th>";
-		$th .= "<th class=''>Name</th>";
-		$th .= "<th class=''>Desc</th>";
-		$tr = "<tr class='ui-state-highlight'>" . $th . "</tr>";
-		$thead = "<thead>" . $tr . "</thead>";
-
-		$tr = "<tr class=' ui-state-default'><td class='r' style='padding-right:4px;'>1</td><td class='r'><div>1</div></td><td class='l'><div>StrangeName1</div></td><td class='l'><div>StrangeDesc1</div></td></tr>";
-		$tr .= "<tr class=' ui-state-focus'><td class='r' style='padding-right:4px;'>2</td><td class='r'><div>2</div></td><td class='l'><div>StrangeName2</div></td><td class='l'><div>StrangeDesc2</div></td></tr>";
-		$tr .= "<tr class=' ui-state-default'><td class='r' style='padding-right:4px;'>3</td><td class='r'><div>3</div></td><td class='l'><div>StrangeName3</div></td><td class='l'><div>StrangeDesc3</div></td></tr>";
-		$tbody = "<tbody>" . $tr . "</tbody>";
-
-		$expected = "<table class='sto ui-widget-content'>" . $thead . $tbody . "</table>";
+		$expected = "<table class='sto ui-widget-content'><thead><tr class='ui-state-highlight'><th class='' style='width:10px;'>L.p.</th><th class=''>Id</th><th class=''>Name</th><th class=''>Desc</th></tr></thead><tbody><tr class=' ui-state-default' onmouseover='$(this).addClass(\"ui-state-hover\");' onmouseout='$(this).removeClass(\"ui-state-hover\");'><td class='r' style='padding-right:4px;'>1</td><td class='r'><div>1</div></td><td class='l'><div>StrangeName1</div></td><td class='l'><div>StrangeDesc1</div></td></tr><tr class=' ui-state-focus' onmouseover='$(this).addClass(\"ui-state-hover\");' onmouseout='$(this).removeClass(\"ui-state-hover\");'><td class='r' style='padding-right:4px;'>2</td><td class='r'><div>2</div></td><td class='l'><div>StrangeName2</div></td><td class='l'><div>StrangeDesc2</div></td></tr><tr class=' ui-state-default' onmouseover='$(this).addClass(\"ui-state-hover\");' onmouseout='$(this).removeClass(\"ui-state-hover\");'><td class='r' style='padding-right:4px;'>3</td><td class='r'><div>3</div></td><td class='l'><div>StrangeName3</div></td><td class='l'><div>StrangeDesc3</div></td></tr></tbody></table>";
 
 		$this->assertEquals($expected, $actual);
-
 	}
 	// -------------------------------------------------------------------------
 	function testSimple()
@@ -89,10 +74,9 @@ class JQDBGridTest extends PHPUnit_Framework_TestCase
 
 		$actual = $g->out(true);
 
-		$expected = "<table class='sto ui-widget-content'><thead><tr class='ui-state-highlight'><th class='' style='width:10px;'>L.p.</th><th class=''>Id</th></tr></thead><tbody><tr class=' ui-state-default'><td class='r' style='padding-right:4px;'>1</td><td class='r'><div><a href='?a=' onclick='return ajax.go(this);'>1</a></div></td></tr></tbody></table>";
+		$expected = "<table class='sto ui-widget-content'><thead><tr class='ui-state-highlight'><th class='' style='width:10px;'>L.p.</th><th class=''>Id</th></tr></thead><tbody><tr class=' ui-state-default' onmouseover='$(this).addClass(\"ui-state-hover\");' onmouseout='$(this).removeClass(\"ui-state-hover\");'><td class='r' style='padding-right:4px;'>1</td><td class='r'><div><a href='?a=' onclick='$(this).closest(\"table\").find(\"tr\").removeClass(\"ui-state-active\");$(this).closest(\"tr\").addClass(\"ui-state-active\"); return ajax.go(this);'>1</a></div></td></tr></tbody></table>";
 
 		$this->assertEquals($expected, $actual);
-
 	}
 	// -------------------------------------------------------------------------
 	function testSimpleAddColumn()
@@ -104,10 +88,9 @@ class JQDBGridTest extends PHPUnit_Framework_TestCase
 		$g->addColumn($col);
 		$actual = $g->out(true);
 
-		$expected = "<table class='sto ui-widget-content'><thead><tr class='ui-state-highlight'><th class='' style='width:10px;'>L.p.</th><th class=''>Id</th><th class=''>new</th></tr></thead><tbody><tr class=' ui-state-default'><td class='r' style='padding-right:4px;'>1</td><td class='r'><div><a href='?a=' onclick='return ajax.go(this);'>1</a></div></td><td class='l'>Bubba</td></tr></tbody></table>";
+		$expected = "<table class='sto ui-widget-content'><thead><tr class='ui-state-highlight'><th class='' style='width:10px;'>L.p.</th><th class=''>Id</th><th class=''>new</th></tr></thead><tbody><tr class=' ui-state-default' onmouseover='$(this).addClass(\"ui-state-hover\");' onmouseout='$(this).removeClass(\"ui-state-hover\");'><td class='r' style='padding-right:4px;'>1</td><td class='r'><div><a href='?a=' onclick='$(this).closest(\"table\").find(\"tr\").removeClass(\"ui-state-active\");$(this).closest(\"tr\").addClass(\"ui-state-active\"); return ajax.go(this);'>1</a></div></td><td class='l'>Bubba</td></tr></tbody></table>";
 
 		$this->assertEquals($expected, $actual);
-
 	}
 	// -------------------------------------------------------------------------
 	function testReplacer()
@@ -119,10 +102,9 @@ class JQDBGridTest extends PHPUnit_Framework_TestCase
 		$g->addHrefReplaceStringByField($r);
 		$actual = $g->out(true);
 
-		$expected = "<table class='sto ui-widget-content'><thead><tr class='ui-state-highlight'><th class='' style='width:10px;'>L.p.</th><th class=''>Id</th></tr></thead><tbody><tr class=' ui-state-default'><td class='r' style='padding-right:4px;'>1</td><td class='r'><div><a href='?a=1' onclick='return ajax.go(this);'>1</a></div></td></tr></tbody></table>";
+		$expected = "<table class='sto ui-widget-content'><thead><tr class='ui-state-highlight'><th class='' style='width:10px;'>L.p.</th><th class=''>Id</th></tr></thead><tbody><tr class=' ui-state-default' onmouseover='$(this).addClass(\"ui-state-hover\");' onmouseout='$(this).removeClass(\"ui-state-hover\");'><td class='r' style='padding-right:4px;'>1</td><td class='r'><div><a href='?a=1' onclick='$(this).closest(\"table\").find(\"tr\").removeClass(\"ui-state-active\");$(this).closest(\"tr\").addClass(\"ui-state-active\"); return ajax.go(this);'>1</a></div></td></tr></tbody></table>";
 
 		$this->assertEquals($expected, $actual);
-
 	}
 	// -------------------------------------------------------------------------
 }
@@ -131,36 +113,29 @@ class BusinesObject
 	protected $id;
 	protected $name;
 	protected $desc;
-
 	public function getId()
 	{
 		return $this->id;
 	}
-
 	public function setId($id)
 	{
 		$this->id = $id;
 	}
-
 	public function getName()
 	{
 		return $this->name;
 	}
-
 	public function setName($name)
 	{
 		$this->name = $name;
 	}
-
 	public function getDesc()
 	{
 		return $this->desc;
 	}
-
 	public function setDesc($desc)
 	{
 		$this->desc = $desc;
 	}
-
 }
 ?>
