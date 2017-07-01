@@ -121,10 +121,10 @@ class BS
 		return $field->out();
 	}
 	// -------------------------------------------------------------------------
-	public static function fileField($label, $name)
+	public static function fileField($label, $name, $baseClass = 'btn-default')
 	{
 		$i = BaseTags::input("type='file' id='" . $name . "' name='" . $name . "' class='h'");
-		$i = BaseTags::label("Przeglądaj " . $i, "class='btn btn-default block'");
+		$i = BaseTags::label("Przeglądaj " . $i, "class='btn block " . $baseClass . "'");
 		$l = BaseTags::label($label, "for='" . $name . "'");
 		return self::formRow($l . $i) . BaseTags::script("initBSFileField('" . $name . "')");
 	}
