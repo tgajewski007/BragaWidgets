@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\bootstrap;
-
 use braga\tools\html\BaseTags;
 
 /**
@@ -19,23 +17,24 @@ class DropDownListField extends \braga\widgets\base\DropDownListField
 	// -------------------------------------------------------------------------
 	protected function setDefault()
 	{
-		$this->setClassString($this->getBaseClass());
-		$this->setOnChange("checkDropDownList(this);");
+		$this->setClassString("form-control dropup show-tick");
 	}
 	// -------------------------------------------------------------------------
 	public function out()
 	{
+		$class = "form-group";
 		$this->setDefault();
-		$input = parent::out();
-		$label = $this->getLabel();
 		if($this->required && empty($this->selected))
 		{
-			return BaseTags::div($label . $input, "class='form-group has-error'");
+			$this->addAttrib("title", $this->requiredText);
+			$class .= " has-error";
+			$this->addAttrib("required", "true");
 		}
-		else
-		{
-			return BaseTags::div($label . $input, "class='form-group'");
-		}
+		$input = parent::out();
+		$label = $this->getLabel();
+
+		$script = BaseTags::script("initDropDownList(\$(\"#" . $this->id . "\"));");
+		return BaseTags::div($label . $input, "class='" . $class . "'") . $script;
 	}
 	// -------------------------------------------------------------------------
 }
