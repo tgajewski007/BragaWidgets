@@ -16,11 +16,13 @@ class JQDropDownListTest extends PHPUnit_Framework_TestCase
 	function testSimple()
 	{
 		$f = new DropDownListField();
+		$f->setRequired();
+		$f->setSelected("StrangeValue");
 		$f->addItem(new WidgetItem("StrageName", "StrangeValue"));
 		$actual = $f->out();
 
-		$expected = BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
-		$expected = BaseTags::select($expected, "class='widget ui-widget-content ui-corner-all combo' onchange='SprawdzCombo(this);'");
+		$expected = BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default' selected='selected'");
+		$expected = BaseTags::select($expected, "class='widget ui-widget ui-widget-content ui-corner-all combo' onchange='if(checkCombo(this)){} else {return false;}'");
 
 		$this->assertEquals($expected, $actual);
 	}
@@ -34,7 +36,7 @@ class JQDropDownListTest extends PHPUnit_Framework_TestCase
 
 		$expected = BaseTags::option("-=Wybierz=-", "value='' class='ui-state-default ui-state-error' selected='selected'");
 		$expected .= BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
-		$expected = BaseTags::select($expected, "class='widget ui-widget-content ui-corner-all combo ui-state-error' onchange='SprawdzCombo(this);'");
+		$expected = BaseTags::select($expected, "class='widget ui-widget ui-widget-content ui-corner-all combo ui-state-error' onchange='if(checkCombo(this)){} else {return false;}'");
 
 		$this->assertEquals($expected, $actual);
 	}
@@ -51,7 +53,7 @@ class JQDropDownListTest extends PHPUnit_Framework_TestCase
 		$expected = BaseTags::optgroup($tmp, "label='-=Wybierz=-' class='ui-priority-primary widget ui-widget-content ui-state-error'");
 		$tmp = BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
 		$expected .= BaseTags::optgroup($tmp, "label='StrangeGroup' class='ui-priority-primary widget ui-widget-content'");
-		$expected = BaseTags::select($expected, "class='widget ui-widget-content ui-corner-all combo ui-state-error' onchange='SprawdzCombo(this);'");
+		$expected = BaseTags::select($expected, "class='widget ui-widget ui-widget-content ui-corner-all combo ui-state-error' onchange='if(checkCombo(this)){} else {return false;}'");
 
 		$this->assertEquals($expected, $actual);
 	}
@@ -63,8 +65,9 @@ class JQDropDownListTest extends PHPUnit_Framework_TestCase
 		$f->addItem(new WidgetItem("StrageName", "StrangeValue"));
 		$actual = $f->out();
 
-		$expected = BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
-		$expected = BaseTags::select($expected, "id='StrangeName' name='StrangeName' class='widget ui-widget-content ui-corner-all combo' onchange='SprawdzCombo(this);'");
+		$expected = BaseTags::option("-=Wybierz=-", "value='' class='ui-state-default ' selected='selected'");
+		$expected .= BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
+		$expected = BaseTags::select($expected, "id='StrangeName' name='StrangeName' class='widget ui-widget ui-widget-content ui-corner-all combo' onchange='if(checkCombo(this)){} else {return false;}'");
 
 		$this->assertEquals($expected, $actual);
 	}
@@ -78,10 +81,11 @@ class JQDropDownListTest extends PHPUnit_Framework_TestCase
 		$f->addItem(new WidgetItem("StrageName", "StrangeValue"));
 		$actual = $f->out();
 
-		$expected = BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
+		$expected = BaseTags::option("-=Wybierz=-", "value='' class='ui-state-default ' selected='selected'");
 		$expected .= BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
 		$expected .= BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
-		$expected = BaseTags::select($expected, "id='StrangeName' name='StrangeName' class='widget ui-widget-content ui-corner-all combo' onchange='SprawdzCombo(this);'");
+		$expected .= BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
+		$expected = BaseTags::select($expected, "id='StrangeName' name='StrangeName' class='widget ui-widget ui-widget-content ui-corner-all combo' onchange='if(checkCombo(this)){} else {return false;}'");
 
 		$this->assertEquals($expected, $actual);
 	}
@@ -96,7 +100,7 @@ class JQDropDownListTest extends PHPUnit_Framework_TestCase
 
 		$expected = BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default'");
 		$expected = BaseTags::optgroup($expected, "label='StrageGroup' class='ui-priority-primary widget ui-widget-content'");
-		$expected = BaseTags::select($expected, "id='StrangeName' name='StrangeName' class='widget ui-widget-content ui-corner-all combo' onchange='SprawdzCombo(this);'");
+		$expected = BaseTags::select($expected, "id='StrangeName' name='StrangeName' class='widget ui-widget ui-widget-content ui-corner-all combo' onchange='if(checkCombo(this)){} else {return false;}'");
 
 		$this->assertEquals($expected, $actual);
 	}
