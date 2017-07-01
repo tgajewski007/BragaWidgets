@@ -34,7 +34,7 @@ class BS
 		return BaseTags::div($widget, "class='form-group" . ($addHasError ? " hasError" : "") . "'");
 	}
 	// -------------------------------------------------------------------------
-	public static function submit($label, $baseClass = 'btn-primary')
+	public static function submit($label, $baseClass = 'btn-default')
 	{
 		return BaseTags::input("type='submit' value='" . $label . "' class='btn " . $baseClass . "'");
 	}
