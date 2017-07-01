@@ -1,7 +1,6 @@
 <?php
 namespace braga\widgets\bootstrap;
 use braga\tools\html\BaseTags;
-use braga\widgets\base\Field;
 
 /**
  *
@@ -9,7 +8,7 @@ use braga\widgets\base\Field;
  * Created on 2016-07-14 12:27:37
  * klasa odpowiedzialna za wygenerowanie formatki wyboru daty
  */
-class DateField extends Field
+class DateField extends TextField
 {
 	use AddLabels;
 	// -------------------------------------------------------------------------
@@ -30,39 +29,39 @@ class DateField extends Field
 		$this->maxValueString = "maxDate: new Date(" . substr($maxValue, 0, 4) . ", " . (intval(substr($maxValue, 5, 2)) - 1) . "," . substr($maxValue, 8, 2) . "), ";
 	}
 	// -------------------------------------------------------------------------
+	protected function setDefaults()
+	{
+		$this->class .= $this->getBaseClass();
+		$this->class .= " " . $this->getMediumSizeClass();
+		// $this->onFocus .= "\$(this).select();";
+		if(empty($this->maxLength))
+		{
+			$this->setMaxLength(10);
+		}
+		// $this->onBlur .= "CheckDate(this," . ($this->required ? "true" : "false") . ",\"" . $this->minValue . "\",\"" . $this->maxValue . "\");";
+	}
+	// -------------------------------------------------------------------------
 	public function out()
 	{
-		$this->attrib = null;
+		$class = "form-group";
+		$this->setDefault();
+		$this->addAttrib("placeholder", $this->waterMark);
+
 		if($this->required)
 		{
-			if(null == $this->selected)
+			$this->onKeyUp .= "checkIsNull(this);";
+			$this->onBlur .= "checkIsNull(this);";
+			if($this->selected == "")
 			{
-				$this->setSelected(date(PHP_DATE_FORMAT));
+				$class .= " has-error";
 			}
 		}
-		$this->addAttrib("id", $this->id);
-		$this->addAttrib("name", $this->name);
-		$this->addAttrib("maxlength", 10);
-		$this->addAttrib("class", $this->classString);
-		$this->addAttrib("value", $this->selected);
-		$this->addAttrib("tabindex", $this->tabOrder);
-		$this->addAttrib("placeholder", "RRRR-MM-DD");
-		$this->addEvents();
-		$this->addCustomAttrib();
-		$retval = BaseTags::input($this->attrib);
-		$retval .= BaseTags::span(BaseTags::button(faicon("fa-calendar"), "class='btn btn-default' type='button' onclick='\$(\"#" . $this->id . "\").datepicker(\"show\")'"), "class='input-group-btn'");
+		$input = parent::out();
+		$input .= BaseTags::button(faicon("fa-calendar"), "class='btn btn-default' type='button' onclick='\$(\"#" . $this->id . "\").datepicker(\"show\")'");
+		$retval = BaseTags::span($input, "class='input-group-btn'");
 		$retval = BaseTags::div($retval, "class='input-group'");
-		$retval .= BaseTags::script("\$(\"#" . $this->id . "\").datepicker({format:\"yyyy-mm-dd\"});");
-
 		$label = $this->getLabel();
-		if($this->required && empty($this->selected))
-		{
-			return BaseTags::div($label . $retval, "class='form-group has-error'");
-		}
-		else
-		{
-			return BaseTags::div($label . $retval, "class='form-group'");
-		}
+		return BaseTags::div($label . $input, "class='" . $class . "'") . BaseTags::script("\$(\"#" . $this->id . "\").datepicker({format:\"yyyy-mm-dd\"});");
 	}
 	// -------------------------------------------------------------------------
 }
