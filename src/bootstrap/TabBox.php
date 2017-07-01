@@ -83,10 +83,10 @@ class TabBox extends HtmlComponent
 				}
 			}
 			$retval = BaseTags::ul($retval, "class='nav nav-tabs'");
-			$content = BaseTags::div($this->content, "class='tab-pane active' id='" . $this->boxId . "'");
-			$retval .= BaseTags::div($content, "class='tab-content'");
+			$content = BaseTags::div($this->content, "class='tab-pane active'");
+			$retval .= BaseTags::div($content, "class='tab-content' style='padding-top:12px;'");
 		}
-		return BS::panel($retval);
+		return BS::panel($retval, "panel-default");
 	}
 	// -------------------------------------------------------------------------
 	public function addTab($id, $opis, $href)
