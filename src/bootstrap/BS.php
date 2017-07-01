@@ -112,11 +112,35 @@ class BS
 		return $field->out();
 	}
 	// -------------------------------------------------------------------------
+	/**
+	 *
+	 * @param string $label
+	 * @param string $name
+	 * @param boolean $checked
+	 * @return string
+	 */
 	public static function checkbox($label, $name, $checked = false)
 	{
 		$field = new CheckBoxField();
 		$field->setName($name);
 		$field->setSelected($checked);
+		$field->setLabel($label);
+		return $field->out();
+	}
+	// -------------------------------------------------------------------------
+	/**
+	 *
+	 * @param string $label
+	 * @param string $name
+	 * @param string $value
+	 * @param string $required
+	 * @return string
+	 */
+	public static function dateField($label, $name, $value, $required = false)
+	{
+		$field = new DateField();
+		$field->setName($name);
+		$field->setSelected($value);
 		$field->setLabel($label);
 		return $field->out();
 	}
