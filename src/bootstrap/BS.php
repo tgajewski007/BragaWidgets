@@ -11,21 +11,21 @@ use braga\tools\html\BaseTags;
 class BS
 {
 	// -------------------------------------------------------------------------
-	public static function box($title, $content)
+	public static function box($title, $content, $baseClass = 'panel-primary')
 	{
 		$retval = "";
 		$head = BaseTags::h3($title, "class='panel-title'");
 		$retval = BaseTags::div($head, "class='panel-heading'");
 		$retval .= BaseTags::div($content, "class='panel-body'");
-		$retval = BaseTags::div($retval, "class='panel panel-primary'");
+		$retval = BaseTags::div($retval, "class='panel " . $baseClass . "'");
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
-	public static function panel($content)
+	public static function panel($content, $baseClass = 'panel-primary')
 	{
 		$retval = "";
 		$retval .= BaseTags::div($content, "class='panel-body'");
-		$retval = BaseTags::div($retval, "class='panel panel-primary'");
+		$retval = BaseTags::div($retval, "class='panel " . $baseClass . "'");
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
