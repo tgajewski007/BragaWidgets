@@ -11,7 +11,7 @@ use braga\tools\html\BaseTags;
 class BS
 {
 	// -------------------------------------------------------------------------
-	public static function box($title, $content, $baseClass = 'panel-primary')
+	public static function box($title, $content, $baseClass = 'panel-default')
 	{
 		$retval = "";
 		$head = BaseTags::h3($title, "class='panel-title'");
@@ -21,7 +21,7 @@ class BS
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
-	public static function panel($content, $baseClass = 'panel-primary')
+	public static function panel($content, $baseClass = 'panel-default')
 	{
 		$retval = "";
 		$retval .= BaseTags::div($content, "class='panel-body'");
