@@ -39,6 +39,11 @@ class BS
 		return BaseTags::input("type='submit' value='" . $label . "' class='btn " . $baseClass . "'");
 	}
 	// -------------------------------------------------------------------------
+	public static function button($content, $attrb, $baseClass = "btn-default")
+	{
+		return BaseTags::button($content, $attrb . " class='btn " . $baseClass . "'");
+	}
+	// -------------------------------------------------------------------------
 	public static function listGroup($content)
 	{
 		return BaseTags::div($content, "class='list-group'");
