@@ -34,12 +34,12 @@ class BS
 		return BaseTags::div($widget, "class='form-group" . ($addHasError ? " hasError" : "") . "'");
 	}
 	// -------------------------------------------------------------------------
-	public static function submit($label, $baseClass = 'btn-default')
+	public static function submit($label, $baseClass = 'btn-default btn-block')
 	{
 		return BaseTags::input("type='submit' value='" . $label . "' class='btn " . $baseClass . "'");
 	}
 	// -------------------------------------------------------------------------
-	public static function button($content, $attrb, $baseClass = "btn-default")
+	public static function button($content, $attrb, $baseClass = "btn-default btn-block")
 	{
 		return BaseTags::button($content, $attrb . " class='btn " . $baseClass . "'");
 	}
