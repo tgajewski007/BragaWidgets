@@ -11,7 +11,7 @@ namespace braga\widgets\bootstrap;
 class DBGrid extends \braga\widgets\base\DBGrid
 {
 	// -------------------------------------------------------------------------
-	protected $tableClass = "table";
+	protected $tableClass = "table table-striped";
 	protected $headerRowClass = "";
 	protected $headerCellClass = "";
 	protected $contentRowClass = "";
@@ -19,7 +19,6 @@ class DBGrid extends \braga\widgets\base\DBGrid
 	protected $contentStringCellClass = "";
 	protected $contentDateCellClass = "c";
 	protected $rowClass = array(
-			"alert alert-info",
 			"");
 	// -------------------------------------------------------------------------
 	protected function getLinkAction()
