@@ -147,6 +147,7 @@ class BS
 		$field->setName($name);
 		$field->setSelected($value);
 		$field->setLabel($label);
+		$field->setRequired($required);
 		return $field->out();
 	}
 	// -------------------------------------------------------------------------
