@@ -15,11 +15,11 @@ class DBGrid extends \braga\widgets\base\DBGrid
 	protected $headerRowClass = "";
 	protected $headerCellClass = "";
 	protected $contentRowClass = "";
-	protected $contentNumericCellClass = "";
+	protected $contentNumericCellClass = "r";
 	protected $contentStringCellClass = "";
-	protected $contentDateCellClass = "";
+	protected $contentDateCellClass = "c";
 	protected $rowClass = array(
-			"alert alert-warning",
+			"alert alert-info",
 			"");
 	// -------------------------------------------------------------------------
 	protected function getLinkAction()
