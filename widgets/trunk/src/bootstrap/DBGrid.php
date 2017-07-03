@@ -11,7 +11,7 @@ namespace braga\widgets\bootstrap;
 class DBGrid extends \braga\widgets\base\DBGrid
 {
 	// -------------------------------------------------------------------------
-	protected $tableClass = "table table-striped";
+	protected $tableClass = "table table-striped table-condensed table-hover table-bordered";
 	protected $headerRowClass = "";
 	protected $headerCellClass = "";
 	protected $contentRowClass = "";
