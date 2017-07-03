@@ -19,6 +19,11 @@ class Accordion extends HtmlComponent
 	protected $items;
 	protected $openIdItem;
 	// -------------------------------------------------------------------------
+	public function setActiveItem($id)
+	{
+		$this->openIdItem = $id;
+	}
+	// -------------------------------------------------------------------------
 	public function addItem(AccordionItem $item, $active = false)
 	{
 		$this->items[$item->getId()] = $item;
