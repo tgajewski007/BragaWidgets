@@ -30,7 +30,7 @@ class CheckBoxListField extends Field
 		{
 			$a = new CheckBoxField();
 			$a->setName($this->name . "[]");
-			$a->setId($this->name . "_" . $value->getVal());
+			$a->setId($this->id . "_" . $value->getVal());
 			$a->setSelected(isset($this->selected[$value->getVal()]));
 			$a->setValue($value->getVal());
 			$retval .= BaseTags::div(BaseTags::label($a->out() . $value->getDesc(), "class='checkbox-block'"), "class='checkbox'");
