@@ -17,7 +17,7 @@ class DropDownListField extends \braga\widgets\base\DropDownListField
 	// -------------------------------------------------------------------------
 	protected function setDefault()
 	{
-		$this->setClassString("form-control dropup show-tick");
+		$this->setClassString("form-control show-tick");
 	}
 	// -------------------------------------------------------------------------
 	public function out()
