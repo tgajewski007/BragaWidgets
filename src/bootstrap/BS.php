@@ -60,7 +60,7 @@ class BS
 	public static function listGroupItemAjax($label, $labelHref, $iconHref, $idContener)
 	{
 		$defaultClass = "";
-		$onClick = "onclick='$(\"a.list-group-item\").removeClass(\"active\");$(this).addClass(\"active\"); return ajax.go(this);' ";
+		$onClick = "onclick='return ajax.go(this);' ";
 		$class = "class='" . $defaultClass . " list-group-item list-group-item-action' ";
 		$labelHref = "href='" . $labelHref . "' ";
 		$iconHref = faIcon("fa-caret-right fa-lg fa-fw", "onclick='listGroupItemAjax(event, this,\"" . $idContener . "\",\"" . $iconHref . "\");return false;'");
