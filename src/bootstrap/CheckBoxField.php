@@ -11,13 +11,7 @@ use braga\tools\html\BaseTags;
  */
 class CheckBoxField extends \braga\widgets\base\CheckBoxField
 {
-	// -------------------------------------------------------------------------
-	protected $label = null;
-	// -------------------------------------------------------------------------
-	public function setLabel($label)
-	{
-		$this->label = $label;
-	}
+	use AddLabels;
 	// -------------------------------------------------------------------------
 	public function out()
 	{
