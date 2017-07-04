@@ -31,7 +31,8 @@ class RadioBoxListField extends Field
 			$a->setId($this->id . "_" . $value->getVal());
 			$a->setSelected(isset($this->selected[$value->getVal()]));
 			$a->setValue($value->getVal());
-			$retval .= BaseTags::div(BaseTags::label($a->out() . $value->getDesc(), "class='radio-block'"), "class='radio'");
+			$a->setLabel($value->getDesc());
+			$retval .= $a->out();
 		}
 		$label = $this->getLabel();
 		return BaseTags::div($label . $retval, "class='form-group'");
