@@ -10,13 +10,7 @@ use braga\tools\html\BaseTags;
  */
 class RadioBoxField extends \braga\widgets\base\RadioBoxField
 {
-	// -------------------------------------------------------------------------
-	protected $label = null;
-	// -------------------------------------------------------------------------
-	public function setLabel($label)
-	{
-		$this->label = $label;
-	}
+	use AddLabels;
 	// -------------------------------------------------------------------------
 	public function out()
 	{
