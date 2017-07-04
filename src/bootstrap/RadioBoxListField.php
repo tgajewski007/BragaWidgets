@@ -10,7 +10,7 @@ use braga\tools\html\BaseTags;
  * package frontoffice
  * error prefix
  */
-class RadioBoxListFiels extends Field
+class RadioBoxListField extends Field
 {
 	use AddLabels;
 	// -------------------------------------------------------------------------
