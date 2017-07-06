@@ -37,7 +37,7 @@ class DropDownListField extends \braga\widgets\base\DropDownListField
 			$opt = "";
 			foreach($value as $d)/* @var $d WidgetItem */
 			{
-				$opt .= $this->getOption($d->getDesc(), $d->getVal());
+				$opt .= $this->getOption($d);
 			}
 			$options .= $this->getOptionGroup($key, $opt);
 		}

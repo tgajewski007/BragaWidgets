@@ -16,13 +16,13 @@ class DropDownListField extends Field
 	protected $group = false;
 	protected $requiredText = "-=Wybierz=-";
 	// -------------------------------------------------------------------------
-	protected $optionAtrib = null;
+	protected $commonOptionAtrib = null;
 	protected $optionGroupAtrib = null;
 
 	// -------------------------------------------------------------------------
 	public function addOptionAtrib($atr)
 	{
-		$this->optionAtrib = trim($this->optionAtrib . " " . trim($atr));
+		$this->commonOptionAtrib = trim($this->commonOptionAtrib . " " . trim($atr));
 	}
 	// -------------------------------------------------------------------------
 	public function addOptionGroupAtrib($atr)
@@ -40,15 +40,15 @@ class DropDownListField extends Field
 		$this->group = true;
 	}
 	// -------------------------------------------------------------------------
-	protected function getOption($label, $value)
+	protected function getOption(WidgetItem $w)
 	{
-		if($this->selected == $value)
+		if($this->selected == $w->getVal())
 		{
-			return BaseTags::option($label, "value='" . $value . "' " . $this->optionAtrib . " selected='selected'");
+			return BaseTags::option($w->getDesc(), "value='" . $w->getVal() . "' " . $w->getCustomAttrib() . " " . $this->commonOptionAtrib . " selected='selected'");
 		}
 		else
 		{
-			return BaseTags::option($label, "value='" . $value . "' " . $this->optionAtrib);
+			return BaseTags::option($w->getDesc(), "value='" . $w->getVal() . "' " . $w->getCustomAttrib() . " " . $this->commonOptionAtrib);
 		}
 	}
 	// -------------------------------------------------------------------------
@@ -76,7 +76,7 @@ class DropDownListField extends Field
 			$opt = "";
 			foreach($value as $d)/* @var $d WidgetItem */
 			{
-				$opt .= $this->getOption($d->getDesc(), $d->getVal());
+				$opt .= $this->getOption($d);
 			}
 			$options .= $this->getOptionGroup($key, $opt);
 		}
@@ -88,7 +88,7 @@ class DropDownListField extends Field
 		$options = "";
 		foreach($this->dane as $d ) /* @var $d WidgetItem */
 		{
-			$options .= $this->getOption($d->getDesc(), $d->getVal());
+			$options .= $this->getOption($d);
 		}
 		return $options;
 	}
