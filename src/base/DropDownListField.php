@@ -42,7 +42,7 @@ class DropDownListField extends Field
 	// -------------------------------------------------------------------------
 	protected function getOption(WidgetItem $w)
 	{
-		if($this->selected == $w->getVal())
+		if($this->selected === $w->getVal())
 		{
 			return BaseTags::option($w->getDesc(), "value='" . $w->getVal() . "' " . $w->getCustomAttrib() . " " . $this->commonOptionAtrib . " selected='selected'");
 		}
