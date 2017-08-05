@@ -170,4 +170,9 @@ class BS
 		return $field->out();
 	}
 	// -------------------------------------------------------------------------
+	public static function getToolTip($txt, $position = "auto")
+	{
+		return "title='" . $txt . "' data-toggle='tooltip' data-placement='" . $position . "'";
+	}
+	// -------------------------------------------------------------------------
 }
