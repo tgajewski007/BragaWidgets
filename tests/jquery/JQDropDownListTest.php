@@ -21,7 +21,8 @@ class JQDropDownListTest extends PHPUnit_Framework_TestCase
 		$f->addItem(new WidgetItem("StrageName", "StrangeValue"));
 		$actual = $f->out();
 
-		$expected = BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default' selected='selected'");
+		$expected = BaseTags::option("-=Wybierz=-", "value='' class='ui-state-default ui-state-error' selected=''");
+		$expected .= BaseTags::option("StrageName", "value='StrangeValue' class='ui-state-default' selected='selected'");
 		$expected = BaseTags::select($expected, "class='widget ui-widget ui-widget-content ui-corner-all combo' onchange='if(checkCombo(this)){} else {return false;}'");
 
 		$this->assertEquals($expected, $actual);

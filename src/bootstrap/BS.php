@@ -75,7 +75,7 @@ class BS
 	 * @param string $value
 	 * @param string $required
 	 * @param number $maxLength
-	 * @return unknown|string
+	 * @return string
 	 */
 	public static function textField($label, $name, $value = null, $required = false, $maxLength = 255)
 	{
@@ -94,7 +94,7 @@ class BS
 	 * @param string $value
 	 * @param string $required
 	 * @param number $maxLength
-	 * @return unknown|string
+	 * @return string
 	 */
 	public static function memoField($label, $name, $value = null, $required = false, $maxLength = 255)
 	{
@@ -115,6 +115,26 @@ class BS
 		$field->setSelected($value);
 		$field->setLabel($label);
 		return $field->out();
+	}
+	// -------------------------------------------------------------------------
+	/**
+	 *
+	 * @param string $label
+	 * @param string $name
+	 * @param boolean $checked
+	 * @return string
+	 */
+	public static function checkbox2($label, $name, $checked = false)
+	{
+		$checkedClass = 'fa-check-square-o';
+		$unCheckedClass = 'fa-square-o';
+
+		$onClick = " onclick='if(\$(this).children(\"input:first\").prop(\"checked\")){\$(this).children(\"input:first\").prop(\"checked\",false);\$(this).addClass(\"" . $unCheckedClass . "\"); \$(this).removeClass(\"" . $checkedClass . "\");}else{\$(this).children(\"input:first\").prop(\"checked\",true);\$(this).addClass(\"" . $checkedClass . "\"); \$(this).removeClass(\"" . $unCheckedClass . "\");}return false;';";
+		$retval = BaseTags::input("type='checkbox' class='h' id='" . $name . "' name='" . $name . "' " . ($checked ? "checked" : "") . " ");
+		$retval = BaseTags::i($retval, "class='fa fa-lg fa-fw " . ($checked ? $checkedClass : $unCheckedClass) . "' " . $onClick);
+		$label = BaseTags::label($label, "for='" . $name . "'");
+		$retval = $label . BaseTags::div($retval);
+		return $retval;
 	}
 	// -------------------------------------------------------------------------
 	/**
