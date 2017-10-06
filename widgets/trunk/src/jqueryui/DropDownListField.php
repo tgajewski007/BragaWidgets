@@ -28,7 +28,7 @@ class DropDownListField extends \braga\widgets\base\DropDownListField
 		if($this->required)
 		{
 			$this->setClassString($this->getBaseClass() . " combo ui-state-error");
-			$tmp = BaseTags::option($this->requiredText, "value='' class='ui-state-default ui-state-error' selected='selected'");
+			$tmp = BaseTags::option($this->requiredText, "value='' class='ui-state-default ui-state-error' selected='" . (empty($this->selected) ? "selected" : "") . "'");
 			$options .= BaseTags::optgroup($tmp, "label='" . $this->requiredText . "' class='ui-priority-primary widget ui-widget-content ui-state-error'");
 		}
 		$tmp = $this->prepareGroup();
@@ -47,7 +47,7 @@ class DropDownListField extends \braga\widgets\base\DropDownListField
 	protected function getSimpleOptions()
 	{
 		$options = "";
-		$options .= BaseTags::option($this->requiredText, "value='' class='ui-state-default " . ($this->required ? "ui-state-error" : "") . "' selected='selected'");
+		$options .= BaseTags::option($this->requiredText, "value='' class='ui-state-default " . ($this->required ? "ui-state-error" : "") . "' selected='" . (empty($this->selected) ? "selected" : "") . "'");
 		if($this->required && empty($this->selected))
 		{
 			$this->setClassString($this->getBaseClass() . " combo ui-state-error");
