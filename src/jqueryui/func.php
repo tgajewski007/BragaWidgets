@@ -104,13 +104,13 @@ function Fieldset($title = "", $content = "", $display = true, $wyroznienie = fa
 
 		$retval = BaseTags::div($content, "id='" . $rnd . "' " . $hidden . "");
 		$retval .= BaseTags::legend($legend, "class='ui-widget-header ui-corner-all " . $addClassLegend . "' style='padding:2px 8px;'");
-		$retval = BaseTags::fieldset($retval, "class='ui-widget-content ui-corner-all " . $addClassFieldSet . "' style='margin:4px;'");
+		$retval = BaseTags::fieldset($retval, "class='ui-widget-content ui-corner-all ui-helper-clearfix " . $addClassFieldSet . "' style='margin:4px;'");
 	}
 	else
 	{
 
 		$retval = BaseTags::div($content, "id='" . $rnd . "'");
-		$retval = BaseTags::fieldset($retval, "class='ui-widget-content ui-corner-all " . $addClassFieldSet . "' style='margin:4px;'");
+		$retval = BaseTags::fieldset($retval, "class='ui-widget-content ui-corner-all ui-helper-clearfix " . $addClassFieldSet . "' style='margin:4px;'");
 	}
 	return $retval;
 }
@@ -132,7 +132,7 @@ function Box($title = "NoTitle", $content = "", $display = true)
 		$retval = BaseTags::div($retval, "class='ui-widget-header ui-corner-all' style='padding:2px'");
 		$retval .= BaseTags::div($content, "id='" . $rnd . "' class='h' style='padding:2px;'");
 	}
-	$retval = BaseTags::div($retval, "style='width:auto;margin-bottom:4px;padding:2px' class='ui-widget-content ui-corner-all'");
+	$retval = BaseTags::div($retval, "style='width:auto;margin-bottom:4px;padding:2px' class='ui-widget-content ui-corner-all ui-helper-clearfix'");
 	return $retval;
 }
 // =============================================================================
