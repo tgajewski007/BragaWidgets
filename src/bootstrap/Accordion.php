@@ -16,7 +16,7 @@ class Accordion extends HtmlComponent
 	 *
 	 * @var array
 	 */
-	protected $items;
+	protected $items = array();
 	protected $openIdItem;
 	// -------------------------------------------------------------------------
 	public function setActiveItem($id)
