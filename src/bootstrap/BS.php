@@ -122,15 +122,16 @@ class BS
 	 * @param string $label
 	 * @param string $name
 	 * @param boolean $checked
+	 * @param string $value
 	 * @return string
 	 */
-	public static function checkbox2($label, $name, $checked = false)
+	public static function checkbox2($label, $name, $checked = false, $value = null)
 	{
 		$checkedClass = 'fa-check-square-o';
 		$unCheckedClass = 'fa-square-o';
-
-		$onClick = " onclick='if(\$(this).children(\"input:first\").prop(\"checked\")){\$(this).children(\"input:first\").prop(\"checked\",false);\$(this).addClass(\"" . $unCheckedClass . "\"); \$(this).removeClass(\"" . $checkedClass . "\");}else{\$(this).children(\"input:first\").prop(\"checked\",true);\$(this).addClass(\"" . $checkedClass . "\"); \$(this).removeClass(\"" . $unCheckedClass . "\");}return false;';";
-		$retval = BaseTags::input("type='checkbox' class='h' id='" . $name . "' name='" . $name . "' " . ($checked ? "checked" : "") . " ");
+		$onChange = "onchange='if(\$(this).prop(\"checked\")){\$(this).parent().removeClass(\"" . $unCheckedClass . "\"); \$(this).parent().addClass(\"" . $checkedClass . "\");}else{\$(this).parent().removeClass(\"" . $checkedClass . "\"); \$(this).parent().addClass(\"" . $unCheckedClass . "\");} return false;'";
+		$retval = BaseTags::input("type='checkbox' class='' id='" . $name . "' name='" . $name . "' " . ($checked ? "checked" : "") . " value='" . $value . "' " . $onChange);
+		$onClick = "onclick='\$(this).children().first().click();'";
 		$retval = BaseTags::i($retval, "class='fa fa-lg fa-fw " . ($checked ? $checkedClass : $unCheckedClass) . "' " . $onClick);
 		$label = BaseTags::label($label, "for='" . $name . "'");
 		$retval = $label . BaseTags::div($retval);
