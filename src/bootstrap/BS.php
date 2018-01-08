@@ -133,7 +133,10 @@ class BS
 		$retval = BaseTags::input("type='checkbox' class='h' id='" . $name . "' name='" . $name . "' " . ($checked ? "checked" : "") . " value='" . $value . "' " . $onChange);
 		$onClick = "onclick='\$(this).children().first().click();'";
 		$retval = BaseTags::i($retval, "class='fa fa-lg fa-fw " . ($checked ? $checkedClass : $unCheckedClass) . "' " . $onClick);
-		$label = BaseTags::label($label, "for='" . $name . "'");
+		if(!empty($label))
+		{
+			$label = BaseTags::label($label, "for='" . $name . "'");
+		}
 		$retval = $label . BaseTags::div($retval);
 		return $retval;
 	}
