@@ -40,6 +40,7 @@ class TextField extends \braga\widgets\base\TextField
 		$class = "form-group";
 		$this->setDefault();
 		$this->addAttrib("placeholder", $this->waterMark);
+		$this->addAttrib("pattern", $this->regExPatern);
 
 		if(!is_null($this->regExPatern))
 		{
