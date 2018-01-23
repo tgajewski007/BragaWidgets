@@ -18,7 +18,25 @@ class TextField extends \braga\widgets\base\TextField
 	// -----------------------------------------------------------------------------------------------------------------
 	protected $waterMark;
 	protected $regExPatern = null;
-
+	protected $minLength;
+	// -----------------------------------------------------------------------------------------------------------------
+	/**
+	 *
+	 * @return mixed
+	 */
+	public function getMinLength()
+	{
+		return $this->minLength;
+	}
+	// -----------------------------------------------------------------------------------------------------------------
+	/**
+	 *
+	 * @param mixed $minLength
+	 */
+	public function setMinLength($minLength)
+	{
+		$this->minLength = $minLength;
+	}
 	// -----------------------------------------------------------------------------------------------------------------
 	public function setRegExpPatern($patern)
 	{
@@ -40,19 +58,11 @@ class TextField extends \braga\widgets\base\TextField
 		$class = "form-group";
 		$this->setDefault();
 		$this->addAttrib("placeholder", $this->waterMark);
-		$this->addAttrib("pattern", $this->regExPatern);
+		$this->addAttrib("data-minlength", $this->getMinLength());
+		$this->addAttrib("data-error", $this->getMessageWhenValidateFail());
 
-		// if(!is_null($this->regExPatern))
-		// {
-		// $checkScript = "if(!checkRegExPatern(this," . $this->regExPatern . ")){return false};";
-		// $this->onChange .= $checkScript;
-		// $this->onBlur .= $checkScript;
-		// $this->onKeyUp .= $checkScript;
-		// }
 		if($this->required)
 		{
-			// $this->onKeyUp .= "if(!checkIsNull(this)){return false};";
-			// $this->onBlur .= "if(!checkIsNull(this)){return false};";
 			if($this->selected == "")
 			{
 				$class .= " has-error";
