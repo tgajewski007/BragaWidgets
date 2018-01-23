@@ -12,6 +12,7 @@ class DropDownListField extends \braga\widgets\base\DropDownListField
 {
 	use ClassFactory;
 	use AddLabels;
+	use AddValidationMessage;
 	// -------------------------------------------------------------------------
 	protected $requiredText = "-=Wybierz=-";
 	// -------------------------------------------------------------------------
@@ -34,7 +35,7 @@ class DropDownListField extends \braga\widgets\base\DropDownListField
 		$label = $this->getLabel();
 
 		$script = BaseTags::script("initDropDownList(\$(\"#" . $this->id . "\"));");
-		return BaseTags::div($label . $input, "class='" . $class . "'") . $script;
+		return BaseTags::div($label . $input . $this->getValidationMessage(), "class='" . $class . "'") . $script;
 	}
 	// -------------------------------------------------------------------------
 }
