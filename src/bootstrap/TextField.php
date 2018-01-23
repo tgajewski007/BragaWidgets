@@ -60,6 +60,7 @@ class TextField extends \braga\widgets\base\TextField
 		$this->addAttrib("placeholder", $this->waterMark);
 		$this->addAttrib("data-minlength", $this->getMinLength());
 		$this->addAttrib("data-error", $this->getMessageWhenValidateFail());
+		$this->addAttrib("pattern", $this->regExPatern);
 
 		if($this->required)
 		{
