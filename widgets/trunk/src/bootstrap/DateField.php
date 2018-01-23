@@ -13,6 +13,7 @@ class DateField extends TextField
 {
 	use AddLabels;
 	use ClassFactory;
+	use AddValidationMessage;
 	// -------------------------------------------------------------------------
 	protected $minValue = null;
 	protected $maxValue = null;
@@ -64,7 +65,7 @@ class DateField extends TextField
 		$showCalendarButton = BaseTags::span($showCalendarButton, "class='input-group-btn'");
 		$retval = BaseTags::div(parent::out() . $showCalendarButton, "class='input-group'");
 		$label = $this->getLabel();
-		return BaseTags::div($label . $retval, "class='" . $class . "'") . BaseTags::script("\$(\"#" . $this->id . "\").datepicker({format:\"yyyy-mm-dd\",language:\"pl\"});");
+		return BaseTags::div($label . $retval . $this->getValidationMessage(), "class='" . $class . "'") . BaseTags::script("\$(\"#" . $this->id . "\").datepicker({format:\"yyyy-mm-dd\",language:\"pl\"});");
 	}
 	// -------------------------------------------------------------------------
 }

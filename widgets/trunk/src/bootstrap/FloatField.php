@@ -14,6 +14,7 @@ class FloatField extends \braga\widgets\base\FloatField
 
 	use ClassFactory;
 	use AddLabels;
+	use AddValidationMessage;
 	// -------------------------------------------------------------------------
 	protected $waterMark;
 	// -------------------------------------------------------------------------
@@ -48,7 +49,7 @@ class FloatField extends \braga\widgets\base\FloatField
 
 		$input = parent::out();
 		$label = $this->getLabel();
-		return BaseTags::div($label . $input, "class='" . $class . "'");
+		return BaseTags::div($label . $input . $this->getValidationMessage(), "class='" . $class . "'");
 	}
 	// -------------------------------------------------------------------------
 }

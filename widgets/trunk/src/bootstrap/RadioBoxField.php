@@ -11,12 +11,13 @@ use braga\tools\html\BaseTags;
 class RadioBoxField extends \braga\widgets\base\RadioBoxField
 {
 	use AddLabels;
+	use AddValidationMessage;
 	// -------------------------------------------------------------------------
 	public function out()
 	{
 		$input = parent::out();
 		$retval = BaseTags::label($input . $this->label);
-		return BaseTags::div($retval, "class='radio'");
+		return BaseTags::div($retval . $this->getValidationMessage(), "class='radio'");
 	}
 	// -------------------------------------------------------------------------
 }

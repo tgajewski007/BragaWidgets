@@ -12,12 +12,13 @@ use braga\tools\html\BaseTags;
 class CheckBoxField extends \braga\widgets\base\CheckBoxField
 {
 	use AddLabels;
+	use AddValidationMessage;
 	// -------------------------------------------------------------------------
 	public function out()
 	{
 		$input = parent::out();
 		$retval = BaseTags::label($input . $this->label);
-		return BaseTags::div($retval, "class='checkbox'");
+		return BaseTags::div($retval . $this->getValidationMessage(), "class='checkbox'");
 	}
 	// -------------------------------------------------------------------------
 }
