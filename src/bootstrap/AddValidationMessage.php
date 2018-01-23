@@ -55,15 +55,9 @@ trait AddValidationMessage
 		$invalidFeedback = "";
 		if(!empty($this->messageWhenValidateFail))
 		{
-			$invalidFeedback = BaseTags::div($this->getMessageWhenValidateFail(), "class='invalid-feedback'");
+			$invalidFeedback .= BaseTags::div($this->getMessageWhenValidatePass(), "class='help-block with-errors'");
 		}
-
-		$validFeedback = "";
-		if(!empty($this->messageWhenValidatePass))
-		{
-			$validFeedback = BaseTags::div($this->getMessageWhenValidatePass(), "class='valid-feedback'");
-		}
-		return $invalidFeedback . $validFeedback;
+		return $invalidFeedback;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
 }
