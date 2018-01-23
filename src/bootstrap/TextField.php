@@ -42,13 +42,13 @@ class TextField extends \braga\widgets\base\TextField
 		$this->addAttrib("placeholder", $this->waterMark);
 		$this->addAttrib("pattern", $this->regExPatern);
 
-		if(!is_null($this->regExPatern))
-		{
-			$checkScript = "if(!checkRegExPatern(this," . $this->regExPatern . ")){return false};";
-			$this->onChange .= $checkScript;
-			$this->onBlur .= $checkScript;
-			$this->onKeyUp .= $checkScript;
-		}
+		// if(!is_null($this->regExPatern))
+		// {
+		// $checkScript = "if(!checkRegExPatern(this," . $this->regExPatern . ")){return false};";
+		// $this->onChange .= $checkScript;
+		// $this->onBlur .= $checkScript;
+		// $this->onKeyUp .= $checkScript;
+		// }
 		if($this->required)
 		{
 			$this->onKeyUp .= "if(!checkIsNull(this)){return false};";
