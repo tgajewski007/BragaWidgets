@@ -12,6 +12,7 @@ class MemoField extends \braga\widgets\base\MemoField
 {
 	use ClassFactory;
 	use AddLabels;
+	use AddValidationMessage;
 	// -------------------------------------------------------------------------
 	protected $maxLength = 65535;
 	// -------------------------------------------------------------------------
@@ -41,7 +42,7 @@ class MemoField extends \braga\widgets\base\MemoField
 		}
 		$input = parent::out();
 		$label = $this->getLabel();
-		return BaseTags::div($label . $input, "class='" . $class . "'");
+		return BaseTags::div($label . $input . $this->getValidationMessage(), "class='" . $class . "'");
 	}
 	// -------------------------------------------------------------------------
 }
