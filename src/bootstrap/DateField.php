@@ -53,8 +53,8 @@ class DateField extends TextField
 
 		if($this->required)
 		{
-			$this->onKeyUp .= "checkIsNull(this);";
-			$this->onBlur .= "checkIsNull(this);";
+			$this->onKeyUp .= "if(!checkIsNull(this)){return};";
+			$this->onBlur .= "if(!checkIsNull(this)){return};";
 			if($this->selected == "")
 			{
 				$class .= " has-error";
