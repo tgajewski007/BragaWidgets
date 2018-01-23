@@ -52,11 +52,7 @@ trait AddValidationMessage
 	// -----------------------------------------------------------------------------------------------------------------
 	protected function getValidationMessage()
 	{
-		$invalidFeedback = "";
-		if(!empty($this->messageWhenValidateFail))
-		{
-			$invalidFeedback .= BaseTags::div($this->getMessageWhenValidatePass(), "class='help-block with-errors'");
-		}
+		$invalidFeedback = BaseTags::div($this->getMessageWhenValidatePass(), "class='help-block with-errors'");
 		return $invalidFeedback;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
