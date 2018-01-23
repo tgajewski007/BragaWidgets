@@ -51,8 +51,8 @@ class TextField extends \braga\widgets\base\TextField
 		// }
 		if($this->required)
 		{
-			$this->onKeyUp .= "if(!checkIsNull(this)){return false};";
-			$this->onBlur .= "if(!checkIsNull(this)){return false};";
+			// $this->onKeyUp .= "if(!checkIsNull(this)){return false};";
+			// $this->onBlur .= "if(!checkIsNull(this)){return false};";
 			if($this->selected == "")
 			{
 				$class .= " has-error";
