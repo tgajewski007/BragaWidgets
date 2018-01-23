@@ -2,8 +2,6 @@
 namespace braga\widgets\bootstrap;
 use braga\tools\html\BaseTags;
 use braga\widgets\base\TextField;
-use braga\widgets\bootstrap\AddLabels;
-use braga\widgets\bootstrap\ClassFactory;
 
 /**
  *
@@ -49,6 +47,9 @@ class DateField extends TextField
 		$class = "form-group";
 		$this->setDefaults();
 		$this->addAttrib("placeholder", "RRRR-MM-DD");
+
+		$this->onKeyUp .= "if(!checkRegExPatern(this,/(\d{4})-(\d{2})-(\d{2})/)){return};";
+		$this->onBlur .= "if(!checkRegExPatern(this,/(\d{4})-(\d{2})-(\d{2})/)){return};";
 
 		if($this->required)
 		{
