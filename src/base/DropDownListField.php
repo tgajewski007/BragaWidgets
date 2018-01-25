@@ -1,7 +1,6 @@
 <?php
 namespace braga\widgets\base;
 use braga\tools\html\BaseTags;
-use braga\widgets\base\Field;
 
 /**
  * Created on 10-06-2011 10:45:23
