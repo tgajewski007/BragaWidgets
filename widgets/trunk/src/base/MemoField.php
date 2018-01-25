@@ -1,6 +1,5 @@
 <?php
 namespace braga\widgets\base;
-use braga\widgets\base\TextField;
 use braga\tools\html\BaseTags;
 
 /**
