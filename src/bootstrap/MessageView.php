@@ -1,8 +1,8 @@
 <?php
 namespace braga\widgets\bootstrap;
-use braga\tools\html\HtmlComponent;
-use braga\tools\tools\SessManager;
 use braga\tools\html\BaseTags;
+use braga\tools\html\HtmlComponent;
+use braga\tools\tools\Message;
 /**
  * Created on 05.09.2016 22:43:01
  * error prefix
@@ -12,7 +12,7 @@ use braga\tools\html\BaseTags;
  */
 class MessageView extends HtmlComponent
 {
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
 	public function out()
 	{
 		$retval = $this->getAlerts();
@@ -21,77 +21,65 @@ class MessageView extends HtmlComponent
 		$retval .= $this->getSqlError();
 		return $retval;
 	}
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
 	protected function getAlerts()
 	{
 		$retval = "";
-		if(SessManager::isExist(SessManager::MESSAGE_ALERT))
+		foreach(Message::getInstance()->getAllByTyp(Message::MESSAGE_ALERT) as $m)
+		/** @var \braga\tools\tools\Message $m  */
 		{
-			foreach(SessManager::get(SessManager::MESSAGE_ALERT) as $m)/* @var $m \braga\tools\tools\Message */
-			{
-				$id = "MSG" . getRandomString(5);
-				$w = BaseTags::span($m->getOpis() . BaseTags::sup($m->getNumer(), "class='i' style='padding-left:8px;font-size:75%;'"));
-				$button = BaseTags::button(BaseTags::span("&times;", 'aria-hidden="true"'), 'type="button" class="close" data-dismiss="alert" aria-label="Close"');
-				$retval .= BaseTags::div($w . $button, "class='alert alert-danger alert-dismissible' role='alert' id='" . $id . "'");
-				$retval .= BaseTags::script("$(\"#" . $id . "\").delay(10000).fadeOut();");
-			}
-			SessManager::kill(SessManager::MESSAGE_ALERT);
+			$id = "MSG" . getRandomString(5);
+			$w = BaseTags::span($m->getOpis() . BaseTags::sup($m->getNumer(), "class='i' style='padding-left:8px;font-size:75%;'"));
+			$button = BaseTags::button(BaseTags::span("&times;", 'aria-hidden="true"'), 'type="button" class="close" data-dismiss="alert" aria-label="Close"');
+			$retval .= BaseTags::div($w . $button, "class='alert alert-danger alert-dismissible' role='alert' id='" . $id . "'");
+			$retval .= BaseTags::script("$(\"#" . $id . "\").delay(10000).fadeOut();");
 		}
 		return $retval;
 	}
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
 	protected function getWarning()
 	{
 		$retval = "";
-		if(SessManager::isExist(SessManager::MESSAGE_WARNING))
+		foreach(Message::getInstance()->getAllByTyp(Message::MESSAGE_WARNING) as $m)
+		/** @var \braga\tools\tools\Message $m  */
 		{
-			foreach(SessManager::get(SessManager::MESSAGE_WARNING) as $m)/* @var $m \braga\tools\tools\Message */
-			{
-				$id = "MSG" . getRandomString(5);
-				$w = BaseTags::span($m->getOpis() . BaseTags::sup($m->getNumer(), "class='i' style='padding-left:8px;font-size:75%;'"));
-				$button = BaseTags::button(BaseTags::span("&times;", 'aria-hidden="true"'), 'type="button" class="close" data-dismiss="alert" aria-label="Close"');
-				$retval .= BaseTags::div($w . $button, "class='alert alert-warning alert-dismissible' role='alert' id='" . $id . "'");
-				$retval .= BaseTags::script("$(\"#" . $id . "\").delay(5000).fadeOut();");
-			}
-			SessManager::kill(SessManager::MESSAGE_WARNING);
+			$id = "MSG" . getRandomString(5);
+			$w = BaseTags::span($m->getOpis() . BaseTags::sup($m->getNumer(), "class='i' style='padding-left:8px;font-size:75%;'"));
+			$button = BaseTags::button(BaseTags::span("&times;", 'aria-hidden="true"'), 'type="button" class="close" data-dismiss="alert" aria-label="Close"');
+			$retval .= BaseTags::div($w . $button, "class='alert alert-warning alert-dismissible' role='alert' id='" . $id . "'");
+			$retval .= BaseTags::script("$(\"#" . $id . "\").delay(5000).fadeOut();");
 		}
 		return $retval;
 	}
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
 	protected function getInfo()
 	{
 		$retval = "";
-		if(SessManager::isExist(SessManager::MESSAGE_INFO))
+		foreach(Message::getInstance()->getAllByTyp(Message::MESSAGE_INFO) as $m)
+		/** @var \braga\tools\tools\Message $m  */
 		{
-			foreach(SessManager::get(SessManager::MESSAGE_INFO) as $m)/* @var $m \braga\tools\tools\Message */
-			{
-				$id = "MSG" . getRandomString(5);
-				$w = BaseTags::span($m->getOpis());
-				$button = BaseTags::button(BaseTags::span("&times;", 'aria-hidden="true"'), 'type="button" class="close" data-dismiss="alert" aria-label="Close"');
-				$retval .= BaseTags::div($w . $button, "class='alert alert-success alert-dismissible' role='alert' id='" . $id . "'");
-				$retval .= BaseTags::script("$(\"#" . $id . "\").delay(5000).fadeOut();");
-			}
-			SessManager::kill(SessManager::MESSAGE_INFO);
+			$id = "MSG" . getRandomString(5);
+			$w = BaseTags::span($m->getOpis());
+			$button = BaseTags::button(BaseTags::span("&times;", 'aria-hidden="true"'), 'type="button" class="close" data-dismiss="alert" aria-label="Close"');
+			$retval .= BaseTags::div($w . $button, "class='alert alert-success alert-dismissible' role='alert' id='" . $id . "'");
+			$retval .= BaseTags::script("$(\"#" . $id . "\").delay(5000).fadeOut();");
 		}
 		return $retval;
 	}
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
 	protected function getSqlError()
 	{
 		$retval = "";
-		if(SessManager::isExist(SessManager::MESSAGE_SQL))
+		foreach(Message::getInstance()->getAllByTyp(Message::MESSAGE_SQL) as $m)
+		/** @var \braga\tools\tools\Message $m  */
 		{
-			foreach(SessManager::get(SessManager::MESSAGE_SQL) as $m)/* @var $m \braga\tools\tools\Message */
-			{
-				$id = "MSG" . getRandomString(5);
-				$w = BaseTags::span($m->getOpis() . BaseTags::sup($m->getNumer(), "class='i' style='padding-left:8px;font-size:75%;'"));
-				$button = BaseTags::button(BaseTags::span("&times;", 'aria-hidden="true"'), 'type="button" class="close" data-dismiss="alert" aria-label="Close"');
-				$retval .= BaseTags::div($w . $button, "class='alert alert-danger alert-dismissible' role='alert' id='" . $id . "'");
-			}
-			SessManager::kill(SessManager::MESSAGE_SQL);
+			$id = "MSG" . getRandomString(5);
+			$w = BaseTags::span($m->getOpis() . BaseTags::sup($m->getNumer(), "class='i' style='padding-left:8px;font-size:75%;'"));
+			$button = BaseTags::button(BaseTags::span("&times;", 'aria-hidden="true"'), 'type="button" class="close" data-dismiss="alert" aria-label="Close"');
+			$retval .= BaseTags::div($w . $button, "class='alert alert-danger alert-dismissible' role='alert' id='" . $id . "'");
 		}
 		return $retval;
 	}
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
 }
 ?>
