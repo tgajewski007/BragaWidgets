@@ -18,7 +18,7 @@ class BTCheckBoxFieldTest extends PHPUnit_Framework_TestCase
 		$retval = $f->out();
 		$oczekiwane = BaseTags::input("type='checkbox' value='1'");
 		$oczekiwane = BaseTags::label($oczekiwane);
-		$oczekiwane = BaseTags::div($oczekiwane, "class='checkbox'");
+		$oczekiwane = BaseTags::div($oczekiwane . BaseTags::div("", "class='help-block with-errors'"), "class='checkbox'");
 
 		$this->assertEquals($oczekiwane, $retval);
 	}
@@ -30,7 +30,7 @@ class BTCheckBoxFieldTest extends PHPUnit_Framework_TestCase
 		$retval = $f->out();
 		$oczekiwane = BaseTags::input("type='checkbox' id='StrangeName' name='StrangeName' value='1'");
 		$oczekiwane = BaseTags::label($oczekiwane);
-		$oczekiwane = BaseTags::div($oczekiwane, "class='checkbox'");
+		$oczekiwane = BaseTags::div($oczekiwane . BaseTags::div("", "class='help-block with-errors'"), "class='checkbox'");
 
 		$this->assertEquals($oczekiwane, $retval);
 	}

@@ -17,7 +17,7 @@ class BTTextFieldTest extends PHPUnit_Framework_TestCase
 		$f = new TextField();
 		$retval = $f->out();
 		$oczekiwane = BaseTags::input("type='text' class='form-control'");
-		$oczekiwane = BaseTags::div($oczekiwane, "class='form-group'");
+		$oczekiwane = BaseTags::div($oczekiwane . BaseTags::div("", "class='help-block with-errors'"), "class='form-group'");
 
 		$this->assertEquals($oczekiwane, $retval);
 	}
@@ -29,7 +29,7 @@ class BTTextFieldTest extends PHPUnit_Framework_TestCase
 		$actual = $f->out();
 
 		$expected = BaseTags::input("type='text' id='StrageName' name='StrageName' class='form-control'");
-		$expected = BaseTags::div($expected, "class='form-group'");
+		$expected = BaseTags::div($expected . BaseTags::div("", "class='help-block with-errors'"), "class='form-group'");
 
 		$this->assertEquals($expected, $actual);
 	}
@@ -40,7 +40,7 @@ class BTTextFieldTest extends PHPUnit_Framework_TestCase
 		$f->setWatermark("StrangeName");
 		$retval = $f->out();
 		$oczekiwane = BaseTags::input("placeholder='StrangeName' type='text' class='form-control'");
-		$oczekiwane = BaseTags::div($oczekiwane, "class='form-group'");
+		$oczekiwane = BaseTags::div($oczekiwane . BaseTags::div("", "class='help-block with-errors'"), "class='form-group'");
 
 		$this->assertEquals($oczekiwane, $retval);
 	}
@@ -52,7 +52,7 @@ class BTTextFieldTest extends PHPUnit_Framework_TestCase
 		$retval = $f->out();
 		$oczekiwane = BaseTags::label("StrangeLabel", "for=''");
 		$oczekiwane .= BaseTags::input("type='text' class='form-control'");
-		$oczekiwane = BaseTags::div($oczekiwane, "class='form-group'");
+		$oczekiwane = BaseTags::div($oczekiwane . BaseTags::div("", "class='help-block with-errors'"), "class='form-group'");
 
 		$this->assertEquals($oczekiwane, $retval);
 	}
@@ -63,7 +63,7 @@ class BTTextFieldTest extends PHPUnit_Framework_TestCase
 		$f->setSelected("StrangeValue");
 		$retval = $f->out();
 		$oczekiwane = BaseTags::input("type='text' class='form-control' value='StrangeValue'");
-		$oczekiwane = BaseTags::div($oczekiwane, "class='form-group'");
+		$oczekiwane = BaseTags::div($oczekiwane . BaseTags::div("", "class='help-block with-errors'"), "class='form-group'");
 
 		$this->assertEquals($oczekiwane, $retval);
 	}
@@ -73,8 +73,8 @@ class BTTextFieldTest extends PHPUnit_Framework_TestCase
 		$f = new TextField();
 		$f->setRequired();
 		$retval = $f->out();
-		$oczekiwane = BaseTags::input("type='text' class='form-control' required='true' onblur='checkIsNull(this);' onkeyup='checkIsNull(this);'");
-		$oczekiwane = BaseTags::div($oczekiwane, "class='form-group has-error'");
+		$oczekiwane = BaseTags::input("type='text' class='form-control' required='true'");
+		$oczekiwane = BaseTags::div($oczekiwane . BaseTags::div("", "class='help-block with-errors'"), "class='form-group has-error'");
 
 		$this->assertEquals($oczekiwane, $retval);
 	}
@@ -85,8 +85,8 @@ class BTTextFieldTest extends PHPUnit_Framework_TestCase
 		$f->setRequired();
 		$f->setSelected("StrangeValue");
 		$retval = $f->out();
-		$oczekiwane = BaseTags::input("type='text' class='form-control' value='StrangeValue' required='true' onblur='checkIsNull(this);' onkeyup='checkIsNull(this);'");
-		$oczekiwane = BaseTags::div($oczekiwane, "class='form-group'");
+		$oczekiwane = BaseTags::input("type='text' class='form-control' value='StrangeValue' required='true'");
+		$oczekiwane = BaseTags::div($oczekiwane . BaseTags::div("", "class='help-block with-errors'"), "class='form-group'");
 
 		$this->assertEquals($oczekiwane, $retval);
 	}
