@@ -84,6 +84,7 @@ class BS
 		$field->setName($name);
 		$field->setSelected($value);
 		$field->setLabel($label);
+		$field->setMaxLength($maxLength);
 		return $field->out();
 	}
 	// -------------------------------------------------------------------------
@@ -96,13 +97,14 @@ class BS
 	 * @param number $maxLength
 	 * @return string
 	 */
-	public static function memoField($label, $name, $value = null, $required = false, $maxLength = 255)
+	public static function memoField($label, $name, $value = null, $required = false, $maxLength = 65535)
 	{
 		$field = new MemoField();
 		$field->setRequired($required);
 		$field->setName($name);
 		$field->setSelected($value);
 		$field->setLabel($label);
+		$field->setMaxLength($maxLength);
 		return $field->out();
 	}
 	// -------------------------------------------------------------------------
