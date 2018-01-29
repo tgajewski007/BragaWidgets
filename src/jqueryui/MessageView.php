@@ -33,14 +33,16 @@ class MessageView extends HtmlComponent
 			$wiadomosci .= BaseTags::p(BaseTags::span(BaseTags::i($m->getNumer()), "style='padding-left:8px;float:right;font-size:75%;'") . $m->getOpis(), "class='clear' id='" . $id . "'");
 			$wiadomosci .= BaseTags::script("$(\"#" . $id . "\").parent().parent().delay(10000).hide(\"slide\",{direction: \"up\"})");
 		}
-		$title = icon("ui-icon-alert");
-		$title .= "Alert";
-		$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove(); return false;' " . getToolTip("Zamknij"));
-		$title = BaseTags::div($title, "class='ui-widget-header ui-corner-all ui-helper-clearfix ui-state-highlight' style='padding:2px'");
-		$content = BaseTags::div($wiadomosci, "class='ui-corner-bottom ui-priority-primary clear' style='padding:8px'");
-		$tmp = $title . $content;
-		$retval .= BaseTags::div($tmp, " style='margin-bottom:4px;padding:2px' class='ui-widget-content ui-state-error ui-corner-all'");
-
+		if(!empty($wiadomosci))
+		{
+			$title = icon("ui-icon-alert");
+			$title .= "Alert";
+			$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove(); return false;' " . getToolTip("Zamknij"));
+			$title = BaseTags::div($title, "class='ui-widget-header ui-corner-all ui-helper-clearfix ui-state-highlight' style='padding:2px'");
+			$content = BaseTags::div($wiadomosci, "class='ui-corner-bottom ui-priority-primary clear' style='padding:8px'");
+			$tmp = $title . $content;
+			$retval .= BaseTags::div($tmp, " style='margin-bottom:4px;padding:2px' class='ui-widget-content ui-state-error ui-corner-all'");
+		}
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
@@ -55,14 +57,16 @@ class MessageView extends HtmlComponent
 			$wiadomosci .= BaseTags::p(BaseTags::span(BaseTags::i($m->getNumer()), "style='padding-left:8px;float:right;font-size:75%;'") . $m->getOpis(), "class='clear' id='" . $id . "'");
 			$wiadomosci .= BaseTags::script("$(\"#" . $id . "\").parent().parent().delay(5000).hide(\"slide\",{direction: \"up\"})");
 		}
-		$title = icon("ui-icon-info");
-		$title .= "Ostrzeżenie";
-		$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove();  return false;' " . getToolTip("Zamknij"));
-		$title = BaseTags::div($title, "class='ui-widget-header ui-corner-all ui-helper-clearfix ui-state-error' style='padding:2px'");
-		$content = BaseTags::div($wiadomosci, "class='ui-corner-bottom ui-priority-primary clear' style='padding:8px'");
-		$tmp = $title . $content;
-		$retval .= BaseTags::div($tmp, " style='width:auto;margin-bottom:4px;padding:2px' class='ui-widget-content ui-state-highlight ui-corner-all'");
-
+		if(!empty($wiadomosci))
+		{
+			$title = icon("ui-icon-info");
+			$title .= "Ostrzeżenie";
+			$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove();  return false;' " . getToolTip("Zamknij"));
+			$title = BaseTags::div($title, "class='ui-widget-header ui-corner-all ui-helper-clearfix ui-state-error' style='padding:2px'");
+			$content = BaseTags::div($wiadomosci, "class='ui-corner-bottom ui-priority-primary clear' style='padding:8px'");
+			$tmp = $title . $content;
+			$retval .= BaseTags::div($tmp, " style='width:auto;margin-bottom:4px;padding:2px' class='ui-widget-content ui-state-highlight ui-corner-all'");
+		}
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
@@ -77,14 +81,16 @@ class MessageView extends HtmlComponent
 			$wiadomosci .= BaseTags::p($m->getOpis(), "class='clear' id='" . $id . "'");
 			$wiadomosci .= BaseTags::script("$(\"#" . $id . "\").parent().parent().delay(5000).hide(\"slide\",{direction: \"up\"})");
 		}
-		$title = icon("ui-icon-notice");
-		$title .= "Info";
-		$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove(); return false;' " . getToolTip("Zamknij"));
-		$title = BaseTags::div($title, "class='ui-widget-header ui-corner-all ui-helper-clearfix' style='padding:2px'");
-		$content = BaseTags::div($wiadomosci, "class='ui-corner-bottom ui-priority-primary clear' style='padding:8px'");
-		$tmp = $title . $content;
-		$retval .= BaseTags::div($tmp, " style='width:auto;margin-bottom:4px;padding:2px' class='ui-widget-content ui-state-highlight ui-corner-all'");
-
+		if(!empty($wiadomosci))
+		{
+			$title = icon("ui-icon-notice");
+			$title .= "Info";
+			$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove(); return false;' " . getToolTip("Zamknij"));
+			$title = BaseTags::div($title, "class='ui-widget-header ui-corner-all ui-helper-clearfix' style='padding:2px'");
+			$content = BaseTags::div($wiadomosci, "class='ui-corner-bottom ui-priority-primary clear' style='padding:8px'");
+			$tmp = $title . $content;
+			$retval .= BaseTags::div($tmp, " style='width:auto;margin-bottom:4px;padding:2px' class='ui-widget-content ui-state-highlight ui-corner-all'");
+		}
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
@@ -98,14 +104,16 @@ class MessageView extends HtmlComponent
 			$id = "MSG" . getRandomString(5);
 			$wiadomosci .= BaseTags::p($m->getOpis(), "class='clear' id='" . $id . "'");
 		}
-		$title = icon("ui-icon-alert");
-		$title .= "Info";
-		$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove(); return false;' " . getToolTip("Zamknij"));
-		$title = BaseTags::div($title, "class='ui-widget-header ui-corner-all ui-helper-clearfix' style='padding:2px'");
-		$content = BaseTags::div($wiadomosci, "class='ui-corner-bottom ui-priority-primary clear' style='padding:8px'");
-		$tmp = $title . $content;
-		$retval .= BaseTags::div($tmp, " style='width:auto;margin-bottom:4px;padding:2px' class='ui-widget-content ui-state-highlight ui-corner-all'");
-
+		if(!empty($wiadomosci))
+		{
+			$title = icon("ui-icon-alert");
+			$title .= "Info";
+			$title .= BaseTags::span("", "class='ui-icon ui-icon-close hand' style='float:right;' onclick='\$(this).parent().parent().remove(); return false;' " . getToolTip("Zamknij"));
+			$title = BaseTags::div($title, "class='ui-widget-header ui-corner-all ui-helper-clearfix' style='padding:2px'");
+			$content = BaseTags::div($wiadomosci, "class='ui-corner-bottom ui-priority-primary clear' style='padding:8px'");
+			$tmp = $title . $content;
+			$retval .= BaseTags::div($tmp, " style='width:auto;margin-bottom:4px;padding:2px' class='ui-widget-content ui-state-highlight ui-corner-all'");
+		}
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
