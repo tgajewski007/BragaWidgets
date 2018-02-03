@@ -33,19 +33,17 @@ class FloatField extends \braga\widgets\base\FloatField
 		$class = "form-group";
 		$this->setDefault();
 		$this->addAttrib("placeholder", $this->waterMark);
+		$this->addAttrib("data-error", $this->getMessageWhenValidateFail());
+		$this->addAttrib("pattern", ($this->precision > 0 ? "^[+-]?\d+(\.\d{," . $this->precision . "})?$" : "^[+-]\d+$"));
 
 		if($this->required)
 		{
-			$this->onBlur .= "if(checkReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ")){checkIsNull(this);}";
 			if($this->selected == "")
 			{
 				$class .= " has-error";
 			}
 		}
-		else
-		{
-			$this->onBlur .= "checkReal(this," . $this->minValue . "," . $this->maxValue . "," . $this->precision . ");";
-		}
+		$this->addCustomAttrib();
 
 		$input = parent::out();
 		$label = $this->getLabel();
