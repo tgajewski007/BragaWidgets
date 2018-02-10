@@ -128,35 +128,24 @@ class DBGrid
 			{
 				if(is_null($this->hrefCell))
 				{
-					switch($this->db->getMetaData()->get($i)->getType())
-					{
-						case "int":
-							$content .= BaseTags::td(BaseTags::div($this->db->f($i)), "class='" . $this->contentNumericCellClass . "'");
-							break;
-						case "date":
-							$content .= BaseTags::td(BaseTags::div($this->db->f($i)), "class='" . $this->contentDateCellClass . "'");
-							break;
-						default :
-							$content .= BaseTags::td(BaseTags::div($this->db->f($i)), "class='" . $this->contentStringCellClass . "'");
-							break;
-					}
+					$tmp = $this->db->f($i);
 				}
 				else
 				{
 					$tmp = BaseTags::a($this->db->f($i), "href='" . $this->hrefCell . "' " . $this->getLinkAction());
-					$tmp = $this->repleceStringByField($tmp);
-					switch($this->db->getMetaData()->get($i)->getType())
-					{
-						case "int":
-							$content .= BaseTags::td(BaseTags::div($tmp), "class='" . $this->contentNumericCellClass . "'");
-							break;
-						case "date":
-							$content .= BaseTags::td(BaseTags::div($tmp), "class='" . $this->contentDateCellClass . "'");
-							break;
-						default :
-							$content .= BaseTags::td(BaseTags::div($tmp), "class='" . $this->contentStringCellClass . "'");
-							break;
-					}
+				}
+				$tmp = $this->repleceStringByField($tmp);
+				switch($this->db->getMetaData()->get($i)->getType())
+				{
+					case "int":
+						$content .= BaseTags::td(BaseTags::div($tmp), "class='" . $this->contentNumericCellClass . "'");
+						break;
+					case "date":
+						$content .= BaseTags::td(BaseTags::div($tmp), "class='" . $this->contentDateCellClass . "'");
+						break;
+					default :
+						$content .= BaseTags::td(BaseTags::div($tmp), "class='" . $this->contentStringCellClass . "'");
+						break;
 				}
 			}
 			// dodatkowe kolumny
