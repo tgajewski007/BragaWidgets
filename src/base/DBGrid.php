@@ -131,7 +131,7 @@ class DBGrid
 				{
 					$tmp = $this->db->f($i);
 				}
-				else
+				elseif($this->db->getMetaData()->get($i)->getType() != "widget")
 				{
 					$tmp = BaseTags::a($this->db->f($i), "href='" . $this->hrefCell . "' " . $this->getLinkAction());
 				}
