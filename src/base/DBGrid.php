@@ -127,7 +127,7 @@ class DBGrid
 			$content = BaseTags::td($counter, "class='" . $this->contentNumericCellClass . "' style='padding-right:4px;'");
 			for($i = 0; $i < $this->columnCount; $i++)
 			{
-				if(is_null($this->hrefCell))
+				if(is_null($this->hrefCell) || $this->db->getMetaData()->get($i)->getType() == "widget")
 				{
 					$tmp = $this->db->f($i);
 				}
