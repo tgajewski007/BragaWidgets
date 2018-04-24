@@ -100,7 +100,8 @@ class DBGrid
 	{
 		$tmp = BaseTags::th("L.p.", "class='" . $this->headerCellClass . "' style='width:10px;'");
 
-		foreach($this->db->getMetaData() as $key => $meta)/* @var $meta DataSourceColumnMetaData */
+		foreach($this->db->getMetaData() as $key => $meta)
+		/** @var DataSourceColumnMetaData $meta  */
 		{
 			if($key < $this->columnCount)
 			{
