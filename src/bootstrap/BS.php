@@ -34,6 +34,14 @@ class BS
 		return BaseTags::div($widget, "class='form-group" . ($addHasError ? " hasError" : "") . "'");
 	}
 	// -------------------------------------------------------------------------
+	public static function viewLine($desc, $real)
+	{
+		$retval = BaseTags::div($desc, "class='col-xs-12 col-sm-6 col-md-4 col-md-3'") . BaseTags::div(BaseTags::b($real), "class='col-xs-12 col-sm-6 col-md-8 col-md-9'");
+		$retval = BaseTags::div($retval, "class='row'");
+		$retval = BaseTags::div($retval, "class='form-group'");
+		return $retval;
+	}
+	// -------------------------------------------------------------------------
 	public static function submit($label, $baseClass = 'btn-default btn-block')
 	{
 		return BaseTags::input("type='submit' value='" . $label . "' class='btn " . $baseClass . "'");
