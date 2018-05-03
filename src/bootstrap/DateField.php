@@ -48,14 +48,10 @@ class DateField extends TextField
 		$class = "form-group";
 		$this->setDefaults();
 		$this->addAttrib("placeholder", "RRRR-MM-DD");
-
-		$this->onKeyUp .= "if(!checkRegExPatern(this,/(\d{4})-(\d{2})-(\d{2})/)){return};";
-		$this->onBlur .= "if(!checkRegExPatern(this,/(\d{4})-(\d{2})-(\d{2})/)){return};";
+		$this->addAttrib("pattern", "(\d{4})-(\d{2})-(\d{2})");
 
 		if($this->required)
 		{
-			$this->onKeyUp .= "if(!checkIsNull(this)){return};";
-			$this->onBlur .= "if(!checkIsNull(this)){return};";
 			if($this->selected == "")
 			{
 				$class .= " has-error";
