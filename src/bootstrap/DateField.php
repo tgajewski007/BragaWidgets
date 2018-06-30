@@ -47,6 +47,7 @@ class DateField extends TextField
 	{
 		$class = "form-group";
 		$this->setDefaults();
+		$this->addAttrib("autocomplete", "off");
 		$this->addAttrib("placeholder", "RRRR-MM-DD");
 		$this->addAttrib("pattern", "(\d{4})-(\d{2})-(\d{2})");
 
