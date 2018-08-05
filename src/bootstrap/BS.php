@@ -193,6 +193,18 @@ class BS
 		return self::formRow($l . $i) . BaseTags::script("initBSFileField('" . $name . "')");
 	}
 	// -------------------------------------------------------------------------
+	public static function fileFieldAjax($label, $name, $baseClass = 'btn-default')
+	{
+		$id = getRandomStringLetterOnly(10);
+		$i = BaseTags::input("type='file' id='" . $id . "' name='" . $name . "' class='h'");
+		$i = BaseTags::label("Przeglądaj " . $i, "class='btn block " . $baseClass . "'");
+		$i .= BaseTags::input("type='hidden' name='" . $name . "' id='" . $id . "_hidden'");
+		$l = BaseTags::label($label, "for='" . $id . "'");
+		$fn = BaseTags::input("type='text' id='" . $id . "_file_name' name='" . $name . "_file_name' placeholder='nazwa pliku'");
+		$fn = BaseTags::label("nazwa pliku" . $fn, "class='btn block " . $baseClass . "'");
+		return self::formRow($l . $i . $fn) . BaseTags::script("initBSFileFieldAjax('" . $id . "')");
+	}
+	// -------------------------------------------------------------------------
 	public static function numericField($label, $name, $value, $required = false, $precision = 0)
 	{
 		$field = new FloatField();
