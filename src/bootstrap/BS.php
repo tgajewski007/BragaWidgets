@@ -202,7 +202,41 @@ class BS
 		$l = BaseTags::label($label, "for='" . $id . "'");
 		$fn = BaseTags::input("type='text' id='" . $id . "_file_name' name='" . $name . "_file_name' placeholder='nazwa pliku'");
 		$fn = BaseTags::label("nazwa pliku" . $fn, "class='btn block " . $baseClass . "'");
-		return self::formRow($l . $i . $fn) . BaseTags::script("initBSFileFieldAjax('" . $id . "')");
+		return self::formRow($l . $i . $fn) . BaseTags::script("fileFieldAjax.initBSFileFieldAjax('" . $id . "')");
+		/* Kod do system.js
+		var fileFieldAjax =
+		{
+			initBSFileFieldAjax: function(idSender)
+			{
+				$(document).ready(function()
+				{
+					$('#' + idSender).on('fileselect', function(event, numFiles, label)
+					{
+						$('#' + idSender).parent().contents().first()[0].textContent = 'Wybrano plik: ' + label;
+						});
+						document.getElementById(idSender).addEventListener('change', fileFieldAjax.readFileContent, false);
+						document.getElementById(idSender).idToWriteFileName = idSender + '_file_name';
+				});
+			},
+			readFileContent: function(evt)
+			{
+				var files = evt.target.files; // FileList object
+				var f = files[0];
+				var reader = new FileReader();
+				var hiddenId = '#' + this.id + '_hidden';
+				reader.addEventListener("load", function()
+				{
+					$(hiddenId).val(reader.result);
+					if(evt.target.idToWriteFileName.length > 0)
+					{
+						$('#' + evt.target.idToWriteFileName).val(f.name);
+					}
+				}
+				, false);
+				reader.readAsDataURL(f);
+			}
+		}
+		*/
 	}
 	// -------------------------------------------------------------------------
 	public static function numericField($label, $name, $value, $required = false, $precision = 0)
