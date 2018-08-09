@@ -144,7 +144,7 @@ class BS
 		{
 			$label = BaseTags::label($label, "for='" . $name . "'");
 		}
-		$retval = $label . BaseTags::div($retval);
+		$retval = BaseTags::div($retval . $label);
 		return $retval;
 	}
 	// -------------------------------------------------------------------------

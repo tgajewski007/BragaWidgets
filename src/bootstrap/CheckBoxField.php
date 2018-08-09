@@ -17,7 +17,7 @@ class CheckBoxField extends \braga\widgets\base\CheckBoxField
 	public function out()
 	{
 		$input = parent::out();
-		$retval = BaseTags::label($input . $this->label);
+		$retval = $input . BaseTags::label($this->label);
 		return BaseTags::div($retval . $this->getValidationMessage(), "class='checkbox'");
 	}
 	// -------------------------------------------------------------------------
