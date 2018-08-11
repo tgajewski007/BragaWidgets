@@ -83,7 +83,7 @@ class BS
 		$onClick = "onclick='return ajax.go(this);' ";
 		$class = "class='" . $defaultClass . " list-group-item list-group-item-action' ";
 		$labelHref = "href='" . $labelHref . "' ";
-		$iconHref = faIcon("fa-caret-right fa-lg fa-fw", "onclick='\$(\#" . $idContener . "\").toggle();");
+		$iconHref = faIcon("fa-caret-right fa-lg fa-fw", "onclick='\$(\#" . $idContener . "\").toggle();'");
 
 		return BaseTags::a($iconHref . $label, $labelHref . $class . $onClick) . BaseTags::div($branchContent, "id='" . $idContener . "' class='hidden' style='padding-left:8px;'");
 	}
