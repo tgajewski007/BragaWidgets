@@ -76,6 +76,17 @@ class BS
 		return BaseTags::a($iconHref . $label, $labelHref . $class . $onClick) . BaseTags::div("", "id='" . $idContener . "' class='hidden' style='padding-left:8px;'");
 	}
 	// -------------------------------------------------------------------------
+	public static function listGroupItem($label, $labelHref, $subContent, $iconHref)
+	{
+		$defaultClass = "";
+		$onClick = "onclick='return ajax.go(this);' ";
+		$class = "class='" . $defaultClass . " list-group-item list-group-item-action' ";
+		$labelHref = "href='" . $labelHref . "' ";
+		$iconHref = faIcon("fa-caret-right fa-lg fa-fw");
+
+		return BaseTags::a($iconHref . $label, $labelHref . $class . $onClick) . BaseTags::div($subContent);
+	}
+	// -------------------------------------------------------------------------
 	/**
 	 * @param string $label
 	 * @param string $name
