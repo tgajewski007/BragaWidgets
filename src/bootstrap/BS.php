@@ -76,15 +76,16 @@ class BS
 		return BaseTags::a($iconHref . $label, $labelHref . $class . $onClick) . BaseTags::div("", "id='" . $idContener . "' class='hidden' style='padding-left:8px;'");
 	}
 	// -------------------------------------------------------------------------
-	public static function listGroupItem($label, $labelHref, $subContent, $iconHref)
+	public static function treeList($label, $labelHref, $branchContent)
 	{
+		$idContener = getRandomString(8);
 		$defaultClass = "";
 		$onClick = "onclick='return ajax.go(this);' ";
 		$class = "class='" . $defaultClass . " list-group-item list-group-item-action' ";
 		$labelHref = "href='" . $labelHref . "' ";
-		$iconHref = faIcon("fa-caret-right fa-lg fa-fw");
+		$iconHref = faIcon("fa-caret-right fa-lg fa-fw", "onclick='\$(\#" . $idContener . "\").toggle();");
 
-		return BaseTags::a($iconHref . $label, $labelHref . $class . $onClick) . BaseTags::div($subContent);
+		return BaseTags::a($iconHref . $label, $labelHref . $class . $onClick) . BaseTags::div($branchContent, "id='" . $idContener . "' class='hidden' style='padding-left:8px;'");
 	}
 	// -------------------------------------------------------------------------
 	/**
