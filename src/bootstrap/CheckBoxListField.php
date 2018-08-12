@@ -27,13 +27,16 @@ class CheckBoxListField extends Field
 		$retval = "";
 		foreach($this->dane as $value)/* @var $value WidgetItem */
 		{
-			$a = new CheckBoxField();
-			$a->setName($this->name . "[]");
-			$a->setId($this->id . "_" . $value->getVal());
-			$a->setSelected(isset($this->selected[$value->getVal()]));
-			$a->setValue($value->getVal());
-			$a->setLabel($value->getDesc());
-			$retval .= $a->out();
+
+			$retval .= BS::checkbox2($value->getDesc(), $this->name . "[]", isset($this->selected[$value->getVal()]), $value->getVal());
+
+			// $a = new CheckBoxField();
+			// $a->setName($this->name . "[]");
+			// $a->setId($this->id . "_" . $value->getVal());
+			// $a->setSelected();
+			// $a->setValue($value->getVal());
+			// $a->setLabel($value->getDesc());
+			// $retval .= $a->out();
 		}
 		$label = $this->getLabel();
 		return BaseTags::div($label . $retval, "class='form-group'");
