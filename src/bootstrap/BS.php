@@ -168,29 +168,6 @@ class BS
 	 * @param string $label
 	 * @param string $name
 	 * @param boolean $checked
-	 * @param string $value
-	 * @return string
-	 */
-	public static function radio2($label, $name, $checked = false, $value = null)
-	{
-		$checkedClass = 'fa-dot-circle-o';
-		$unCheckedClass = 'fa-circle-o ';
-		$onChange = "onchange='if(\$(this).prop(\"checked\")){\$(this).parent().removeClass(\"" . $unCheckedClass . "\"); \$(this).parent().addClass(\"" . $checkedClass . "\");}else{\$(this).parent().removeClass(\"" . $checkedClass . "\"); \$(this).parent().addClass(\"" . $unCheckedClass . "\");} return false;'";
-		$retval = BaseTags::input("type='radio' class='h' id='" . $name . "' name='" . $name . "' " . ($checked ? "checked" : "") . " value='" . $value . "' " . $onChange);
-		$onClick = "onclick='\$(this).children().first().click();'";
-		$retval = BaseTags::i($retval, "class='fa fa-lg fa-fw " . ($checked ? $checkedClass : $unCheckedClass) . "' " . $onClick . " style='float:left;'");
-		if(!empty($label))
-		{
-			$label = BaseTags::label($label, "for='" . $name . "' style='display:inline;'");
-		}
-		$retval = BaseTags::div($retval . $label, "style='clear:both; padding:4px 0px'");
-		return $retval;
-	}
-	// -------------------------------------------------------------------------
-	/**
-	 * @param string $label
-	 * @param string $name
-	 * @param boolean $checked
 	 * @return string
 	 */
 	public static function checkbox($label, $name, $checked = false)
