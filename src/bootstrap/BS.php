@@ -155,12 +155,12 @@ class BS
 		$onChange = "onchange='if(\$(this).prop(\"checked\")){\$(this).parent().removeClass(\"" . $unCheckedClass . "\"); \$(this).parent().addClass(\"" . $checkedClass . "\");}else{\$(this).parent().removeClass(\"" . $checkedClass . "\"); \$(this).parent().addClass(\"" . $unCheckedClass . "\");} return false;'";
 		$retval = BaseTags::input("type='checkbox' class='h' id='" . $id . "' name='" . $name . "' " . ($checked ? "checked" : "") . " value='" . $value . "' " . $onChange);
 		$onClick = "onclick='\$(this).children().first().click();'";
-		$retval = BaseTags::i($retval, "class='fa fa-lg fa-fw " . ($checked ? $checkedClass : $unCheckedClass) . "' " . $onClick);
+		$retval = BaseTags::i($retval, "class='fa fa-lg fa-fw " . ($checked ? $checkedClass : $unCheckedClass) . "' " . $onClick . " style='float:left;'");
 		if(!empty($label))
 		{
-			$label = BaseTags::label($label, "for='" . $id . "'");
+			$label = BaseTags::label($label, "for='" . $id . "' style='display:inline;'");
 		}
-		$retval = BaseTags::div($retval . $label);
+		$retval = BaseTags::div($retval . $label, "style='clear:both'");
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
@@ -178,12 +178,12 @@ class BS
 		$onChange = "onchange='if(\$(this).prop(\"checked\")){\$(this).parent().removeClass(\"" . $unCheckedClass . "\"); \$(this).parent().addClass(\"" . $checkedClass . "\");}else{\$(this).parent().removeClass(\"" . $checkedClass . "\"); \$(this).parent().addClass(\"" . $unCheckedClass . "\");} return false;'";
 		$retval = BaseTags::input("type='radio' class='h' id='" . $name . "' name='" . $name . "' " . ($checked ? "checked" : "") . " value='" . $value . "' " . $onChange);
 		$onClick = "onclick='\$(this).children().first().click();'";
-		$retval = BaseTags::i($retval, "class='fa fa-lg fa-fw " . ($checked ? $checkedClass : $unCheckedClass) . "' " . $onClick);
+		$retval = BaseTags::i($retval, "class='fa fa-lg fa-fw " . ($checked ? $checkedClass : $unCheckedClass) . "' " . $onClick) . " style='float:left;'";
 		if(!empty($label))
 		{
-			$label = BaseTags::label($label, "for='" . $name . "'");
+			$label = BaseTags::label($label, "for='" . $name . "' style='display:inline;'");
 		}
-		$retval = BaseTags::div($retval . $label);
+		$retval = BaseTags::div($retval . $label, "style='clear:both'");
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
