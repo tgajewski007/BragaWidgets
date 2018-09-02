@@ -76,6 +76,16 @@ class BS
 		return BaseTags::a($iconHref . $label, $labelHref . $class . $onClick) . BaseTags::div("", "id='" . $idContener . "' class='hidden' style='padding-left:8px;'");
 	}
 	// -------------------------------------------------------------------------
+	public static function treeItemList($activeLink, $branchContent)
+	{
+		$idContener = getRandomString(8);
+		$openCloseIcon = faIcon("fa-caret-right fa-lg fa-fw", "class='hand' onclick='\$(\"#" . $idContener . "\").toggle(); $(this).toggleClass(\"fa-caret-right\"); $(this).toggleClass(\"fa-caret-down\"); '");
+
+		$retval = BaseTags::span($openCloseIcon . $activeLink, "class='list-group-item list-group-item-action' ");
+		$retval .= BaseTags::div($branchContent, "id='" . $idContener . "' style='padding-left:8px;display: none;'");
+		return $retval;
+	}
+	// -------------------------------------------------------------------------
 	/**
 	 * @param string $label
 	 * @param string $name
@@ -134,15 +144,21 @@ class BS
 	 */
 	public static function checkbox2($label, $name, $checked = false, $value = null)
 	{
+		$id = $name;
+		if(strpos($name, "[") !== false)
+		{
+			$id = substr($name, 0, strlen($name) - 2);
+		}
+
 		$checkedClass = 'fa-check-square-o';
 		$unCheckedClass = 'fa-square-o';
 		$onChange = "onchange='if(\$(this).prop(\"checked\")){\$(this).parent().removeClass(\"" . $unCheckedClass . "\"); \$(this).parent().addClass(\"" . $checkedClass . "\");}else{\$(this).parent().removeClass(\"" . $checkedClass . "\"); \$(this).parent().addClass(\"" . $unCheckedClass . "\");} return false;'";
-		$retval = BaseTags::input("type='checkbox' class='h' id='" . $name . "' name='" . $name . "' " . ($checked ? "checked" : "") . " value='" . $value . "' " . $onChange);
+		$retval = BaseTags::input("type='checkbox' class='h' id='" . $id . "' name='" . $name . "' " . ($checked ? "checked" : "") . " value='" . $value . "' " . $onChange);
 		$onClick = "onclick='\$(this).children().first().click();'";
 		$retval = BaseTags::i($retval, "class='fa fa-lg fa-fw " . ($checked ? $checkedClass : $unCheckedClass) . "' " . $onClick);
 		if(!empty($label))
 		{
-			$label = BaseTags::label($label, "for='" . $name . "'");
+			$label = BaseTags::label($label, "for='" . $id . "'");
 		}
 		$retval = BaseTags::div($retval . $label);
 		return $retval;
