@@ -160,7 +160,7 @@ class BS
 		{
 			$label = BaseTags::label($label, "for='" . $id . "' style='display:inline;'");
 		}
-		$retval = BaseTags::div($retval . $label, "style='clear:both'");
+		$retval = BaseTags::div($retval . $label, "style='clear:both; padding:4px 0px'");
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
@@ -183,7 +183,7 @@ class BS
 		{
 			$label = BaseTags::label($label, "for='" . $name . "' style='display:inline;'");
 		}
-		$retval = BaseTags::div($retval . $label, "style='clear:both'");
+		$retval = BaseTags::div($retval . $label, "style='clear:both; padding:4px 0px'");
 		return $retval;
 	}
 	// -------------------------------------------------------------------------
