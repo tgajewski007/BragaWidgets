@@ -12,7 +12,6 @@ class DBGrid
 {
 	// -------------------------------------------------------------------------
 	/**
-	 *
 	 * @var DataSource
 	 */
 	protected $db = null;
@@ -34,6 +33,19 @@ class DBGrid
 	protected $hrefReplaceArray = array();
 	protected $additionalColumn = array();
 	protected $lpCounter = 1;
+	// -------------------------------------------------------------------------
+	/**
+	 * @var boolean
+	 */
+	protected $showLpColumn = true;
+	// -----------------------------------------------------------------------------------------------------------------
+	/**
+	 * @param boolean $showLpColumn
+	 */
+	public function hideLpColumn()
+	{
+		$this->showLpColumn = false;
+	}
 	// -------------------------------------------------------------------------
 	public function setHrefActionString($href)
 	{
@@ -71,7 +83,6 @@ class DBGrid
 	}
 	// -------------------------------------------------------------------------
 	/**
-	 *
 	 * @return string HtmlTableElement
 	 * @param boolean $tagTable
 	 */
@@ -98,8 +109,12 @@ class DBGrid
 	// -------------------------------------------------------------------------
 	protected function getHeader()
 	{
-		$tmp = BaseTags::th("L.p.", "class='" . $this->headerCellClass . "' style='width:10px;'");
+		$tmp = "";
 
+		if($this->showLpColumn)
+		{
+			$tmp .= BaseTags::th("L.p.", "class='" . $this->headerCellClass . "' style='width:10px;'");
+		}
 		foreach($this->db->getMetaData() as $key => $meta)
 		/** @var DataSourceColumnMetaData $meta  */
 		{
@@ -123,8 +138,12 @@ class DBGrid
 		$a = 0;
 		while($this->db->nextRecord())
 		{
-			$counter = $this->lpCounter + $a;
-			$content = BaseTags::td($counter, "class='" . $this->contentNumericCellClass . "' style='padding-right:4px;'");
+			$content = "";
+			if($this->showLpColumn)
+			{
+				$counter = $this->lpCounter + $a;
+				$content .= BaseTags::td($counter, "class='" . $this->contentNumericCellClass . "' style='padding-right:4px;'");
+			}
 			for($i = 0; $i < $this->columnCount; $i++)
 			{
 				if(is_null($this->hrefCell) || $this->db->getMetaData()->get($i)->getType() == "widget")

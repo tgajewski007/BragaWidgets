@@ -19,7 +19,7 @@ class DBGrid extends \braga\widgets\base\DBGrid
 	protected $contentStringCellClass = "";
 	protected $contentDateCellClass = "c";
 	protected $rowClass = array(
-			"");
+					"" );
 	// -------------------------------------------------------------------------
 	protected function getLinkAction()
 	{
