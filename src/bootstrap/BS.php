@@ -59,7 +59,7 @@ class BS
 	// -------------------------------------------------------------------------
 	public static function listItemAjaxLink($href, $label, $defaultClass = "")
 	{
-		$onClick = "onclick='return ajax.go(this);' ";
+		$onClick = "onclick='ajax.go(this); return false;' ";
 		$class = "class='" . $defaultClass . " list-group-item list-group-item-action' ";
 		$href = "href='" . $href . "' ";
 		return BaseTags::a($label, $href . $class . $onClick);
