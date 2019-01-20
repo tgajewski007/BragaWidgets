@@ -33,6 +33,10 @@ class RadioField extends Field
 		{
 			$this->addAttrib("checked", "checked");
 		}
+		if($this->required)
+		{
+			$this->addAttrib("required", "true");
+		}
 		$this->addEvents();
 		$this->addCustomAttrib();
 		return BaseTags::input($this->attrib);
