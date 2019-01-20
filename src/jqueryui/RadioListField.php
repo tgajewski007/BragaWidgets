@@ -12,6 +12,7 @@ use braga\widgets\base\Field;
  */
 class RadioListField extends Field
 {
+	use ClassFactory;
 	// -------------------------------------------------------------------------
 	protected $dane = array();
 	// -------------------------------------------------------------------------
@@ -29,6 +30,12 @@ class RadioListField extends Field
 			$a->setName($this->name);
 			$a->setSelected($this->selected == $value->getVal());
 			$a->setValue($value->getVal());
+			if(empty($this->selected) && $this->required)
+			{
+				$this->setClassString($this->getErrorClass());
+				$onClick = "\$(this).removeClass(\"" . $this->getErrorClass() . "\")";
+				$a->setOnClick($onClick);
+			}
 			$retval .= BaseTags::p($a->out() . BaseTags::label($value->getDesc()));
 		}
 		return BaseTags::div($retval, "class='ui-widget-content ui-corner-all'");
