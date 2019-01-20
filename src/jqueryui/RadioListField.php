@@ -33,8 +33,6 @@ class RadioListField extends Field
 			if(empty($this->selected) && $this->required)
 			{
 				$a->setRequired();
-				$onClick = "\$(this).parent().parent().find(\"p input\").removeAttr(\"required\");";
-				$a->setOnClick($onClick);
 			}
 			$retval .= BaseTags::p($a->out() . BaseTags::label($value->getDesc()));
 		}
