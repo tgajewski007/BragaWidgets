@@ -33,10 +33,11 @@ class RadioListField extends Field
 			if(empty($this->selected) && $this->required)
 			{
 				$a->setClassString($this->getErrorClass());
-				$onClick = "\$(this).removeClass(\"" . $this->getErrorClass() . "\")";
+				$onClick = "\$(this).parent().parent('p').removeClass(\"" . $this->getErrorClass() . "\");";
+				$onClick .= "\$(this).parent().parent('p input').removeClass(\"" . $this->getErrorClass() . "\");";
 				$a->setOnClick($onClick);
 			}
-			$retval .= BaseTags::p($a->out() . BaseTags::label($value->getDesc()));
+			$retval .= BaseTags::p($a->out() . BaseTags::label($value->getDesc()), "class='" . ((empty($this->selected) && $this->required) ? $this->getErrorClass() : "") . "'");
 		}
 		return BaseTags::div($retval, "class='ui-widget-content ui-corner-all'");
 	}
