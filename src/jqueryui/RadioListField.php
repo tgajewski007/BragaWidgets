@@ -32,7 +32,7 @@ class RadioListField extends Field
 			$a->setValue($value->getVal());
 			if(empty($this->selected) && $this->required)
 			{
-				$this->setClassString($this->getErrorClass());
+				$a->setClassString($this->getErrorClass());
 				$onClick = "\$(this).removeClass(\"" . $this->getErrorClass() . "\")";
 				$a->setOnClick($onClick);
 			}
