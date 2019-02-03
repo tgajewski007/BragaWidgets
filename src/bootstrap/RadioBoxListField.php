@@ -32,6 +32,10 @@ class RadioBoxListField extends Field
 			$a->setSelected($this->selected == $value->getVal());
 			$a->setValue($value->getVal());
 			$a->setLabel($value->getDesc());
+			if(empty($this->selected) && $this->required)
+			{
+				$a->setRequired();
+			}
 			$retval .= $a->out();
 		}
 		$label = $this->getLabel();
