@@ -79,7 +79,7 @@ class DropDownListField extends Field
 			}
 			$options .= $this->getOptionGroup($key, $opt);
 		}
-		return $options; // kasia kocha tomka :))
+		return $options;
 	}
 	// -------------------------------------------------------------------------
 	protected function getSimpleOptions()
