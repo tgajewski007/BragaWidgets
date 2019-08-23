@@ -36,7 +36,6 @@ class FloatField extends \braga\widgets\base\FloatField
 		$this->addAttrib("data-error", $this->getMessageWhenValidateFail());
 		$this->addAttrib("pattern", ($this->precision > 0 ? "^[+-]?\d+(\.\d{0," . $this->precision . "})?$" : "^[+-]?\d+$"));
 		$this->setOnKeyUp("\$(this).val(\$(this).val().replace(\",\",\".\"));" . $this->onKeyUp);
-
 		if($this->required)
 		{
 			if($this->selected == "")
