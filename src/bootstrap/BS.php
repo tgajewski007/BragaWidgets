@@ -267,15 +267,4 @@ class BS
 		return "title='" . $txt . "' data-toggle='tooltip' data-placement='" . $position . "'";
 	}
 	// -------------------------------------------------------------------------
-	public static function listGroupItem($label, $groupContent)
-	{
-		$defaultClass = "";
-		$idContener = getRandomStringLetterOnly(8);
-		$class = "class='" . $defaultClass . " list-group-item list-group-item-action' ";
-		$iconHref = faIcon("fa-caret-right fa-lg fa-fw");
-		$onClick = "onclick='listGroupItem(event, this,\"" . $idContener . "\");return false;'";
-
-		return BaseTags::a($iconHref . $label, $class . $onClick) . BaseTags::div($groupContent, "id='" . $idContener . "' class='hidden' style='padding-left:8px;'");
-	}
-	// -------------------------------------------------------------------------
 }
