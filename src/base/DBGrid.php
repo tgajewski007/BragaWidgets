@@ -116,7 +116,7 @@ class DBGrid
 			$tmp .= BaseTags::th("L.p.", "class='" . $this->headerCellClass . "' style='width:10px;'");
 		}
 		foreach($this->db->getMetaData() as $key => $meta)
-		/** @var DataSourceColumnMetaData $meta  */
+		/** @var \braga\db\DataSourceColumnMetaData $meta  */
 		{
 			if($key < $this->columnCount)
 			{
