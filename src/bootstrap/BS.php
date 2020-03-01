@@ -270,7 +270,7 @@ class BS
 	public static function listGroupItem($label, $groupContent)
 	{
 		$defaultClass = "";
-		$idContener = getRandomString(8);
+		$idContener = getRandomStringLetterOnly(8);
 		$class = "class='" . $defaultClass . " list-group-item list-group-item-action' ";
 		$iconHref = faIcon("fa-caret-right fa-lg fa-fw");
 		$onClick = "onclick='listGroupItem(event, this,\"" . $idContener . "\");return false;'";
