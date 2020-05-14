@@ -53,9 +53,11 @@ class DateTimeField extends TextField
 				$class .= " has-error";
 			}
 		}
-		$showCalendarButton = BaseTags::button(faicon("fa-calendar"), "class='btn btn-default' type='button''");
-		$showCalendarButton = BaseTags::span($showCalendarButton, "class='input-group-btn'");
-		$retval = BaseTags::div(BaseTags::input("name='" . $this->id . "' autocomplete='off' class='form-control' placeholder='RRRR-MM-DD GG:MM' pattern='(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})' onfocus='\$(\"#" . $this->id . "\").data(\"DateTimePicker\").show();") . $showCalendarButton, "class='input-group' id='" . $this->id . "'");
+
+		$input = BaseTags::input("name='" . $this->name . "' autocomplete='off' class='form-control' placeholder='RRRR-MM-DD GG:MM' pattern='(\d{4})-(\d{2})-(\d{2}) (\d{4}):(\d{2})' onfocus='\$(\"#" . $this->id . "\").data(\"DateTimePicker\").show();");
+		$showCalendarButton = BaseTags::span("", "class='glyphicon glyphicon-calendar'");
+		$showCalendarButton .= BaseTags::span($showCalendarButton, "class='input-group-addon'");
+		$retval = BaseTags::div($input . $showCalendarButton, "class='input-group' id='" . $this->id . "'");
 		$label = $this->getLabel();
 		return BaseTags::div($label . $retval . $this->getValidationMessage(), "class='" . $class . "'") . BaseTags::script("\$(\"#" . $this->id . "\").datetimepicker({format:\"YYYY-MM-DD HH:mm\",locale:\"pl\", sideBySide : true});");
 	}
