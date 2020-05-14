@@ -1,14 +1,7 @@
 <?php
 namespace braga\widgets\bootstrap;
 use braga\tools\html\BaseTags;
-use braga\widgets\base\TextField;
-
-/**
- * @author Tomasz.Gajewski
- * Created on 2016-07-14 12:27:37
- * klasa odpowiedzialna za wygenerowanie formatki wyboru daty
- */
-class DateField extends TextField
+class DateTimeField extends TextField
 {
 	use AddLabels;
 	use ClassFactory;
@@ -61,7 +54,7 @@ class DateField extends TextField
 		$showCalendarButton = BaseTags::span($showCalendarButton, "class='input-group-btn'");
 		$retval = BaseTags::div(parent::out() . $showCalendarButton, "class='input-group'");
 		$label = $this->getLabel();
-		return BaseTags::div($label . $retval . $this->getValidationMessage(), "class='" . $class . "'") . BaseTags::script("\$(\"#" . $this->id . "\").datetimepicker({format:\"YYYY-MM-DD\",locale:\"pl\"});");
+		return BaseTags::div($label . $retval . $this->getValidationMessage(), "class='" . $class . "'") . BaseTags::script("\$(\"#" . $this->id . "\").datetimepicker({format:\"YYYY-MM-DD HH:mm\",locale:\"pl\", sideBySide : true});");
 	}
 	// -------------------------------------------------------------------------
 }

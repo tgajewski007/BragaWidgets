@@ -267,4 +267,21 @@ class BS
 		return "title='" . $txt . "' data-toggle='tooltip' data-placement='" . $position . "'";
 	}
 	// -------------------------------------------------------------------------
+	/**
+	 * @param string $label
+	 * @param string $name
+	 * @param string $value
+	 * @param string $required
+	 * @return string
+	 */
+	public static function dateTimeField($label, $name, $value, $required = false)
+	{
+		$field = new DateTimeField();
+		$field->setName($name);
+		$field->setSelected($value);
+		$field->setLabel($label);
+		$field->setRequired($required);
+		return $field->out();
+	}
+	// -------------------------------------------------------------------------
 }
