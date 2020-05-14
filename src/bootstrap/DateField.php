@@ -46,9 +46,6 @@ class DateField extends TextField
 	{
 		$class = "form-group";
 		$this->setDefaults();
-		$this->addAttrib("autocomplete", "off");
-		$this->addAttrib("placeholder", "RRRR-MM-DD");
-		$this->addAttrib("pattern", "(\d{4})-(\d{2})-(\d{2})");
 
 		if($this->required)
 		{
@@ -57,9 +54,9 @@ class DateField extends TextField
 				$class .= " has-error";
 			}
 		}
-		$showCalendarButton = BaseTags::button(faicon("fa-calendar"), "class='btn btn-default' type='button' onclick='\$(\"#" . $this->id . "\").data('DateTimePicker').show();'");
+		$showCalendarButton = BaseTags::button(faicon("fa-calendar"), "class='btn btn-default' type='button''");
 		$showCalendarButton = BaseTags::span($showCalendarButton, "class='input-group-btn'");
-		$retval = BaseTags::div(parent::out() . $showCalendarButton, "class='input-group'");
+		$retval = BaseTags::div(BaseTags::input("name='" . $this->id . "' autocomplete='off' class='form-control' placeholder='RRRR-MM-DD' pattern='(\d{4})-(\d{2})-(\d{2}))' onfocus='\$(\"#" . $this->id . "\").data(\"DateTimePicker\").show();") . $showCalendarButton, "class='input-group' id='" . $this->id . "'");
 		$label = $this->getLabel();
 		return BaseTags::div($label . $retval . $this->getValidationMessage(), "class='" . $class . "'") . BaseTags::script("\$(\"#" . $this->id . "\").datetimepicker({format:\"YYYY-MM-DD\",locale:\"pl\"});");
 	}
