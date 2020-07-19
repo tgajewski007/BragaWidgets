@@ -1,5 +1,7 @@
 <?php
+
 namespace braga\widgets\bootstrap;
+
 use braga\tools\html\BaseTags;
 
 /**
@@ -59,7 +61,7 @@ class BS
 	// -------------------------------------------------------------------------
 	public static function listItemAjaxLink($href, $label, $defaultClass = "")
 	{
-		$onClick = "onclick='ajax.go(this); return false;' ";
+		$onClick = "onclick='$(this).parent().children(\"a\").removeClass(\"active\");setTimeout(function(sender){\$(sender).addClass(\"active\")}(this), 50);ajax.go(this); return false;' ";
 		$class = "class='" . $defaultClass . " list-group-item list-group-item-action' ";
 		$href = "href='" . $href . "' ";
 		return BaseTags::a($label, $href . $class . $onClick);
