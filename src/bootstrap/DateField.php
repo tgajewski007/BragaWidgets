@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\bootstrap;
-
 use braga\tools\html\BaseTags;
 use braga\widgets\base\TextField;
 
@@ -57,7 +55,7 @@ class DateField extends TextField
 			}
 		}
 
-		$input = BaseTags::input("id='" . $this->id . "' name='" . $this->name . "' value='" . $this->selected . "' autocomplete='off' class='form-control' placeholder='RRRR-MM-DD' pattern='(\d{4})-(\d{2})-(\d{2})' onfocus='\$(\"#" . $this->id . "\").data(\"DateTimePicker\").show();'");
+		$input = BaseTags::input("name='" . $this->name . "' value='" . $this->selected . "' autocomplete='off' class='form-control' placeholder='RRRR-MM-DD' pattern='(\d{4})-(\d{2})-(\d{2})' onfocus='\$(\"#" . $this->id . "\").data(\"DateTimePicker\").show();'");
 		$showCalendarButton = BaseTags::span("", "class='glyphicon glyphicon-calendar'");
 		$showCalendarButton = BaseTags::span($showCalendarButton, "class='input-group-addon'");
 		$retval = BaseTags::div($input . $showCalendarButton, "class='input-group date' id='" . $this->id . "'");
