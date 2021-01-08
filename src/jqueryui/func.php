@@ -13,6 +13,7 @@ use braga\widgets\jqueryui\CheckBoxField;
  * error prefix
  * @author Tomasz Gajewski
  * @package
+ * @deprecated
  *
  */
 
