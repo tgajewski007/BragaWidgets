@@ -49,13 +49,17 @@ class Accordion extends HtmlComponent
 
 			$rndId = getRandomStringLetterOnly(8);
 			$retval .= BaseTags::div($heading . $content, 'class="panel panel-default" id="' . $rndId . '"');
-			if(!empty($item->getOnShowCallbackFunction()))
+			if(!empty($item->getOnShowJavaScript()))
 			{
-				$script .= "\$(\#" . $rndId . "\").on(\"show.bs.collapse\", function() {" . $item->getOnShowCallbackFunction() . "});";
+				$script .= "\$(\#" . $rndId . "\").on(\"show.bs.collapse\", function() {" . $item->getOnShowJavaScript() . "});";
+				if($item->getId() == $this->openIdItem)
+				{
+					$script .= $item->getOnShowJavaScript();
+				}
 			}
-			if(!empty($item->getUrlDynamicContent()))
+			if(!empty($item->getOnLoadJavaScript()))
 			{
-				$script .= "ajax.get(\"" . $item->getUrlDynamicContent() . "\");";
+				$script .= $item->getOnLoadJavaScript();
 			}
 		}
 		return BaseTags::div($retval, "id='" . $idAccordion . "' class='panel-group' ") . (empty($script) ? "" : BaseTags::script($script));
