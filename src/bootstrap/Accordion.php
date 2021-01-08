@@ -13,7 +13,6 @@ class Accordion extends HtmlComponent
 {
 	// -------------------------------------------------------------------------
 	/**
-	 *
 	 * @var array
 	 */
 	protected $items = array();
@@ -37,6 +36,7 @@ class Accordion extends HtmlComponent
 	{
 		$idAccordion = "A" . getRandomString(8);
 		$retval = "";
+		$script = "";
 		foreach($this->items as $item)/* @var $item AccordionItem */
 		{
 			$content = BaseTags::div($item->getContent(), "class='panel-body'");
@@ -47,9 +47,18 @@ class Accordion extends HtmlComponent
 			$heading = BaseTags::h4($heading, 'class="panel-title"');
 			$heading = BaseTags::div($heading, 'class="panel-heading"');
 
-			$retval .= BaseTags::div($heading . $content, 'class="panel panel-default"');
+			$rndId = getRandomStringLetterOnly(8);
+			$retval .= BaseTags::div($heading . $content, 'class="panel panel-default" id="' . $rndId . '"');
+			if(!empty($item->getOnShowCallbackFunction()))
+			{
+				$script .= "\$(\#" . $rndId . "\").on(\"show.bs.collapse\", function() {" . $item->getOnShowCallbackFunction() . "});";
+			}
+			if(!empty($item->getUrlDynamicContent()))
+			{
+				$script .= "ajax.get(\"" . $item->getUrlDynamicContent() . "\");";
+			}
 		}
-		return BaseTags::div($retval, "id='" . $idAccordion . "' class='panel-group' ");
+		return BaseTags::div($retval, "id='" . $idAccordion . "' class='panel-group' ") . (empty($script) ? "" : BaseTags::script($script));
 	}
 	// -------------------------------------------------------------------------
 }
