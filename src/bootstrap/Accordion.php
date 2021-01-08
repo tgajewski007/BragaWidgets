@@ -51,7 +51,7 @@ class Accordion extends HtmlComponent
 			$retval .= BaseTags::div($heading . $content, 'class="panel panel-default" id="' . $rndId . '"');
 			if(!empty($item->getOnShowJavaScript()))
 			{
-				$script .= "\$(\#" . $rndId . "\").on(\"show.bs.collapse\", function() {" . $item->getOnShowJavaScript() . "});";
+				$script .= "\$(#" . $rndId . "\").on(\"show.bs.collapse\", function() {" . $item->getOnShowJavaScript() . "});";
 				if($item->getId() == $this->openIdItem)
 				{
 					$script .= $item->getOnShowJavaScript();
