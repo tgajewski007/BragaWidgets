@@ -152,7 +152,7 @@ class BS
 		$retval = BaseTags::i($retval, "class='fa fa-lg fa-fw " . ($checked ? $checkedClass : $unCheckedClass) . "' " . $onClick . " style='float:left;'");
 		if(!empty($label))
 		{
-			$label = BaseTags::label($label, "for='" . $id . "' style='display:inline;'");
+			$label = BaseTags::label($label, "for='" . $name . "' style='display:inline;'");
 		}
 		$retval = BaseTags::div($retval . $label, "style='clear:both; padding:4px 0px'");
 		return $retval;
