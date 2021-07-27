@@ -1,7 +1,5 @@
 <?php
-
 namespace braga\widgets\bootstrap;
-
 use braga\tools\html\BaseTags;
 
 /**
@@ -146,16 +144,10 @@ class BS
 	 */
 	public static function checkbox2($label, $name, $checked = false, $value = null)
 	{
-		$id = $name;
-		if(strpos($name, "[") !== false)
-		{
-			$id = substr($name, 0, strlen($name) - 2);
-		}
-
 		$checkedClass = 'fa-check-square-o';
 		$unCheckedClass = 'fa-square-o';
 		$onChange = "onchange='if(\$(this).prop(\"checked\")){\$(this).parent().removeClass(\"" . $unCheckedClass . "\"); \$(this).parent().addClass(\"" . $checkedClass . "\");}else{\$(this).parent().removeClass(\"" . $checkedClass . "\"); \$(this).parent().addClass(\"" . $unCheckedClass . "\");} return false;'";
-		$retval = BaseTags::input("type='checkbox' class='h' id='" . $id . "' name='" . $name . "' " . ($checked ? "checked" : "") . " value='" . $value . "' " . $onChange);
+		$retval = BaseTags::input("type='checkbox' class='h' id='" . $name . "' name='" . $name . "' " . ($checked ? "checked" : "") . " value='" . $value . "' " . $onChange);
 		$onClick = "onclick='\$(this).children().first().click();'";
 		$retval = BaseTags::i($retval, "class='fa fa-lg fa-fw " . ($checked ? $checkedClass : $unCheckedClass) . "' " . $onClick . " style='float:left;'");
 		if(!empty($label))
