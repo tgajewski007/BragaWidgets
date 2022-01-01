@@ -21,15 +21,15 @@ class MemoField extends \braga\widgets\base\MemoField
 		$this->maxLength = $maxLength;
 	}
 	// -------------------------------------------------------------------------
-	protected function setDefault()
+	protected function updateClassString()
 	{
-		$this->setClassString($this->getBaseClass());
+		$this->classString .= " " . $this->getBaseClass();
 	}
 	// -------------------------------------------------------------------------
 	public function out()
 	{
 		$class = "form-group";
-		$this->setDefault();
+		$this->updateClassString();
 
 		if($this->required)
 		{

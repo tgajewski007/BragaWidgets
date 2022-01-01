@@ -21,7 +21,6 @@ class TextField extends \braga\widgets\base\TextField
 	protected $minLength;
 	// -----------------------------------------------------------------------------------------------------------------
 	/**
-	 *
 	 * @return mixed
 	 */
 	public function getMinLength()
@@ -30,7 +29,6 @@ class TextField extends \braga\widgets\base\TextField
 	}
 	// -----------------------------------------------------------------------------------------------------------------
 	/**
-	 *
 	 * @param mixed $minLength
 	 */
 	public function setMinLength($minLength)
@@ -47,16 +45,16 @@ class TextField extends \braga\widgets\base\TextField
 	{
 		$this->waterMark = $w;
 	}
-	// -----------------------------------------------------------------------------------------------------------------
-	protected function setDefault()
+	// ------------------------------------------------------------------------
+	protected function updateClassString()
 	{
-		$this->setClassString($this->getBaseClass());
+		$this->classString .= " " . $this->getBaseClass();
 	}
 	// -----------------------------------------------------------------------------------------------------------------
 	public function out()
 	{
 		$class = "form-group";
-		$this->setDefault();
+		$this->updateClassString();
 		$this->addAttrib("placeholder", $this->waterMark);
 		$this->addAttrib("data-minlength", $this->getMinLength());
 		$this->addAttrib("data-error", $this->getMessageWhenValidateFail());

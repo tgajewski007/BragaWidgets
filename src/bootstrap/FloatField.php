@@ -22,16 +22,16 @@ class FloatField extends \braga\widgets\base\FloatField
 	{
 		$this->waterMark = $w;
 	}
-	// -------------------------------------------------------------------------
-	protected function setDefault()
+	// ------------------------------------------------------------------------
+	protected function updateClassString()
 	{
-		$this->setClassString($this->getBaseClass());
+		$this->classString .= " " . $this->getBaseClass();
 	}
 	// -------------------------------------------------------------------------
 	public function out()
 	{
 		$class = "form-group";
-		$this->setDefault();
+		$this->updateClassString();
 		$this->addAttrib("placeholder", $this->waterMark);
 		$this->addAttrib("data-error", $this->getMessageWhenValidateFail());
 		$this->addAttrib("pattern", ($this->precision > 0 ? "^[+-]?\d+(\.\d{0," . $this->precision . "})?$" : "^[+-]?\d+$"));
