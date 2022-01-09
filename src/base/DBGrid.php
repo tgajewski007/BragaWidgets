@@ -11,6 +11,11 @@ use braga\db\DataSource;
 class DBGrid
 {
 	// -------------------------------------------------------------------------
+	const TYPE_TEXT = "text";
+	const TYPE_DATE = "date";
+	const TYPE_NUMBER = "int";
+	const TYPE_WIDGET = "widget";
+	// -------------------------------------------------------------------------
 	/**
 	 * @var DataSource
 	 */
@@ -146,21 +151,21 @@ class DBGrid
 			}
 			for($i = 0; $i < $this->columnCount; $i++)
 			{
-				if(is_null($this->hrefCell) || $this->db->getMetaData()->get($i)->getType() == "widget")
+				if(is_null($this->hrefCell) || $this->db->getMetaData()->get($i)->getType() == self::TYPE_WIDGET)
 				{
 					$tmp = $this->db->f($i);
 				}
-				elseif($this->db->getMetaData()->get($i)->getType() != "widget")
+				elseif($this->db->getMetaData()->get($i)->getType() != self::TYPE_WIDGET)
 				{
 					$tmp = BaseTags::a($this->db->f($i), "href='" . $this->hrefCell . "' " . $this->getLinkAction());
 				}
 				$tmp = $this->repleceStringByField($tmp);
 				switch($this->db->getMetaData()->get($i)->getType())
 				{
-					case "int":
+					case self::TYPE_NUMBER:
 						$content .= BaseTags::td(BaseTags::div($tmp), "class='" . $this->contentNumericCellClass . "'");
 						break;
-					case "date":
+					case self::TYPE_DATE:
 						$content .= BaseTags::td(BaseTags::div($tmp), "class='" . $this->contentDateCellClass . "'");
 						break;
 					default :
