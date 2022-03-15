@@ -31,8 +31,11 @@ class DropDownListField extends \braga\widgets\base\DropDownListField
 		}
 		if($this->required)
 		{
-			$class .= " has-error";
 			$this->addAttrib("required", "true");
+			if(empty($this->selected))
+			{
+				$class .= " has-error";
+			}
 		}
 		$input = parent::out();
 		$label = $this->getLabel();
