@@ -25,9 +25,12 @@ class DropDownListField extends \braga\widgets\base\DropDownListField
 	{
 		$class = "form-group";
 		$this->setDefault();
-		if($this->required && empty($this->selected))
+		if(empty($this->selected))
 		{
 			$this->addAttrib("title", $this->requiredText);
+		}
+		if($this->required)
+		{
 			$class .= " has-error";
 			$this->addAttrib("required", "true");
 		}
