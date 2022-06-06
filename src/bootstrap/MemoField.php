@@ -37,7 +37,7 @@ class MemoField extends \braga\widgets\base\MemoField
 			$this->onBlur .= "checkIsNull(this);";
 			if($this->selected == "")
 			{
-				$this->classString .= " " . $this->getErrorClass();
+				$class .= " has-error";
 			}
 		}
 		$input = parent::out();
