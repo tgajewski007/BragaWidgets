@@ -56,23 +56,23 @@ class DateField extends TextField
 		}
 
 		$atr = [];
-		$atr["name"] = "'" . $this->name . "'";
-		$atr["value"] = "'" . $this->selected . "'";
-		$atr["autocomplete"] = "'off'";
-		$atr["class"] = "'form-control'";
-		$atr["placeholder"] = "'RRRR-MM-DD'";
-		$atr["pattern"] = "'(\d{4})-(\d{2})-(\d{2})'";
-		$atr["onfocus"] = "'\$(\"#" . $this->id . "\").data(\"DateTimePicker\").show();" . $this->onFocus . "'";
-		$atr["onchange"] = "'" . $this->onChange . "'";
-		$atr["onblur"] = "'" . $this->onBlur . "'";
-		$atr["onkeydown"] = "'" . $this->onKeyDown . "'";
-		$atr["onkeyup"] = "'" . $this->onKeyUp . "'";
-		$atr["onmouseout"] = "'" . $this->onMouseOut . "'";
-		$atr["onmouseover"] = "'" . $this->onMouseOver . "'";
-		$atr["onmouseout"] = "'" . $this->onMouseOut . "'";
+		$atr[] = "name='" . $this->name . "'";
+		$atr[] = "value='" . $this->selected . "'";
+		$atr[] = "autocomplete='off'";
+		$atr[] = "class='form-control'";
+		$atr[] = "placeholder='RRRR-MM-DD'";
+		$atr[] = "pattern='(\d{4})-(\d{2})-(\d{2})'";
+		$atr[] = "onfocus='\$(\"#" . $this->id . "\").data(\"DateTimePicker\").show();" . $this->onFocus . "'";
+		$atr[] = "onchange='" . $this->onChange . "'";
+		$atr[] = "onblur='" . $this->onBlur . "'";
+		$atr[] = "onkeydown='" . $this->onKeyDown . "'";
+		$atr[] = "onkeyup='" . $this->onKeyUp . "'";
+		$atr[] = "onmouseout='" . $this->onMouseOut . "'";
+		$atr[] = "onmouseover='" . $this->onMouseOver . "'";
+		$atr[] = "onmouseout='" . $this->onMouseOut . "'";
 		if($this->required)
 		{
-			$atr["required"] = "'true'";
+			$atr[] = "required='true'";
 		}
 
 		$input = BaseTags::input(implode(" ", $atr));
