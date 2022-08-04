@@ -81,7 +81,14 @@ class DateField extends TextField
 		$showCalendarButton = BaseTags::span($showCalendarButton, "class='input-group-addon'");
 		$retval = BaseTags::div($input . $showCalendarButton, "class='input-group date' id='" . $this->id . "'");
 		$label = $this->getLabel();
-		return BaseTags::div($label . $retval . $this->getValidationMessage(), "class='" . $class . "'") . BaseTags::script("\$(\"#" . $this->id . "\").datetimepicker({format:\"YYYY-MM-DD\",locale:\"pl\", changeDate: function(){\$(\"#id_" . $this->name . "\").trigger(\"change\")}});");
+		$script = <<<JS
+		$("#{$this->id}").datetimepicker(
+		{
+			format: "YYYY-MM-DD",
+			locale: "pl"
+		}).on("changeDate", function(){\$("#id_{$this->name}").trigger("change");});
+JS;
+		return BaseTags::div($label . $retval . $this->getValidationMessage(), "class='" . $class . "'") . BaseTags::script($script);
 	}
 	// -------------------------------------------------------------------------
 }
