@@ -55,7 +55,27 @@ class DateField extends TextField
 			}
 		}
 
-		$input = BaseTags::input("name='" . $this->name . "' value='" . $this->selected . "'" . ($this->required ? " required='true'" : "") . " autocomplete='off' class='form-control' placeholder='RRRR-MM-DD' pattern='(\d{4})-(\d{2})-(\d{2})' onfocus='\$(\"#" . $this->id . "\").data(\"DateTimePicker\").show();'");
+		$atr = [];
+		$atr["name"] = "'" . $this->name . "'";
+		$atr["value"] = "'" . $this->selected . "'";
+		$atr["autocomplete"] = "'off'";
+		$atr["class"] = "'form-control'";
+		$atr["placeholder"] = "'RRRR-MM-DD'";
+		$atr["pattern"] = "'(\d{4})-(\d{2})-(\d{2})'";
+		$atr["onfocus"] = "'\$(\"#" . $this->id . "\").data(\"DateTimePicker\").show();" . $this->onFocus . "'";
+		$atr["onchange"] = "'" . $this->onChange . "'";
+		$atr["onblur"] = "'" . $this->onBlur . "'";
+		$atr["onkeydown"] = "'" . $this->onKeyDown . "'";
+		$atr["onkeyup"] = "'" . $this->onKeyUp . "'";
+		$atr["onmouseout"] = "'" . $this->onMouseOut . "'";
+		$atr["onmouseover"] = "'" . $this->onMouseOver . "'";
+		$atr["onmouseout"] = "'" . $this->onMouseOut . "'";
+		if($this->required)
+		{
+			$atr["required"] = "'true'";
+		}
+
+		$input = BaseTags::input(implode(" ", $atr));
 		$showCalendarButton = BaseTags::span("", "class='glyphicon glyphicon-calendar'");
 		$showCalendarButton = BaseTags::span($showCalendarButton, "class='input-group-addon'");
 		$retval = BaseTags::div($input . $showCalendarButton, "class='input-group date' id='" . $this->id . "'");
