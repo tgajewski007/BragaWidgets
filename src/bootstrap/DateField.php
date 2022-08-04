@@ -86,8 +86,9 @@ class DateField extends TextField
 		{
 			format: "YYYY-MM-DD",
 			locale: "pl"
-		}).on("changeDate", function(){\$("#id_{$this->name}").trigger("change");});
+		}).on("dp.change", function(){\$("#id_{$this->name}").trigger("change");});
 JS;
+
 		return BaseTags::div($label . $retval . $this->getValidationMessage(), "class='" . $class . "'") . BaseTags::script($script);
 	}
 	// -------------------------------------------------------------------------
