@@ -57,6 +57,7 @@ class DateField extends TextField
 
 		$atr = [];
 		$atr[] = "name='" . $this->name . "'";
+		$atr[] = "id='id_" . $this->name . "'";
 		$atr[] = "value='" . $this->selected . "'";
 		$atr[] = "autocomplete='off'";
 		$atr[] = "class='form-control'";
@@ -80,7 +81,7 @@ class DateField extends TextField
 		$showCalendarButton = BaseTags::span($showCalendarButton, "class='input-group-addon'");
 		$retval = BaseTags::div($input . $showCalendarButton, "class='input-group date' id='" . $this->id . "'");
 		$label = $this->getLabel();
-		return BaseTags::div($label . $retval . $this->getValidationMessage(), "class='" . $class . "'") . BaseTags::script("\$(\"#" . $this->id . "\").datetimepicker({format:\"YYYY-MM-DD\",locale:\"pl\"});");
+		return BaseTags::div($label . $retval . $this->getValidationMessage(), "class='" . $class . "'") . BaseTags::script("\$(\"#" . $this->id . "\").datetimepicker({format:\"YYYY-MM-DD\",locale:\"pl\", changeDate: function(){\$(\"#id_" . $this->name . "\").trigger(\"change\")}});");
 	}
 	// -------------------------------------------------------------------------
 }
