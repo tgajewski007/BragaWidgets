@@ -15,9 +15,9 @@
 	"description" : "Widgets server side",
 	"license" : "MIT",
 	"require" : {
-		"php" : ">=7.2",
-		"braga/db" : "~3.0",
-		"braga/tools" : "~3.0"
+		"php" : ">=7.4",
+		"braga/db" : "~3.1",
+		"braga/tools" : "~3.5"
 	},
 	"minimum-stability" : "stable",
 	"require-dev" : {
