@@ -39,16 +39,12 @@ class Accordion extends HtmlComponent
 		$script = "";
 		foreach($this->items as $item)
 		{
-			$content = BaseTags::div($item->getContent(), "class='panel-body'");
-			$content = BaseTags::div($content, "id='" . $item->getId() . "' class='panel-collapse collapse " . ($item->getId() == $this->openIdItem ? "in" : "") . "'");
-
-			$heading = BaseTags::a($item->getColapseTitle(), "data-toggle='collapse' data-parent='#" . $idAccordion . "' href='#" . $item->getId() . "'");
-			$heading .= $item->getActiveTitle();
-			$heading = BaseTags::h4($heading, 'class="panel-title"');
-			$heading = BaseTags::div($heading, 'class="panel-heading"');
+			$content = $this->getItemBody($item);
+			$heading = $this->getItemHeader($item, $idAccordion);
 
 			$rndId = getRandomStringLetterOnly(8);
-			$retval .= BaseTags::div($heading . $content, 'class="panel panel-default" id="' . $rndId . '"');
+
+			$retval .= BaseTags::div($heading . $content, 'class="accordion-item" id="' . $rndId . '"');
 			if(!empty($item->getOnShowJavaScript()))
 			{
 				$script .= "\$(\"#" . $rndId . "\").on(\"show.bs.collapse\", function() {" . $item->getOnShowJavaScript() . "});";
@@ -62,7 +58,28 @@ class Accordion extends HtmlComponent
 				$script .= $item->getOnLoadJavaScript();
 			}
 		}
-		return BaseTags::div($retval, "id='" . $idAccordion . "' class='panel-group' ") . (empty($script) ? "" : BaseTags::script($script));
+		return BaseTags::div($retval, "id='" . $idAccordion . "' class='accordion' ") . (empty($script) ? "" : BaseTags::script($script));
+	}
+	// -------------------------------------------------------------------------
+	private function getItemHeader(AccordionItem $item, $idAccordion)
+	{
+		$attrb = "class='accordion-button' ";
+		$attrb .= "type='button' ";
+		$attrb .= "data-bs-toggle='collapse' ";
+		$attrb .= "data-bs-target='#" . $idAccordion . "' ";
+		$attrb .= "aria-expanded='" . ($item->getId() == $this->openIdItem ? "true" : "false") . "' ";
+		$attrb .= "aria-controls='" . $idAccordion . "' ";
+
+		$heading = BaseTags::button($item->getColapseTitle(), $attrb);
+		$heading .= $item->getActiveTitle();
+		$heading = BaseTags::h2($heading, 'class="accordion-header"');
+		return $heading;
+	}
+	// -------------------------------------------------------------------------
+	private function getItemBody(AccordionItem $item)
+	{
+		$content = BaseTags::div($item->getContent(), "class='accordion-body'");
+		return BaseTags::div($content, "id='" . $item->getId() . "' class=accordion-collapse collapse " . ($item->getId() == $this->openIdItem ? "show" : "") . "'");
 	}
 	// -------------------------------------------------------------------------
 }
