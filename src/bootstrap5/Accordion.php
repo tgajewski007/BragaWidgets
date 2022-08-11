@@ -40,9 +40,8 @@ class Accordion extends HtmlComponent
 		foreach($this->items as $item)
 		{
 			$content = $this->getItemBody($item);
-			$heading = $this->getItemHeader($item, $idAccordion);
-
 			$rndId = getRandomStringLetterOnly(8);
+			$heading = $this->getItemHeader($item, $idAccordion, $rndId);
 
 			$retval .= BaseTags::div($heading . $content, 'class="accordion-item" id="' . $rndId . '"');
 			if(!empty($item->getOnShowJavaScript()))
@@ -61,12 +60,12 @@ class Accordion extends HtmlComponent
 		return BaseTags::div($retval, "id='" . $idAccordion . "' class='accordion' ") . (empty($script) ? "" : BaseTags::script($script));
 	}
 	// -------------------------------------------------------------------------
-	private function getItemHeader(AccordionItem $item, $idAccordion)
+	private function getItemHeader(AccordionItem $item, $idAccordion, $rndId)
 	{
 		$attrb = "class='accordion-button' ";
 		$attrb .= "type='button' ";
 		$attrb .= "data-bs-toggle='collapse' ";
-		$attrb .= "data-bs-target='#" . $idAccordion . "' ";
+		$attrb .= "data-bs-target='#" . $rndId . "' ";
 		$attrb .= "aria-expanded='" . ($item->getId() == $this->openIdItem ? "true" : "false") . "' ";
 		$attrb .= "aria-controls='" . $idAccordion . "' ";
 
