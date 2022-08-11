@@ -266,7 +266,7 @@ class BS
 	// -------------------------------------------------------------------------
 	public static function getToolTip($txt, $position = "auto")
 	{
-		return "title='" . $txt . "' data-toggle='tooltip' data-placement='" . $position . "'";
+		return "title='" . $txt . "' data-bs-toggle='tooltip' data-bs-placement='" . $position . "'";
 	}
 	// -------------------------------------------------------------------------
 	/**
