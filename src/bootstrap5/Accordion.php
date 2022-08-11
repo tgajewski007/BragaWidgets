@@ -79,7 +79,7 @@ class Accordion extends HtmlComponent
 	private function getItemBody(AccordionItem $item)
 	{
 		$content = BaseTags::div($item->getContent(), "class='accordion-body'");
-		return BaseTags::div($content, "id='" . $item->getId() . "' class=accordion-collapse collapse " . ($item->getId() == $this->openIdItem ? "show" : "") . "'");
+		return BaseTags::div($content, "id='" . $item->getId() . "' class='accordion-collapse collapse " . ($item->getId() == $this->openIdItem ? "show" : "") . "'");
 	}
 	// -------------------------------------------------------------------------
 }
