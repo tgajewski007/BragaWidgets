@@ -69,8 +69,8 @@ class Accordion extends HtmlComponent
 		$attrb .= "aria-expanded='" . ($item->getId() == $this->openIdItem ? "true" : "false") . "' ";
 		$attrb .= "aria-controls='" . $idAccordion . "' ";
 
-		$heading = BaseTags::button($item->getColapseTitle(), $attrb);
-		$heading .= $item->getActiveTitle();
+		$heading = BaseTags::button($item->getColapseTitle() . $item->getActiveTitle(), $attrb);
+
 		$heading = BaseTags::h2($heading, 'class="accordion-header"');
 		return $heading;
 	}
