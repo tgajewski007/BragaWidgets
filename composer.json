@@ -16,7 +16,7 @@
 	"license" : "MIT",
 	"require" : {
 		"php" : ">=8.1",
-		"braga/db" : "~3.1",
+		"braga/db" : "~4.0",
 		"braga/tools" : "~4.0"
 	},
 	"minimum-stability" : "stable",
