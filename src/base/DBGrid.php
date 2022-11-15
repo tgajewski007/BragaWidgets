@@ -205,7 +205,7 @@ class DBGrid
 	{
 		foreach($this->hrefReplaceArray as $replacer)
 		{
-			$text = str_replace($replacer->stringToReplaceByFieldContent, $this->db->f($replacer->idField), $text ?? "");
+			$text = str_replace($replacer->stringToReplaceByFieldContent ?? "", $this->db->f($replacer->idField) ?? "", $text ?? "");
 		}
 		return $text;
 	}
