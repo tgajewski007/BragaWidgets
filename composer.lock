@@ -8,19 +8,20 @@
     "packages": [
         {
             "name": "braga/db",
-            "version": "4.0.3",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tgajewski007/BragaDB.git",
-                "reference": "e5c881889b5b8104e5f36ff045bace5b1c4f34cb"
+                "reference": "49a6f12003efa1585bd21e30c647ba8e1f2c838f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tgajewski007/BragaDB/zipball/e5c881889b5b8104e5f36ff045bace5b1c4f34cb",
-                "reference": "e5c881889b5b8104e5f36ff045bace5b1c4f34cb",
+                "url": "https://api.github.com/repos/tgajewski007/BragaDB/zipball/49a6f12003efa1585bd21e30c647ba8e1f2c838f",
+                "reference": "49a6f12003efa1585bd21e30c647ba8e1f2c838f",
                 "shasum": ""
             },
             "require": {
+                "braga/tools": "~4.0",
                 "ext-pdo": "*",
                 "php": ">=8.1"
             },
@@ -53,9 +54,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tgajewski007/BragaDB/issues",
-                "source": "https://github.com/tgajewski007/BragaDB/tree/4.0.3"
+                "source": "https://github.com/tgajewski007/BragaDB/tree/4.0.4"
             },
-            "time": "2022-10-26T21:51:21+00:00"
+            "time": "2022-11-08T22:33:37+00:00"
         },
         {
             "name": "braga/graylogger",
@@ -96,16 +97,16 @@
         },
         {
             "name": "braga/tools",
-            "version": "4.0.6",
+            "version": "4.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tgajewski007/BragaTools.git",
-                "reference": "0ff8714bb72c1424682e0e85994e53aa7703d265"
+                "reference": "6c2f163f9475c313f605a535da856a16c7b789af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tgajewski007/BragaTools/zipball/0ff8714bb72c1424682e0e85994e53aa7703d265",
-                "reference": "0ff8714bb72c1424682e0e85994e53aa7703d265",
+                "url": "https://api.github.com/repos/tgajewski007/BragaTools/zipball/6c2f163f9475c313f605a535da856a16c7b789af",
+                "reference": "6c2f163f9475c313f605a535da856a16c7b789af",
                 "shasum": ""
             },
             "require": {
@@ -139,9 +140,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tgajewski007/BragaTools/issues",
-                "source": "https://github.com/tgajewski007/BragaTools/tree/4.0.6"
+                "source": "https://github.com/tgajewski007/BragaTools/tree/4.0.7"
             },
-            "time": "2022-11-08T21:47:50+00:00"
+            "time": "2022-11-15T19:16:40+00:00"
         },
         {
             "name": "codercat/jwk-to-pem",
