@@ -88,8 +88,8 @@ class DBGrid
 	}
 	// -------------------------------------------------------------------------
 	/**
-	 * @return string HtmlTableElement
 	 * @param boolean $tagTable
+	 * @return string HtmlTableElement
 	 */
 	public function out($tagTable = true)
 	{
@@ -101,7 +101,9 @@ class DBGrid
 			return BaseTags::table($this->content, "class='" . $this->tableClass . "'");
 		}
 		else
+		{
 			return $this->content;
+		}
 	}
 	// -------------------------------------------------------------------------
 	protected function init()
@@ -121,7 +123,7 @@ class DBGrid
 			$tmp .= BaseTags::th("L.p.", "class='" . $this->headerCellClass . "' style='width:10px;'");
 		}
 		foreach($this->db->getMetaData() as $key => $meta)
-		/** @var \braga\db\DataSourceColumnMetaData $meta  */
+			/** @var \braga\db\DataSourceColumnMetaData $meta */
 		{
 			if($key < $this->columnCount)
 			{
@@ -203,7 +205,7 @@ class DBGrid
 	{
 		foreach($this->hrefReplaceArray as $replacer)
 		{
-			$text = str_replace($replacer->stringToReplaceByFieldContent, $this->db->f($replacer->idField), $text);
+			$text = str_replace($replacer->stringToReplaceByFieldContent, $this->db->f($replacer->idField), $text ?? "");
 		}
 		return $text;
 	}
