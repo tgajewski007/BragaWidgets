@@ -97,16 +97,16 @@
         },
         {
             "name": "braga/tools",
-            "version": "4.0.9",
+            "version": "4.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tgajewski007/BragaTools.git",
-                "reference": "64ab818b789e22758ebd0763b6ab719748ced29d"
+                "reference": "c049a8ae0160bae310cae34a565f33861d64a428"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tgajewski007/BragaTools/zipball/64ab818b789e22758ebd0763b6ab719748ced29d",
-                "reference": "64ab818b789e22758ebd0763b6ab719748ced29d",
+                "url": "https://api.github.com/repos/tgajewski007/BragaTools/zipball/c049a8ae0160bae310cae34a565f33861d64a428",
+                "reference": "c049a8ae0160bae310cae34a565f33861d64a428",
                 "shasum": ""
             },
             "require": {
@@ -140,9 +140,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tgajewski007/BragaTools/issues",
-                "source": "https://github.com/tgajewski007/BragaTools/tree/4.0.9"
+                "source": "https://github.com/tgajewski007/BragaTools/tree/4.0.10"
             },
-            "time": "2022-11-15T19:41:14+00:00"
+            "time": "2022-11-17T09:46:15+00:00"
         },
         {
             "name": "codercat/jwk-to-pem",
