@@ -1,29 +1,30 @@
 {
-	"keywords" : [
-		"widgets jquery-ui"
-	],
-	"autoload" : {
-		"psr-4" : {
-			"braga\\widgets\\" : "src"
-		},
-		"files" : [
-			"src/jqueryui/func.php"
-		]
-	},
-	"name" : "braga/widgets",
-	"type" : "library",
-	"description" : "Widgets server side",
-	"license" : "MIT",
-	"require" : {
-		"php" : ">=8.1",
-		"braga/db" : "~4.0",
-		"braga/tools" : "~4.0"
-	},
-	"minimum-stability" : "stable",
-	"authors" : [{
-			"name" : "Tomasz Gajewski",
-			"email" : "tgajewski007@gmail.com",
-			"role" : "dev"
-		}
-	]
+  "keywords": [
+    "widgets jquery-ui"
+  ],
+  "autoload": {
+    "psr-4": {
+      "braga\\widgets\\": "src"
+    },
+    "files": [
+      "src/jqueryui/func.php"
+    ]
+  },
+  "name": "braga/widgets",
+  "type": "library",
+  "description": "Widgets server side",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.2",
+    "braga/db": "~4.2",
+    "braga/tools": "~4.3"
+  },
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Tomasz Gajewski",
+      "email": "tgajewski007@gmail.com",
+      "role": "dev"
+    }
+  ]
 }

@@ -77,6 +77,8 @@ function ListItem($content = "", $defaultClass = "ui-state-default")
 function Fieldset($title = "", $content = "", $display = true, $wyroznienie = false)
 {
 	$rnd = getRandomStringLetterOnly(8);
+	$addClassFieldSet = "";
+	$addClassLegend = "";
 	if($title != "")
 	{
 		$attrib = "class='hand' onclick='\$(\"#" . $rnd . "\").slideToggle(\"fast\");\$(this).children(\"span:first-child\").toggleClass(\"ui-icon-triangle-1-e\");\$(this).children(\"span:first-child\").toggleClass(\"ui-icon-triangle-1-s\") '";
@@ -96,12 +98,6 @@ function Fieldset($title = "", $content = "", $display = true, $wyroznienie = fa
 			$addClassFieldSet = "ui-state-active";
 			$addClassLegend = "ui-state-highlight";
 		}
-		else
-		{
-
-			$addClassFieldSet = "";
-			$addClassLegend = "";
-		}
 
 		$retval = BaseTags::div($content, "id='" . $rnd . "' " . $hidden . "");
 		$retval .= BaseTags::legend($legend, "class='ui-widget-header ui-corner-all " . $addClassLegend . "' style='padding:2px 8px;'");
@@ -109,7 +105,6 @@ function Fieldset($title = "", $content = "", $display = true, $wyroznienie = fa
 	}
 	else
 	{
-
 		$retval = BaseTags::div($content, "id='" . $rnd . "'");
 		$retval = BaseTags::fieldset($retval, "class='ui-widget-content ui-corner-all ui-helper-clearfix " . $addClassFieldSet . "' style='margin:4px;'");
 	}

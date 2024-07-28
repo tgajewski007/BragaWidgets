@@ -13,7 +13,6 @@ class BS
 	// -------------------------------------------------------------------------
 	public static function box($title, $content, $baseClass = 'panel-default')
 	{
-		$retval = "";
 		$head = BaseTags::h3($title, "class='panel-title'");
 		$retval = BaseTags::div($head, "class='panel-heading'");
 		$retval .= BaseTags::div($content, "class='panel-body'");

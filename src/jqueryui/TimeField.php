@@ -43,7 +43,7 @@ class TimeField extends Field
 		$this->addEvents();
 		$this->addCustomAttrib();
 		$retval = BaseTags::script("\$(\"#" . $this->id . "\").watermark(\"GG:MM\");");
-		return BaseTags::p(parent::out() . $retval, "style='min-height:25px;'");
+		return BaseTags::p($retval, "style='min-height:25px;'");
 	}
 	// -------------------------------------------------------------------------
 }

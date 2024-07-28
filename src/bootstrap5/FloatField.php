@@ -1,4 +1,4 @@
-s<?php
+<?php
 namespace braga\widgets\bootstrap5;
 use braga\tools\html\BaseTags;
 
@@ -11,7 +11,6 @@ use braga\tools\html\BaseTags;
  */
 class FloatField extends \braga\widgets\base\FloatField
 {
-
 	use ClassFactory;
 	use AddLabels;
 	use AddValidationMessage;

@@ -57,6 +57,7 @@ class TabBox extends HtmlComponent
 	public function out()
 	{
 		$tabOk = false;
+		$activeId = null;
 		foreach($this->tabs as $value)
 		{
 			if($value["id"] == $this->idActiveTab)
@@ -108,6 +109,5 @@ class TabBox extends HtmlComponent
 		$retval = BaseTags::li(BaseTags::a($opis, $this->ajax . " href='" . $href . "'"), "class='active' role='presentation'");
 		return $retval;
 	}
-
 	// -------------------------------------------------------------------------
 }

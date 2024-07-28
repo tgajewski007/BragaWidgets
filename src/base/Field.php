@@ -142,9 +142,8 @@ abstract class Field
 	{
 		if(!is_null($value))
 		{
-			$this->attrib .= $name .= "='" . $value . "' ";
+			$this->attrib .= $name . "='" . $value . "' ";
 		}
 	}
 	// -------------------------------------------------------------------------
 }
-?>

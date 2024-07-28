@@ -27,7 +27,7 @@ class Card extends HtmlComponent
 		{
 			$retval .= BaseTags::div($this->footer, "class='card-footer'");
 		}
-		$retval = BaseTags::div($retval, "class='card'");
+		return BaseTags::div($retval, "class='card'");
 	}
 	// -----------------------------------------------------------------------------------------------------------------
 	/**
