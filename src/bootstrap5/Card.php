@@ -4,15 +4,10 @@ use braga\tools\html\HtmlComponent;
 use braga\tools\html\BaseTags;
 class Card extends HtmlComponent
 {
-	protected $header;
-	protected $content;
-	protected $footer;
 	// -----------------------------------------------------------------------------------------------------------------
-	public function __construct($header = null, $content = null, $footer = null)
+	public function __construct(protected ?string $header = null, ?string $content = null, protected ?string $footer = null)
 	{
-		$this->header = $header;
 		$this->content = $content;
-		$this->footer = $footer;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
 	public function out()
@@ -39,7 +34,7 @@ class Card extends HtmlComponent
 	}
 	// -----------------------------------------------------------------------------------------------------------------
 	/**
-	 * @param Ambigous <string, unknown> $content
+	 * @param string $content
 	 */
 	public function setContent($content)
 	{
