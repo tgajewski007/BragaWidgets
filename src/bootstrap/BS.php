@@ -89,9 +89,9 @@ class BS
 	{
 		$idContener = getRandomString(8);
 		$onClick = "onclick='\$(\"#" . $idContener . "\").toggle(); $(this).closest(\"i\").toggleClass(\"fa-caret-right\"); $(this).closest(\"i\").toggleClass(\"fa-caret-down\"); '";
-		$openCloseIcon = BaseTags::i("", "class='fa fa-caret-right fa-lg fa-fw hand'");
+		$openCloseIcon = BaseTags::i("", "class='fa fa-caret-right fa-lg fa-fw'");
 
-		$retval = BaseTags::span($openCloseIcon . $descriprion, "class='list-group-item list-group-item-action' {$onClick} ");
+		$retval = BaseTags::span($openCloseIcon . $descriprion, "class='hand list-group-item list-group-item-action' {$onClick} ");
 		$retval .= BaseTags::div($branchContent, "id='" . $idContener . "' style='padding-left:8px;display: none;'");
 		return $retval;
 	}
