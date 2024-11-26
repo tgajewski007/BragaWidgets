@@ -78,7 +78,7 @@ class BS
 	public static function treeItemList($activeLink, $branchContent)
 	{
 		$idContener = getRandomString(8);
-		$openCloseIcon = faIcon("fa-caret-right fa-lg fa-fw", "class='hand' onclick='\$(\"#" . $idContener . "\").toggle(); $(this).toggleClass(\"fa-caret-right\"); $(this).toggleClass(\"fa-caret-down\"); '");
+		$openCloseIcon = faIcon("fa-caret-right fa-lg fa-fw hand", "class='hand' onclick='\$(\"#" . $idContener . "\").toggle(); $(this).toggleClass(\"fa-caret-right\"); $(this).toggleClass(\"fa-caret-down\"); '");
 
 		$retval = BaseTags::span($openCloseIcon . $activeLink, "class='list-group-item list-group-item-action' ");
 		$retval .= BaseTags::div($branchContent, "id='" . $idContener . "' style='padding-left:8px;display: none;'");
