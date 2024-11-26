@@ -70,7 +70,7 @@ class BS
 		$onClick = "onclick='return ajax.go(this);' ";
 		$class = "class='" . $defaultClass . " list-group-item list-group-item-action' ";
 		$labelHref = "href='" . $labelHref . "' ";
-		$iconHref = faIcon("fa-caret-right fa-lg fa-fw", "onclick='listGroupItemAjax(event, this,\"" . $idContener . "\",\"" . $iconHref . "\");return false;'");
+		$iconHref = BaseTags::i("fa fa-caret-right fa-lg fa-fw", "onclick='listGroupItemAjax(event, this,\"" . $idContener . "\",\"" . $iconHref . "\");return false;'");
 
 		return BaseTags::a($iconHref . $label, $labelHref . $class . $onClick) . BaseTags::div("", "id='" . $idContener . "' class='hidden' style='padding-left:8px;'");
 	}
@@ -78,9 +78,20 @@ class BS
 	public static function treeItemList($activeLink, $branchContent)
 	{
 		$idContener = getRandomString(8);
-		$openCloseIcon = faIcon("fa-caret-right fa-lg fa-fw hand", "class='hand' onclick='\$(\"#" . $idContener . "\").toggle(); $(this).toggleClass(\"fa-caret-right\"); $(this).toggleClass(\"fa-caret-down\"); '");
+		$openCloseIcon = BaseTags::i("fa fa-caret-right fa-lg fa-fw hand", "class='hand' onclick='\$(\"#" . $idContener . "\").toggle(); $(this).toggleClass(\"fa-caret-right\"); $(this).toggleClass(\"fa-caret-down\"); '");
 
 		$retval = BaseTags::span($openCloseIcon . $activeLink, "class='list-group-item list-group-item-action' ");
+		$retval .= BaseTags::div($branchContent, "id='" . $idContener . "' style='padding-left:8px;display: none;'");
+		return $retval;
+	}
+	// -------------------------------------------------------------------------
+	public static function treeItemListSimple($descriprion, $branchContent)
+	{
+		$idContener = getRandomString(8);
+		$onClick = "onclick='\$(\"#" . $idContener . "\").toggle(); $(this).closest(\"i\").toggleClass(\"fa-caret-right\"); $(this).closest(\"i\").toggleClass(\"fa-caret-down\"); '";
+		$openCloseIcon = BaseTags::i("fa fa-caret-right fa-lg fa-fw hand", "class='hand'");
+
+		$retval = BaseTags::span($openCloseIcon . $descriprion, "class='list-group-item list-group-item-action' {$onClick} ");
 		$retval .= BaseTags::div($branchContent, "id='" . $idContener . "' style='padding-left:8px;display: none;'");
 		return $retval;
 	}

@@ -12,7 +12,7 @@ class funcTest extends PHPUnit_Framework_TestCase
 	// -------------------------------------------------------------------------
 	function testIcon()
 	{
-		$retval = faIcon("fa-bath");
+		$retval = BaseTags::i("fa fa-bath");
 		$this->assertEquals($retval, BaseTags::i("", "class='fa fa-bath'"));
 	}
 	// -------------------------------------------------------------------------
