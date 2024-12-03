@@ -11,7 +11,6 @@ use braga\tools\html\BaseTags;
  */
 class FloatField extends \braga\widgets\base\FloatField
 {
-
 	use ClassFactory;
 	use AddLabels;
 	use AddValidationMessage;
@@ -34,7 +33,10 @@ class FloatField extends \braga\widgets\base\FloatField
 		$this->updateClassString();
 		$this->addAttrib("placeholder", $this->waterMark);
 		$this->addAttrib("data-error", $this->getMessageWhenValidateFail());
-		$this->addAttrib("pattern", ($this->precision > 0 ? "^[+-]?\d+(\.\d{0," . $this->precision . "})?$" : "^[+-]?\d+$"));
+		$pattern = $this->precision > 0
+			? "[+-]?\\d+(\\.\\d{0," . $this->precision . "})?"
+			: "[+-]?\\d+";
+		$this->addAttrib("pattern", $pattern);
 		$this->setOnKeyUp("\$(this).val(\$(this).val().replace(\",\",\".\"));" . $this->onKeyUp);
 		if($this->required)
 		{
