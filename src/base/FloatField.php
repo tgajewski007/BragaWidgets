@@ -15,7 +15,7 @@ class FloatField extends Field
 	protected $maxValue = "null";
 	protected $precision = 2;
 	protected $maxLength = 22;
-	protected $type = "text";
+	protected $type = "number";
 	protected $readOnly = false;
 	// -------------------------------------------------------------------------
 	public function setReadOnly($readOnly = true)
@@ -57,6 +57,14 @@ class FloatField extends Field
 		$this->addAttrib("value", $this->selected);
 		$this->addAttrib("tabindex", $this->tabOrder);
 		$this->addAttrib("maxlength", $this->maxLength);
+		if($this->maxValue !== "null")
+		{
+			$this->addAttrib("max", $this->maxValue);
+		}
+		if($this->minValue !== "null")
+		{
+			$this->addAttrib("min", $this->minValue);
+		}
 		if($this->required)
 		{
 			$this->addAttrib("required", "true");
