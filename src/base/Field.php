@@ -97,7 +97,7 @@ abstract class Field
 	public function setName($name)
 	{
 		$this->name = $name;
-		$this->id = $name;
+		$this->id = str_replace([ "[", "]" ], "_", $name);
 	}
 	// -------------------------------------------------------------------------
 	public function setId($id)
