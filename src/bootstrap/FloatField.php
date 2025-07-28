@@ -37,7 +37,7 @@ class FloatField extends \braga\widgets\base\FloatField
 			? "-?\d+(\.\d{1,{$this->precision}})?"
 			: "-?\d+";
 		$this->addAttrib("pattern", $pattern);
-		$this->setOnKeyUp("\$(this).val(\$(this).val().replace(\",\",\".\"));" . $this->onKeyUp);
+//		$this->setOnKeyUp("\$(this).val(\$(this).val().replace(\",\",\".\"));" . $this->onKeyUp);
 		if($this->required)
 		{
 			if($this->selected == "")
