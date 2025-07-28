@@ -17,6 +17,7 @@ class FloatField extends Field
 	protected $maxLength = 22;
 	protected $type = "number";
 	protected $readOnly = false;
+	protected $step = "0.01";
 	// -------------------------------------------------------------------------
 	public function setReadOnly($readOnly = true)
 	{
@@ -46,6 +47,7 @@ class FloatField extends Field
 	public function setPrecision($precision)
 	{
 		$this->precision = $precision;
+		$this->setStep(pow(10, -$precision));
 	}
 	// -------------------------------------------------------------------------
 	public function out()
@@ -57,6 +59,7 @@ class FloatField extends Field
 		$this->addAttrib("value", $this->selected);
 		$this->addAttrib("tabindex", $this->tabOrder);
 		$this->addAttrib("maxlength", $this->maxLength);
+		$this->addAttrib("step", $this->step);
 		if($this->maxValue !== "null")
 		{
 			$this->addAttrib("max", $this->maxValue);
@@ -78,5 +81,9 @@ class FloatField extends Field
 		return BaseTags::input($this->attrib);
 	}
 	// -------------------------------------------------------------------------
+	public function setStep(string $step): void
+	{
+		$this->step = $step;
+	}
+	// -------------------------------------------------------------------------
 }
-?>
