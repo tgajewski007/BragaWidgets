@@ -166,14 +166,14 @@ class BS
 	{
 		$idContener = uniqid('bs_', true);
 		$icon = <<<HTML
-<i class="fa fa-caret-right fa-lg fa-fw" onclick="$('#{$idContener}').toggle();$(this).toggleClass('fa-caret-right');$(this).toggleClass('fa-caret-down');"></i>
-HTML;
+			<i class="fa fa-caret-right fa-lg fa-fw" onclick="$('#{$idContener}').toggle();$(this).toggleClass('fa-caret-right');$(this).toggleClass('fa-caret-down');"></i>
+			HTML;
 		$head = <<<HTML
-<span class="list-group-item list-group-item-action">{$icon}{$activeLink}</span>
-HTML;
+			<span class="list-group-item list-group-item-action">{$icon}{$activeLink}</span>
+			HTML;
 		$child = <<<HTML
-<div id="{$idContener}" style="padding-left:8px;display:none;">{$branchContent}</div>
-HTML;
+			<div id="{$idContener}" style="padding-left:8px;display:none;">{$branchContent}</div>
+			HTML;
 		return $head . $child;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
@@ -181,15 +181,15 @@ HTML;
 	{
 		$idContener = uniqid('bs_', true);
 		$icon = <<<HTML
-<i class="fa fa-caret-right fa-lg fa-fw"></i>
-HTML;
+			<i class="fa fa-caret-right fa-lg fa-fw"></i>
+			HTML;
 		$onClick = "onclick=\"$('#{$idContener}').toggle();$(this).closest('i').toggleClass('fa-caret-right');$(this).closest('i').toggleClass('fa-caret-down');\"";
 		$head = <<<HTML
-<span class="hand list-group-item list-group-item-action" {$onClick}>{$icon}{$descriprion}</span>
-HTML;
+			<span class="hand list-group-item list-group-item-action" {$onClick}>{$icon}{$descriprion}</span>
+			HTML;
 		$child = <<<HTML
-<div id="{$idContener}" style="padding-left:8px;display:none;">{$branchContent}</div>
-HTML;
+			<div id="{$idContener}" style="padding-left:8px;display:none;">{$branchContent}</div>
+			HTML;
 		return $head . $child;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
