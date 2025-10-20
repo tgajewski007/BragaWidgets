@@ -128,15 +128,16 @@ class AccordionItem extends HtmlComponent
 	// -----------------------------------------------------------------------------------------------------------------
 	public function out()
 	{
-		$isShow = $this->active ? "show" : "";
+		$isShow = $this->active ? " show" : "";
+		$isColapsed = $this->active ? "" : " collapsed";
 		return <<<HTML
 			<div class="accordion-item">
 				<h2 class="accordion-header">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{$this->getId()}" aria-expanded="true" aria-controls="{$this->getId()}">
+					<button class="accordion-button{$isColapsed}" type="button" data-bs-toggle="collapse" data-bs-target="#{$this->getId()}" aria-expanded="true" aria-controls="{$this->getId()}">
 						{$this->getTitle()}
 					</button>
 				</h2>
-				<div id="{$this->getId()}" class="accordion-collapse collapse {$isShow}" data-bs-parent="#{$this->idAccordion}">
+				<div id="{$this->getId()}" class="accordion-collapse collapse{$isShow}" data-bs-parent="#{$this->idAccordion}">
 					<div class="accordion-body">
 						{$this->getContent()}
 					</div>
