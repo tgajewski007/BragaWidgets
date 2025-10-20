@@ -13,7 +13,7 @@ class BS
 	{
 		$retval = <<<HTML
 			<div class="{$baseClass}">
-				<div class="card-header">
+				<div class="card-header bg-body-tertiary">
 					<h5 class="card-title">{$title}</h5>
 				</div>
 				<div class="card-body">

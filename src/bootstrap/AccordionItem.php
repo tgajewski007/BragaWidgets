@@ -132,7 +132,7 @@ class AccordionItem extends HtmlComponent
 		$isColapsed = $this->active ? "" : " collapsed";
 		return <<<HTML
 			<div class="accordion-item">
-				<h2 class="accordion-header">
+				<h2 class="accordion-header bg-body-tertiary">
 					<button class="accordion-button{$isColapsed}" type="button" data-bs-toggle="collapse" data-bs-target="#{$this->getId()}" aria-expanded="true" aria-controls="{$this->getId()}">
 						{$this->getTitle()}
 					</button>
