@@ -1,37 +1,51 @@
 <?php
 namespace braga\widgets\bootstrap;
+use braga\tools\html\HtmlComponent;
 /**
  * Created on 03.07.2017 21:52:00
  * @author Tomasz Gajewski
  * package frontoffice
  * error prefix
  */
-class AccordionItem
+class AccordionItem extends HtmlComponent
 {
-	// -------------------------------------------------------------------------
-	protected $colapseTitle;
-	protected $activeTitle;
-	protected $content;
-	protected $id;
-	protected $onShowJavaScript;
-	protected $onLoadJavaScript;
-	// ------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
+	public function __construct(protected ?string $id = null, protected ?string $title = null)
+	{
+	}
+	// -----------------------------------------------------------------------------------------------------------------
+	protected ?string $onShowJavaScript = null;
+	protected ?string $onLoadJavaScript = null;
+	// -----------------------------------------------------------------------------------------------------------------
+	protected ?string $idAccordion = null;
+	public function setIdAccordion(string $idAccordion): void
+	{
+		$this->idAccordion = $idAccordion;
+	}
+	// -----------------------------------------------------------------------------------------------------------------
+	public function setActive(bool $active): void
+	{
+		$this->active = $active;
+	}
+	// -----------------------------------------------------------------------------------------------------------------
+	protected bool $active = false;
+	// -----------------------------------------------------------------------------------------------------------------
 	/**
 	 * @return mixed
 	 */
-	public function getOnShowJavaScript()
+	protected function getOnShowJavaScript()
 	{
 		return $this->onShowJavaScript;
 	}
-	// ------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
 	/**
 	 * @return mixed
 	 */
-	public function getOnLoadJavaScript()
+	protected function getOnLoadJavaScript()
 	{
 		return $this->onLoadJavaScript;
 	}
-	// ------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
 	/**
 	 * @param mixed $onShowJavaScript
 	 */
@@ -39,7 +53,7 @@ class AccordionItem
 	{
 		$this->onShowJavaScript = $onShowJavaScript;
 	}
-	// ------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
 	/**
 	 * @param mixed $onLoad
 	 */
@@ -47,53 +61,88 @@ class AccordionItem
 	{
 		$this->onLoadJavaScript = $onLoad;
 	}
-	// ------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
 	/**
-	 * @return mixed
+	 * @param $colapseTitle
+	 * @return void
+	 * @deprecated use setTitle
 	 */
-	public function getUrlDynamicContent()
-	{
-		return $this->onLoadJavaScript;
-	}
-	// -------------------------------------------------------------------------
-	public function getColapseTitle()
-	{
-		return $this->colapseTitle;
-	}
-	// -------------------------------------------------------------------------
 	public function setColapseTitle($colapseTitle)
 	{
-		$this->colapseTitle = $colapseTitle;
+		if(empty($this->title))
+		{
+			$this->title = $colapseTitle;
+		}
+		else
+		{
+			$this->title .= $colapseTitle;
+		}
 	}
-	// -------------------------------------------------------------------------
-	public function getActiveTitle()
+	// -----------------------------------------------------------------------------------------------------------------
+	protected function getTitle()
 	{
-		return $this->activeTitle;
+		return $this->title;
 	}
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
+	public function setTitle($title)
+	{
+		$this->title = $title;
+	}
+	// -----------------------------------------------------------------------------------------------------------------
+	/**
+	 * @param $activeTitle
+	 * @return void
+	 * @deprecated use setTitle
+	 */
 	public function setActiveTitle($activeTitle)
 	{
-		$this->activeTitle = $activeTitle;
+		if(empty($this->title))
+		{
+			$this->title = $activeTitle;
+		}
+		else
+		{
+			$this->title .= $activeTitle;
+		}
 	}
-	// -------------------------------------------------------------------------
-	public function getContent()
+	// -----------------------------------------------------------------------------------------------------------------
+	protected function getContent()
 	{
 		return $this->content;
 	}
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
 	public function setContent($content)
 	{
 		$this->content = $content;
 	}
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
 	public function getId()
 	{
 		return $this->id;
 	}
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
 	public function setId($id)
 	{
 		$this->id = $id;
 	}
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------------------
+	public function out()
+	{
+		$isShow = $this->active ? "show" : "";
+		return <<<HTML
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{$this->getId()}" aria-expanded="true" aria-controls="{$this->getId()}">
+						{$this->getTitle()}
+					</button>
+				</h2>
+				<div id="{$this->getId()}" class="accordion-collapse collapse {$isShow}" data-bs-parent="#{$this->idAccordion}">
+					<div class="accordion-body">
+						{$this->getContent()}
+					</div>
+				</div>
+			</div>
+			HTML;
+	}
+	// -----------------------------------------------------------------------------------------------------------------
 }
