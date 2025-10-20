@@ -8,61 +8,11 @@ namespace braga\widgets\bootstrap;
  */
 class BS
 {
-	// ========================= HELPERY (wew.) =========================
 	// -----------------------------------------------------------------------------------------------------------------
-	private static function mapBtnClasses(string $base): string
+	public static function box($title, $content, $baseClass = 'card')
 	{
-		$map = [
-			'btn-default' => 'btn-secondary',
-			'btn-primary' => 'btn-primary',
-			'btn-success' => 'btn-success',
-			'btn-info'    => 'btn-info',
-			'btn-warning' => 'btn-warning',
-			'btn-danger'  => 'btn-danger',
-			'btn-link'    => 'btn-link',
-			'btn-block'   => 'w-100', // BS5
-		];
-		$parts = preg_split('/\s+/', trim($base));
-		$out = [];
-		foreach($parts as $p)
-		{
-			$out[] = $map[$p] ?? $p;
-		}
-		return implode(' ', array_filter($out));
-	}
-	// -----------------------------------------------------------------------------------------------------------------
-	private static function mapPanelClassToCardBorder(string $panelClass): string
-	{
-		// "panel-default" → "border-secondary", "panel-primary" → "border-primary", itd.
-		$map = [
-			'panel-default' => 'border-secondary',
-			'panel-primary' => 'border-primary',
-			'panel-success' => 'border-success',
-			'panel-info'    => 'border-info',
-			'panel-warning' => 'border-warning',
-			'panel-danger'  => 'border-danger',
-		];
-		$parts = preg_split('/\s+/', trim($panelClass));
-		$out = [];
-		foreach($parts as $p)
-		{
-			$out[] = $map[$p] ?? $p;
-		}
-		// zawsze dodajemy minimalne marginesy jak dawniej
-		if(!in_array('mb-3', $out, true))
-		{
-			$out[] = 'mb-3';
-		}
-		return implode(' ', array_filter($out));
-	}
-
-	// ========================= 1:1 – KOLEJNOŚĆ Z ORYGINAŁU =========================
-	// -----------------------------------------------------------------------------------------------------------------
-	public static function box($title, $content, $baseClass = 'panel-default')
-	{
-		$cardBorder = self::mapPanelClassToCardBorder($baseClass);
 		$retval = <<<HTML
-			<div class="card {$cardBorder}">
+			<div class="{$baseClass}">
 				<div class="card-header"><h3 class="card-title">{$title}</h3></div>
 				<div class="card-body">
 					{$content}
@@ -72,11 +22,10 @@ class BS
 		return $retval;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function panel($content, $baseClass = 'panel-default')
+	public static function panel($content, $baseClass = 'card')
 	{
-		$cardBorder = self::mapPanelClassToCardBorder($baseClass);
 		$retval = <<<HTML
-			<div class="card {$cardBorder}">
+			<div class="{$baseClass}">
 				<div class="card-body">
 					{$content}
 				</div>
@@ -112,20 +61,18 @@ class BS
 			HTML;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function submit($label, $baseClass = 'btn-default btn-block')
+	public static function submit($label, $baseClass = 'btn btn-primary')
 	{
-		$cls = 'btn ' . self::mapBtnClasses($baseClass);
 		return <<<HTML
-			<input type="submit" value="{$label}" class="{$cls}">
+			<input type="submit" value="{$label}" class="{$baseClass}">
 			HTML;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function button($content, $attrb, $baseClass = "btn-default btn-block")
+	public static function button($content, $attrb, $baseClass = "btn btn-primary")
 	{
-		$cls = 'btn ' . self::mapBtnClasses($baseClass);
 		// $attrb przyjmujemy „as is” (tak jak wcześniej); dokładamy class na koniec
 		return <<<HTML
-			<button {$attrb} class="{$cls}">{$content}</button>
+			<button {$attrb} class="{$baseClass}">{$content}</button>
 			HTML;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
@@ -270,14 +217,13 @@ class BS
 		return $field->out();
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function fileField($label, $name, $baseClass = 'btn-default')
+	public static function fileField($label, $name, $baseClass = 'btn btn-primary')
 	{
-		$mappedBtn = self::mapBtnClasses($baseClass);
 		$i = <<<HTML
 			<input type="file" id="{$name}" name="{$name}" class="h">
 			HTML;
 		$btn = <<<HTML
-			<label class="btn {$mappedBtn}">Przeglądaj {$i}</label>
+			<label class="{$baseClass}">Przeglądaj {$i}</label>
 			HTML;
 		$l = <<<HTML
 			<label for="{$name}">{$label}</label>
@@ -288,16 +234,15 @@ class BS
 		return self::formRow($l . $btn) . $script;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function fileFieldAjax($label, $name, $baseClass = 'btn-default')
+	public static function fileFieldAjax($label, $name, $baseClass = 'btn btn-primary')
 	{
 		$id = substr(md5(uniqid('', true)), 0, 10);
-		$mappedBtn = self::mapBtnClasses($baseClass);
 
 		$file = <<<HTML
 			<input type="file" id="{$id}" name="{$name}" class="h">
 			HTML;
 		$btn = <<<HTML
-			<label class="btn {$mappedBtn}">Przeglądaj {$file}</label>
+			<label class="{$baseClass}">Przeglądaj {$file}</label>
 			HTML;
 		$hiddenVal = <<<HTML
 			<input type="hidden" name="{$name}" id="{$id}_hidden">
