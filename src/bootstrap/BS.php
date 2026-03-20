@@ -143,7 +143,7 @@ class BS
 	}
 	// -----------------------------------------------------------------------------------------------------------------
 	// Pola – pozostają jak w oryginale (wywołują Twoje klasy pól)
-	public static function textField($label, $name, $value = null, $required = false, $maxLength = 255, string $id = null)
+	public static function textField($label, $name, $value = null, $required = false, $maxLength = 255, ?string $id = null)
 	{
 		$field = new TextField();
 		$field->setRequired($required);
@@ -155,7 +155,7 @@ class BS
 		return $field->out();
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function memoField($label, $name, $value = null, $required = false, $maxLength = 65535, string $id = null)
+	public static function memoField($label, $name, $value = null, $required = false, $maxLength = 65535, ?string $id = null)
 	{
 		$field = new MemoField();
 		$field->setRequired($required);
@@ -167,7 +167,7 @@ class BS
 		return $field->out();
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function passwordField($label, $name, $value = null, $required = false, string $id = null)
+	public static function passwordField($label, $name, $value = null, $required = false, ?string $id = null)
 	{
 		$field = new TextField();
 		$field->setType("password");
@@ -179,7 +179,7 @@ class BS
 		return $field->out();
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function checkbox2($label, $name, $checked = false, $value = null, string $id = null)
+	public static function checkbox2($label, $name, $checked = false, $value = null, ?string $id = null)
 	{
 		$id = $id ?? $name;
 		$checkedClass = 'fa-check-square-o';
@@ -204,7 +204,7 @@ class BS
 			HTML;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function checkbox($label, $name, $checked = false, string $id = null)
+	public static function checkbox($label, $name, $checked = false, ?string $id = null)
 	{
 		$field = new CheckBoxField();
 		$field->setName($name);
@@ -214,7 +214,7 @@ class BS
 		return $field->out();
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function dateField($label, $name, $value, $required = false, string $id = null)
+	public static function dateField($label, $name, $value, $required = false, ?string $id = null)
 	{
 		$field = new DateField();
 		$field->setName($name);
@@ -225,7 +225,7 @@ class BS
 		return $field->out();
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function fileField($label, $name, $baseClass = 'btn btn-primary', string $id = null)
+	public static function fileField($label, $name, $baseClass = 'btn btn-primary', ?string $id = null)
 	{
 		$id = $id ?? $name;
 		$i = <<<HTML
@@ -243,7 +243,7 @@ class BS
 		return self::formRow($l . $btn) . $script;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function fileFieldAjax($label, $name, $baseClass = 'btn btn-primary', string $id = null)
+	public static function fileFieldAjax($label, $name, $baseClass = 'btn btn-primary', ?string $id = null)
 	{
 		$id = $id ?? substr(md5(uniqid('', true)), 0, 10);
 
@@ -268,7 +268,7 @@ class BS
 		return self::formRow($l . $btn . $hiddenVal . $hiddenName) . $script;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function numericField($label, $name, $value, $required = false, $precision = 0, string $id = null)
+	public static function numericField($label, $name, $value, $required = false, $precision = 0, ?string $id = null)
 	{
 		$field = new FloatField();
 		$field->setLabel($label);
@@ -286,7 +286,7 @@ class BS
 		return "title='{$txt}' data-bs-toggle='tooltip' data-bs-html='true' data-bs-placement='{$position}'";
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function dateTimeField($label, $name, $value, $required = false, string $id = null)
+	public static function dateTimeField($label, $name, $value, $required = false, ?string $id = null)
 	{
 		$field = new DateTimeField();
 		$field->setName($name);
