@@ -143,48 +143,52 @@ class BS
 	}
 	// -----------------------------------------------------------------------------------------------------------------
 	// Pola – pozostają jak w oryginale (wywołują Twoje klasy pól)
-	public static function textField($label, $name, $value = null, $required = false, $maxLength = 255)
+	public static function textField($label, $name, $value = null, $required = false, $maxLength = 255, string $id = null)
 	{
 		$field = new TextField();
 		$field->setRequired($required);
 		$field->setName($name);
+		$field->setId($id ?? $name);
 		$field->setSelected($value);
 		$field->setLabel($label);
 		$field->setMaxLength($maxLength);
 		return $field->out();
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function memoField($label, $name, $value = null, $required = false, $maxLength = 65535)
+	public static function memoField($label, $name, $value = null, $required = false, $maxLength = 65535, string $id = null)
 	{
 		$field = new MemoField();
 		$field->setRequired($required);
 		$field->setName($name);
+		$field->setId($id ?? $name);
 		$field->setSelected($value);
 		$field->setLabel($label);
 		$field->setMaxLength($maxLength);
 		return $field->out();
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function passwordField($label, $name, $value = null, $required = false)
+	public static function passwordField($label, $name, $value = null, $required = false, string $id = null)
 	{
 		$field = new TextField();
 		$field->setType("password");
 		$field->setRequired($required);
 		$field->setName($name);
+		$field->setId($id ?? $name);
 		$field->setSelected($value);
 		$field->setLabel($label);
 		return $field->out();
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function checkbox2($label, $name, $checked = false, $value = null)
+	public static function checkbox2($label, $name, $checked = false, $value = null, string $id = null)
 	{
+		$id = $id ?? $name;
 		$checkedClass = 'fa-check-square-o';
 		$unCheckedClass = 'fa-square-o';
 		$onChange = "onchange=\"if($(this).prop('checked')){\$(this).parent().removeClass('{$unCheckedClass}').addClass('{$checkedClass}');}else{\$(this).parent().removeClass('{$checkedClass}').addClass('{$unCheckedClass}');}return false;\"";
 
 		$chk = $checked ? "checked" : "";
 		$hidden = <<<HTML
-			<input type="checkbox" class="h" id="{$name}" name="{$name}" {$chk} value="{$value}" {$onChange}>
+			<input type="checkbox" class="h" id="{$id}" name="{$name}" {$chk} value="{$value}" {$onChange}>
 			HTML;
 		$iconClick = "onclick=\"$(this).children().first().click();\"";
 		$icon = <<<HTML
@@ -200,29 +204,32 @@ class BS
 			HTML;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function checkbox($label, $name, $checked = false)
+	public static function checkbox($label, $name, $checked = false, string $id = null)
 	{
 		$field = new CheckBoxField();
 		$field->setName($name);
+		$field->setId($id ?? $name);
 		$field->setSelected($checked);
 		$field->setLabel($label);
 		return $field->out();
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function dateField($label, $name, $value, $required = false)
+	public static function dateField($label, $name, $value, $required = false, string $id = null)
 	{
 		$field = new DateField();
 		$field->setName($name);
+		$field->setId($id ?? $name);
 		$field->setSelected($value);
 		$field->setLabel($label);
 		$field->setRequired($required);
 		return $field->out();
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function fileField($label, $name, $baseClass = 'btn btn-primary')
+	public static function fileField($label, $name, $baseClass = 'btn btn-primary', string $id = null)
 	{
+		$id = $id ?? $name;
 		$i = <<<HTML
-			<input type="file" id="{$name}" name="{$name}" class="h">
+			<input type="file" id="{$id}" name="{$name}" class="h">
 			HTML;
 		$btn = <<<HTML
 			<label class="{$baseClass}">Przeglądaj {$i}</label>
@@ -236,9 +243,9 @@ class BS
 		return self::formRow($l . $btn) . $script;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function fileFieldAjax($label, $name, $baseClass = 'btn btn-primary')
+	public static function fileFieldAjax($label, $name, $baseClass = 'btn btn-primary', string $id = null)
 	{
-		$id = substr(md5(uniqid('', true)), 0, 10);
+		$id = $id ?? substr(md5(uniqid('', true)), 0, 10);
 
 		$file = <<<HTML
 			<input type="file" id="{$id}" name="{$name}" class="h">
@@ -261,11 +268,12 @@ class BS
 		return self::formRow($l . $btn . $hiddenVal . $hiddenName) . $script;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function numericField($label, $name, $value, $required = false, $precision = 0)
+	public static function numericField($label, $name, $value, $required = false, $precision = 0, string $id = null)
 	{
 		$field = new FloatField();
 		$field->setLabel($label);
 		$field->setName($name);
+		$field->setId($id ?? $name);
 		$field->setSelected($value);
 		$field->setRequired($required);
 		$field->setPrecision($precision);
@@ -278,10 +286,11 @@ class BS
 		return "title='{$txt}' data-bs-toggle='tooltip' data-bs-html='true' data-bs-placement='{$position}'";
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function dateTimeField($label, $name, $value, $required = false)
+	public static function dateTimeField($label, $name, $value, $required = false, string $id = null)
 	{
 		$field = new DateTimeField();
 		$field->setName($name);
+		$field->setId($id ?? $name);
 		$field->setSelected($value);
 		$field->setLabel($label);
 		$field->setRequired($required);
