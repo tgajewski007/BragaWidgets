@@ -59,7 +59,10 @@ class FloatField extends \braga\widgets\base\FloatField
 					$this->class .= " " . $this->getErrorClass();
 				}
 			}
-			$this->selected = number_format($this->selected, $this->precision, ".", "");
+			if(is_numeric($this->selected))
+			{
+				$this->selected = number_format(floatval($this->selected), $this->precision, ".", "");
+			}
 		}
 
 		$this->onBlur = $this->onBlur . $checkScript;
@@ -68,4 +71,3 @@ class FloatField extends \braga\widgets\base\FloatField
 	}
 	// -------------------------------------------------------------------------
 }
-?>
