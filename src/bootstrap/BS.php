@@ -152,20 +152,56 @@ class BS
 	 * @param string $value
 	 * @return string
 	 */
-	public static function checkbox2($label, $name, $checked = false, $value = null)
+	public static function checkbox2(string $label, string $name, bool $checked = false, $value = null, ?string $id = null): string
 	{
+		if($id === null)
+		{
+			if(preg_match('/^(.+)\[(.*?)\]$/', $name, $match))
+			{
+				$baseName = $match[1];
+				$index = $match[2];
+				if($index === '')
+				{
+					$index = bin2hex(random_bytes(4));
+				}
+				$id = "{$baseName}_{$index}_";
+			}
+			else
+			{
+				$id = $name;
+			}
+		}
+
 		$checkedClass = 'fa-check-square-o';
 		$unCheckedClass = 'fa-square-o';
-		$onChange = "onchange='if(\$(this).prop(\"checked\")){\$(this).parent().removeClass(\"" . $unCheckedClass . "\"); \$(this).parent().addClass(\"" . $checkedClass . "\");}else{\$(this).parent().removeClass(\"" . $checkedClass . "\"); \$(this).parent().addClass(\"" . $unCheckedClass . "\");} return false;'";
-		$retval = BaseTags::input("type='checkbox' class='h' id='" . $name . "' name='" . $name . "' " . ($checked ? "checked" : "") . " value='" . $value . "' " . $onChange);
-		$onClick = "onclick='\$(this).children().first().click();'";
-		$retval = BaseTags::i($retval, "class='fa fa-lg fa-fw " . ($checked ? $checkedClass : $unCheckedClass) . "' " . $onClick . " style='float:left;'");
-		if(!empty($label))
-		{
-			$label = BaseTags::label($label, "for='" . $name . "' style='display:inline;'");
-		}
-		$retval = BaseTags::div($retval . $label, "style='clear:both; padding:4px 0px'");
-		return $retval;
+		$iconClass = $checked ? $checkedClass : $unCheckedClass;
+		$checkedAttr = $checked ? 'checked' : '';
+
+		$onChange = <<<JS
+			const icon = $(this).closest('i');
+			if ($(this).prop('checked')) {
+				icon.removeClass('{$unCheckedClass}').addClass('{$checkedClass}');
+			} else {
+				icon.removeClass('{$checkedClass}').addClass('{$unCheckedClass}');
+			}		
+		JS;
+
+		return <<<HTML
+		<div style="clear:both; padding:4px 0">
+			<i class="fa fa-lg fa-fw {$iconClass}" style="float:left; cursor:pointer;">
+				<input
+					type="checkbox"
+					class="h"
+					id="{$id}"
+					name="{$name}"
+					value="{$value}"
+					{$checkedAttr}
+					onchange="{$onChange}"
+				>
+			</i>
+			<label for="{$id}" style="display:inline;">{$label}</label>
+		</div>
+		HTML;
 	}
 	// -------------------------------------------------------------------------
 	/**
