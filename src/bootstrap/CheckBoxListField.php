@@ -15,6 +15,9 @@ class CheckBoxListField extends Field
 {
 	use AddLabels;
 	// -------------------------------------------------------------------------
+	/**
+	 * @var WidgetItem[]
+	 */
 	protected $dane = array();
 	// -------------------------------------------------------------------------
 	public function addItem(WidgetItem $item)
@@ -25,18 +28,9 @@ class CheckBoxListField extends Field
 	public function out()
 	{
 		$retval = "";
-		foreach($this->dane as $value)/* @var $value WidgetItem */
+		foreach($this->dane as $value)
 		{
-
 			$retval .= BS::checkbox2($value->getDesc(), $this->name . "[]", isset($this->selected[$value->getVal()]), $value->getVal());
-
-			// $a = new CheckBoxField();
-			// $a->setName($this->name . "[]");
-			// $a->setId($this->id . "_" . $value->getVal());
-			// $a->setSelected();
-			// $a->setValue($value->getVal());
-			// $a->setLabel($value->getDesc());
-			// $retval .= $a->out();
 		}
 		$label = $this->getLabel();
 		return BaseTags::div($label . $retval, "class='form-group'");

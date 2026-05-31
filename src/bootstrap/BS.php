@@ -179,29 +179,58 @@ class BS
 		return $field->out();
 	}
 	// -----------------------------------------------------------------------------------------------------------------
-	public static function checkbox2($label, $name, $checked = false, $value = null, ?string $id = null)
+	public static function checkbox2(string $label, string $name, bool $checked = false, $value = null, ?string $id = null): string
 	{
-		$id = $id ?? $name;
+		if($id === null)
+		{
+			if(preg_match('/^(.+)\[(.*?)\]$/', $name, $match))
+			{
+				$baseName = $match[1];
+				$index = $match[2];
+
+				if($index === '')
+				{
+					$index = bin2hex(random_bytes(4));
+				}
+
+				$id = "{$baseName}_{$index}_";
+			}
+			else
+			{
+				$id = $name;
+			}
+		}
+
 		$checkedClass = 'fa-check-square-o';
 		$unCheckedClass = 'fa-square-o';
-		$onChange = "onchange=\"if($(this).prop('checked')){\$(this).parent().removeClass('{$unCheckedClass}').addClass('{$checkedClass}');}else{\$(this).parent().removeClass('{$checkedClass}').addClass('{$unCheckedClass}');}return false;\"";
+		$iconClass = $checked ? $checkedClass : $unCheckedClass;
+		$checkedAttr = $checked ? 'checked' : '';
 
-		$chk = $checked ? "checked" : "";
-		$hidden = <<<HTML
-			<input type="checkbox" class="h" id="{$id}" name="{$name}" {$chk} value="{$value}" {$onChange}>
-			HTML;
-		$iconClick = "onclick=\"$(this).children().first().click();\"";
-		$icon = <<<HTML
-			<i class="fa fa-lg fa-fw {$checkedClass}" style="float:left;" {$iconClick}>{$hidden}</i>
-			HTML;
-		$lbl = '';
-		if(!empty($label))
-		{
-			$lbl = "<label for=\"{$name}\" style=\"display:inline;\">{$label}</label>";
-		}
+		$onChange = <<<JS
+			const icon = $(this).closest('i');
+			if ($(this).prop('checked')) {
+				icon.removeClass('{$unCheckedClass}').addClass('{$checkedClass}');
+			} else {
+				icon.removeClass('{$checkedClass}').addClass('{$unCheckedClass}');
+			}		
+		JS;
+
 		return <<<HTML
-			<div style="clear:both; padding:4px 0">{$icon}{$lbl}</div>
-			HTML;
+		<div style="clear:both; padding:4px 0">
+			<i class="fa fa-lg fa-fw {$iconClass}" style="float:left; cursor:pointer;">
+				<input
+					type="checkbox"
+					class="h"
+					id="{$id}"
+					name="{$name}"
+					value="{$value}"
+					{$checkedAttr}
+					onchange="{$onChange}" 
+				>
+			</i>
+			<label for="{$id}" style="display:inline;">{$label}</label>
+		</div>
+		HTML;
 	}
 	// -----------------------------------------------------------------------------------------------------------------
 	public static function checkbox($label, $name, $checked = false, ?string $id = null)
