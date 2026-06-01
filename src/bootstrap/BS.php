@@ -145,13 +145,6 @@ class BS
 		return $field->out();
 	}
 	// -------------------------------------------------------------------------
-	/**
-	 * @param string $label
-	 * @param string $name
-	 * @param boolean $checked
-	 * @param string $value
-	 * @return string
-	 */
 	public static function checkbox2(string $label, string $name, bool $checked = false, $value = null, ?string $id = null): string
 	{
 		if($id === null)
@@ -160,10 +153,12 @@ class BS
 			{
 				$baseName = $match[1];
 				$index = $match[2];
+
 				if($index === '')
 				{
 					$index = bin2hex(random_bytes(4));
 				}
+
 				$id = "{$baseName}_{$index}_";
 			}
 			else
@@ -171,24 +166,25 @@ class BS
 				$id = $name;
 			}
 		}
-
 		$checkedClass = 'fa-check-square-o';
 		$unCheckedClass = 'fa-square-o';
 		$iconClass = $checked ? $checkedClass : $unCheckedClass;
 		$checkedAttr = $checked ? 'checked' : '';
 
 		$onChange = <<<JS
-			const icon = $(this).closest('i');
-			if ($(this).prop('checked')) {
+			const icon = $(this).siblings('i.fa');
+			if ($(this).prop('checked'))
+			{
 				icon.removeClass('{$unCheckedClass}').addClass('{$checkedClass}');
-			} else {
+			}
+			else
+			{
 				icon.removeClass('{$checkedClass}').addClass('{$unCheckedClass}');
-			}		
-		JS;
+			}
+			JS;
 
 		return <<<HTML
-		<div style="clear:both; padding:4px 0">
-			<i class="fa fa-lg fa-fw {$iconClass}" style="float:left; cursor:pointer;">
+			<label style="display:block; clear:both; padding:4px 0; cursor:pointer;">
 				<input
 					type="checkbox"
 					class="h"
@@ -198,10 +194,10 @@ class BS
 					{$checkedAttr}
 					onchange="{$onChange}"
 				>
-			</i>
-			<label for="{$id}" style="display:inline;">{$label}</label>
-		</div>
-		HTML;
+				<i class="fa fa-lg fa-fw {$iconClass}" style="float:left;"></i>
+				<span>{$label}</span>
+			</label>
+			HTML;
 	}
 	// -------------------------------------------------------------------------
 	/**
